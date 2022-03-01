@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { BrowserRouter, Routes, Route, Redirect, Link } from "react-router-dom";
 import { ChakraProvider, ButtonGroup, Button } from "@chakra-ui/react";
+import { serverURL } from "./utils/serverURL";
+
 const Hello = () => {
   return <h1>Hello</h1>;
 };
@@ -14,10 +16,6 @@ const Goodbye = () => {
 function App() {
   const [state, setState] = useState("");
   console.log("NODE ENV is ", process.env.NODE_ENV);
-  const serverURL =
-    process.env.NODE_ENV === "production"
-      ? "https://gdd-server.herokuapp.com/"
-      : "http://localhost:8000/";
 
   const testLogin = () => {
     axios.get(serverURL + "login").then((response) => console.log(response));
