@@ -15,6 +15,7 @@ const Goodbye = () => {
 
 function App() {
   const [state, setState] = useState("");
+  console.log("NODE ENV is ", process.env.NODE_ENV);
 
   const testLogin = () => {
     axios
