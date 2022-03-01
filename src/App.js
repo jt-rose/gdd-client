@@ -3,6 +3,8 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { BrowserRouter, Routes, Route, Redirect, Link } from "react-router-dom";
+import { ChakraProvider, ButtonGroup } from "@chakra-ui/react";
+import { Button } from "./components/Button";
 
 const Hello = () => {
   return <h1>Hello</h1>;
@@ -36,22 +38,26 @@ function App() {
     });
   }, []);
   return (
-    <div className="App">
-      <h1>GDD</h1>
-      <p>{String(state)}</p>
-      <button onClick={testLogin}>Login</button>
-      <button onClick={testLogout}>Logout</button>
-      <button onClick={getProtected}>protected?</button>
+    <ChakraProvider>
+      <div className="App">
+        <h1>GDD</h1>
+        <p>{String(state)}</p>
+        <ButtonGroup>
+          <Button onClick={testLogin}>Login</Button>
+          <Button onClick={testLogout}>Logout</Button>
+          <Button onClick={getProtected}>protected?</Button>
+        </ButtonGroup>
 
-      <BrowserRouter>
-        <Link to="/hello">say Hello</Link>
-        <Link to="/goodbye">say Goodbye</Link>
-        <Routes>
-          <Route exact path="/hello" element={<Hello />} />
-          <Route exact path="/goodbye" element={<Goodbye />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+        <BrowserRouter>
+          <Link to="/hello">say Hello</Link>
+          <Link to="/goodbye">say Goodbye</Link>
+          <Routes>
+            <Route exact path="/hello" element={<Hello />} />
+            <Route exact path="/goodbye" element={<Goodbye />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </ChakraProvider>
   );
 }
 
