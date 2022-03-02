@@ -5,6 +5,7 @@ import axios from "axios";
 import { BrowserRouter, Routes, Route, Redirect, Link } from "react-router-dom";
 import { ChakraProvider, ButtonGroup, Button } from "@chakra-ui/react";
 import { serverURL } from "./utils/serverURL";
+import { RegisterForm } from "./components/RegisterForm";
 
 const Hello = () => {
   return <h1>Hello</h1>;
@@ -19,17 +20,17 @@ function App() {
 
   const testLogin = () => {
     axios
-      .get(serverURL + "login", { withCredentials: true })
+      .get(serverURL + "/login", { withCredentials: true })
       .then((response) => console.log(response));
   };
   const testLogout = () => {
     axios
-      .get(serverURL + "logout", { withCredentials: true })
+      .get(serverURL + "/logout", { withCredentials: true })
       .then((response) => console.log(response));
   };
   const getProtected = () => {
     axios
-      .get(serverURL + "protected", { withCredentials: true })
+      .get(serverURL + "/protected", { withCredentials: true })
       .then((response) => console.log(response));
   };
 
@@ -43,6 +44,8 @@ function App() {
       <div className="App">
         <h1>GDD</h1>
         <p>{String(state)}</p>
+        <br />
+        <RegisterForm />
         <ButtonGroup>
           <Button onClick={testLogin}>Login</Button>
           <Button onClick={testLogout}>Logout</Button>
