@@ -1,10 +1,5 @@
-import {
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
-} from '@chakra-ui/react'
-import {useState} from 'react';
+
+import {useState, useEffect} from 'react';
 import axios from 'axios'
 import {post} from '../utils/serverURL.js'
 
@@ -32,7 +27,7 @@ export const Register = () => {
                 image: user.image,
             }
         )}
-
+    
 
   return (
     <>
