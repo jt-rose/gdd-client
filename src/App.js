@@ -18,16 +18,18 @@ function App() {
   console.log("NODE ENV is ", process.env.NODE_ENV);
 
   const testLogin = () => {
-    axios.get(serverURL + "login").then((response) => console.log(response));
+    axios
+      .get(serverURL + "login", { withCredentials: true })
+      .then((response) => console.log(response));
   };
   const testLogout = () => {
     axios
-      .get("https://gdd-server.herokuapp.com/logout")
+      .get(serverURL + "logout", { withCredentials: true })
       .then((response) => console.log(response));
   };
   const getProtected = () => {
     axios
-      .get("https://gdd-server.herokuapp.com/protected")
+      .get(serverURL + "protected", { withCredentials: true })
       .then((response) => console.log(response));
   };
 
