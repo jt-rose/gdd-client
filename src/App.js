@@ -6,6 +6,16 @@ import { BrowserRouter, Routes, Route, Redirect, Link } from "react-router-dom";
 import { ChakraProvider, ButtonGroup, Button } from "@chakra-ui/react";
 import { serverURL } from "./utils/serverURL";
 import { RegisterForm } from "./components/RegisterForm";
+import { Home } from "./pages/Home";
+import { Design } from "./pages/Design";
+import { CreateDesign } from "./pages/CreateDesign";
+import { EditDesign } from "./pages/EditDesign";
+import { EditProfile } from "./pages/EditProfile";
+import { Login } from "./pages/Login";
+import { Register } from "./pages/Register";
+import { Welcome } from "./pages/Welcome";
+import { Search } from "./pages/Search";
+import { Navbar } from "./components/Navbar";
 
 const Hello = () => {
   return <h1>Hello</h1>;
@@ -41,7 +51,21 @@ function App() {
   }, []);
   return (
     <ChakraProvider>
-      <div className="App">
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route exact path="/design" element={<Design />} />
+          <Route exact path="/create" element={<CreateDesign />} />
+          <Route exact path="/edit-design" element={<EditDesign />} />
+          <Route exact path="/search" element={<Search />} />
+          <Route exact path="/edit-profile" element={<EditProfile />} />
+          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/register" element={<Register />} />
+          <Route exact path="/welcome" element={<Welcome />} />
+          <Route exact path="/" element={<Home />} />
+        </Routes>
+      </BrowserRouter>
+      {/* <div className="App">
         <h1>GDD</h1>
         <p>{String(state)}</p>
         <br />
@@ -60,7 +84,7 @@ function App() {
             <Route exact path="/goodbye" element={<Goodbye />} />
           </Routes>
         </BrowserRouter>
-      </div>
+      </div> */}
     </ChakraProvider>
   );
 }
