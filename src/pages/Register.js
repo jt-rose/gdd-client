@@ -23,7 +23,8 @@ export const Register = () => {
       setNewUser({ ...user, [name]: value });
     };
 
-    const handleNewUser = (e) => {
+    const handleNewUser = async  (e) => {
+        console.log(user.username);
         e.preventDefault();
         post(
             '/user/register',
@@ -36,10 +37,7 @@ export const Register = () => {
                 location: user.location,
                 image: user.image,
             }
-
-        )
-        navigate('/login')
-    }
+        )}
 
 
   return (
