@@ -55,7 +55,7 @@ export const EditableCard = (props) => {
     );
   } else {
     return (
-      <>
+      <div className="pairs">
         <label
           htmlFor={props.updateField + "-name-" + props.editingTarget.index}
         >
@@ -93,7 +93,7 @@ export const EditableCard = (props) => {
         />
         <button onClick={handleDesignUpdate}>Update</button>
         <button onClick={handleCancel}>Cancel</button>
-      </>
+      </div>
     );
   }
 };

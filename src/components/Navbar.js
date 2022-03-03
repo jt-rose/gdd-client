@@ -11,12 +11,21 @@ export const Navbar = () => {
   };
   return (
     <>
-      <Link className='links' to="/">Home</Link>
-      <Link className='links' to="/register">Register</Link>
-      <Link className='links' to="/login">Login</Link>
-      <Link className='links' to="/search">Search</Link>
-      <Link className='links' to="/design">Design</Link>
-    <button className='links' onClick={handleLogout}>logout</button>
+      <Link className="links" to="/">
+        Home
+      </Link>
+      <Link className="links" to="/register">
+        Register
+      </Link>
+      <Link className="links" to="/login">
+        Login
+      </Link>
+      <Link className="links" to="/search">
+        Search
+      </Link>
+      <button className="links" onClick={handleLogout}>
+        logout
+      </button>
     </>
   );
 };
