@@ -54,7 +54,7 @@ function App() {
   return (
     <ChakraProvider>
       <BrowserRouter>
-      <Navbar />
+     
         <Routes>
           <Route exact path="/design" element={<Design />} />
           <Route exact path="/create" element={<CreateDesign />} />
