@@ -1,8 +1,10 @@
+
 import {useState, useEffect} from 'react';
 import axios from 'axios'
-
-import {useNavigate} from 'react-router'
+import { Link, useNavigate } from "react-router-dom";
+import { get, post } from "../utils/serverURL";
 import { Navbar } from "../components/Navbar";
+<<<<<<< HEAD
 import { ChakraProvider, Box, Button,  Drawer, Link, Image,
   DrawerBody,
   DrawerFooter,
@@ -10,10 +12,34 @@ import { ChakraProvider, Box, Button,  Drawer, Link, Image,
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton, useDisclosure, Container} from '@chakra-ui/react'
+=======
+import { ChakraProvider, Box, Button,  Drawer, Link, Container} from '@chakra-ui/react'
+>>>>>>> f4638a57b70c17d21bf02d11a6625281b0baeb77
 
 export const Home = () => {
+const [isLoading, setIsLoading] = useState(true);
+  const [userData, setUserData] = useState(null);
+  const [newDesignName, setNewDesignName] = useState("");
 
-    let navigate = useNavigate();
+  let navigate = useNavigate();
+
+  const handleCreateDesign = async () => {
+    const response = await post("/doc/create", {
+      name: newDesignName,
+    });
+    console.log(response);
+    navigate("/design/" + response.data._id);
+  };
+
+  useEffect(async () => {
+    const response = await get("/user");
+    if (response.data.error) {
+      navigate("/welcome");
+    } else {
+      setUserData(response.data);
+      setIsLoading(false);
+    }
+  }, []);
 
 
 
@@ -28,6 +54,18 @@ export const Home = () => {
                  <h1>Home</h1>
                  <Navbar />
 
+    {!isLoading && (
+    <>
+        <p>{String(userData)}</p>
+        <label htmlFor="newDesignName">Name</label>
+        <input
+          type="text"
+          value={newDesignName}
+          onChange={(e) => setNewDesignName(e.target.value)}
+        />
+        <button onClick={handleCreateDesign}>Create</button>
+      </>
+  )}
 
 
                 </Box>
@@ -67,3 +105,4 @@ export const Home = () => {
     </>
   );
 }
+
