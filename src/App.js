@@ -15,6 +15,7 @@ import { Register } from "./pages/Register";
 import { Welcome } from "./pages/Welcome";
 import { Search } from "./pages/Search";
 import { Navbar } from "./components/Navbar";
+import { ChakraProvider, Box, Button,  Drawer,  Container} from '@chakra-ui/react'
 
 const Hello = () => {
   return <h1>Hello</h1>;

@@ -1,20 +1,14 @@
 
 import {useState, useEffect} from 'react';
 import axios from 'axios'
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { get, post } from "../utils/serverURL";
 import { Navbar } from "../components/Navbar";
-<<<<<<< HEAD
-import { ChakraProvider, Box, Button,  Drawer, Link, Image,
-  DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton, useDisclosure, Container} from '@chakra-ui/react'
-=======
-import { ChakraProvider, Box, Button,  Drawer, Link, Container} from '@chakra-ui/react'
->>>>>>> f4638a57b70c17d21bf02d11a6625281b0baeb77
+
+
+
+import { ChakraProvider, Box, Button,  Drawer, Link, Image, Container} from '@chakra-ui/react'
+
 
 export const Home = () => {
 const [isLoading, setIsLoading] = useState(true);
@@ -94,8 +88,6 @@ const [isLoading, setIsLoading] = useState(true);
                           </Box>
                         </Box>
 
-
-
                         </Container>
                     </Box>
                 </Box>
@@ -105,4 +97,3 @@ const [isLoading, setIsLoading] = useState(true);
     </>
   );
 }
-

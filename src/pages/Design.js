@@ -5,7 +5,7 @@ import { EditableText } from "../components/EditableText";
 import { EditableCard } from "../components/EditableCard";
 import axios from 'axios'
 
-import {useNavigate} from 'react-router'
+
 import { Navbar } from "../components/Navbar";
 import { ChakraProvider, Box, Button,  Drawer, Link, Container} from '@chakra-ui/react'
 
@@ -109,4 +109,3 @@ const [isLoading, setIsLoading] = useState(true);
     </>
   );
 }
-
