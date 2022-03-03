@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { post, serverURL } from "../utils/serverURL";
-import { Input, Button, FormControl, FormLabel } from "@chakra-ui/react";
-import axios from "axios";
+import { post } from "../utils/serverURL";
 
 export const RegisterForm = () => {
   const [username, setUsername] = useState("");
@@ -30,30 +28,30 @@ export const RegisterForm = () => {
   return (
     <>
       {errorMessage && <p>{errorMessage}</p>}
-      <FormControl>
-        <FormLabel htmlFor="username">Username</FormLabel>
-        <Input
+      <form>
+        <label htmlFor="username">Username</label>
+        <input
           id="username"
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-        <FormLabel htmlFor="email">Email address</FormLabel>
-        <Input
+        <label htmlFor="email">Email address</label>
+        <input
           id="email"
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <FormLabel htmlFor="password">Password</FormLabel>
-        <Input
+        <label htmlFor="password">Password</label>
+        <input
           id="password"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button onClick={handleSubmit}>Register</Button>
-      </FormControl>
+        <button onClick={handleSubmit}>Register</button>
+      </form>
     </>
   );
 };
