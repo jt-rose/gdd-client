@@ -43,6 +43,7 @@ export const Design = () => {
             <div className="content">
               <div className="contentLeft">
                 <h1>GDD Page</h1>
+
                 {!isLoading && (
                   <>
                     <p>{data.name}</p>

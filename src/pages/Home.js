@@ -9,7 +9,7 @@ import { FaUserFriends } from 'react-icons/fa';
 
 export const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [userData, setUserData] = useState(null);
+  const [data, setData] = useState(null);
   const [newDesignName, setNewDesignName] = useState("");
 
   let navigate = useNavigate();
@@ -27,8 +27,9 @@ export const Home = () => {
     if (response.data.error) {
       navigate("/welcome");
     } else {
-      setUserData(response.data);
+      setData(response.data);
       setIsLoading(false);
+      console.log(response.data);
     }
   }, []);
 console.log(userData);
@@ -37,22 +38,6 @@ console.log(userData);
       <LeftContent>
         {!isLoading && (
           <>
-            <div className="homeDiv">
-                <div className='profileCard'>
-                    <img className='profilePic' src={userData.image}  />
-                    <div className='pCardContent'>
-                        {userData.username}
-                        <span className='date'>{userData.location}</span>
-                        {userData.description}
-                        <a>
-                            <FaUserFriends />22 Friends
-                        </a>
-                    </div>
-                </div>
-                </div>
-                <div className="homeDivBottom" >
-
-            <p>{String(userData)}</p>
             <label htmlFor="newDesignName">Name</label>
             <input
               type="text"
