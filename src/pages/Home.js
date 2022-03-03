@@ -7,7 +7,7 @@ import { Layout, LeftContent, RightContent } from "../components/Layout";
 
 export const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [userData, setUserData] = useState(null);
+  const [data, setData] = useState(null);
   const [newDesignName, setNewDesignName] = useState("");
 
   let navigate = useNavigate();
@@ -25,8 +25,9 @@ export const Home = () => {
     if (response.data.error) {
       navigate("/welcome");
     } else {
-      setUserData(response.data);
+      setData(response.data);
       setIsLoading(false);
+      console.log(response.data);
     }
   }, []);
 
@@ -35,7 +36,6 @@ export const Home = () => {
       <LeftContent>
         {!isLoading && (
           <>
-            <p>{String(userData)}</p>
             <label htmlFor="newDesignName">Name</label>
             <input
               type="text"
