@@ -1,6 +1,9 @@
-import { Link } from "react-router-dom";
+import {useState, useEffect} from 'react';
+import axios from 'axios'
+
+import {useNavigate} from 'react-router'
 import { Navbar } from "../components/Navbar";
-import { ChakraProvider, Box, Button,  Drawer,
+import { ChakraProvider, Box, Button,  Drawer, Link,
   DrawerBody,
   DrawerFooter,
   DrawerHeader,
@@ -8,21 +11,24 @@ import { ChakraProvider, Box, Button,  Drawer,
   DrawerContent,
   DrawerCloseButton, useDisclosure, Container} from '@chakra-ui/react'
 
-
 export const Home = () => {
 
-const { isOpen, onOpen, onClose } = useDisclosure()
+    let navigate = useNavigate();
+
+
+
   return (
     <>
 
+
       <Box className="main">
           <Box className="mainEffect">
-              <Box  className="mainContainer" >
+              <Box  className="mainContainer">
                 <Box className='header' padding='4' color='white'>
-                <Navbar />
-                <h1>Home Page</h1>
-                <Link className='links' to="/design">Design Doc</Link>
-                <Link className='links' to="/search">Search projects</Link>
+                 <h1>Home</h1>
+                 <Navbar />
+
+
 
                 </Box>
                 <Box className= "content">
@@ -31,15 +37,13 @@ const { isOpen, onOpen, onClose } = useDisclosure()
                     </Box>
                     <Box className= "contentRight">
                         <Container maxW='xl' centerContent>
-                            
+
                         </Container>
                     </Box>
                 </Box>
             </Box>
         </Box>
     </Box>
-
-
     </>
   );
-};
+}
