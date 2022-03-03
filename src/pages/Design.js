@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
 import { get, put, remove } from "../utils/serverURL";
+import { EditableText } from "../components/EditableText";
 
 export const Design = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
+  const [editingTarget, setEditingTarget] = useState(null); // {target: 'locations', index: number | null}
   const { designid } = useParams();
   const navigate = useNavigate();
 
@@ -29,6 +31,13 @@ export const Design = () => {
       {!isLoading && (
         <>
           <p>{data.name}</p>
+          <EditableText
+            designid={designid}
+            updateField="name"
+            text={data.name}
+            setData={setData}
+          />
+
           <p>{data.image}</p>
           <button onClick={handleTrash}>Trash</button>
           <button onClick={handleDelete}>Delete</button>
