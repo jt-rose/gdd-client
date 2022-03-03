@@ -48,9 +48,12 @@ function App() {
       setState(response.data);
     });
   }, []);
+
+      // <Navbar />
   return (
+
+    <ChakraProvider>
     <BrowserRouter>
-      <Navbar />
       <Routes>
         <Route path="/design/:designid" element={<Design />} />
         <Route exact path="/create" element={<CreateDesign />} />
@@ -63,6 +66,8 @@ function App() {
         <Route exact path="/" element={<Home />} />
       </Routes>
     </BrowserRouter>
+</ChakraProvider>
+
   );
 }
 

@@ -1,11 +1,16 @@
-import { useState, useEffect } from "react";
+import {useState, useEffect} from 'react';
 import { useParams, useNavigate } from "react-router";
 import { get, put, remove } from "../utils/serverURL";
 import { EditableText } from "../components/EditableText";
 import { EditableCard } from "../components/EditableCard";
+import axios from 'axios'
+
+import {useNavigate} from 'react-router'
+import { Navbar } from "../components/Navbar";
+import { ChakraProvider, Box, Button,  Drawer, Link, Container} from '@chakra-ui/react'
 
 export const Design = () => {
-  const [isLoading, setIsLoading] = useState(true);
+const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
   const [editingTarget, setEditingTarget] = useState(null); // {target: 'locations', index: number | null}
   const { designid } = useParams();
@@ -26,9 +31,24 @@ export const Design = () => {
     setData(response.data);
     setIsLoading(false);
   }, []);
+
   return (
     <>
-      <h1>GDD Page</h1>
+
+
+      <Box className="main">
+          <Box className="mainEffect">
+              <Box  className="mainContainer">
+                <Box className='header' padding='4' color='white'>
+                 <h1>Design</h1>
+                 <Navbar />
+
+
+
+                </Box>
+                <Box className= "content">
+                    <Box className= "contentLeft">
+<h1>GDD Page</h1>
       {!isLoading && (
         <>
           <p>{data.name}</p>
@@ -76,6 +96,17 @@ export const Design = () => {
           <button onClick={handleDelete}>Delete</button>
         </>
       )}
+                    </Box>
+                    <Box className= "contentRight">
+                        <Container maxW='xl' centerContent>
+
+                        </Container>
+                    </Box>
+                </Box>
+            </Box>
+        </Box>
+    </Box>
     </>
   );
-};
+}
+
