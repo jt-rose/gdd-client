@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { get, post } from "../utils/serverURL";
 import { Navbar } from "../components/Navbar";
 import { Layout, LeftContent, RightContent } from "../components/Layout";
+import { FaUserFriends } from 'react-icons/fa';
 
 export const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -29,12 +30,25 @@ export const Home = () => {
       setIsLoading(false);
     }
   }, []);
-
+console.log(userData);
   return (
     <Layout title="Home">
       <LeftContent>
         {!isLoading && (
           <>
+            <div className='profileCard'>
+                <img className='profilePic' src='../../pfPic.png'  />
+                <div className='pCardContent'>
+                    {userData.username}
+                    <span className='date'>{userData.location}</span>
+                    {userData.description}
+                    <a>
+                        <FaUserFriends />22 Friends
+                    </a>
+                </div>
+            </div>
+
+
             <p>{String(userData)}</p>
             <label htmlFor="newDesignName">Name</label>
             <input

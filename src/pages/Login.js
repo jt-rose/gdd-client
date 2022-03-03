@@ -57,7 +57,7 @@ export const Login = () => {
               </form>
             </div>
             <div className="contentRight">
-              <div maxW="xl" centerContent></div>
+              <div ></div>
             </div>
           </div>
         </div>

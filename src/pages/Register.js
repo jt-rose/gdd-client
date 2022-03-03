@@ -4,6 +4,8 @@ import { post } from "../utils/serverURL.js";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { Navbar } from "../components/Navbar";
+import { Layout, LeftContent, RightContent } from "../components/Layout";
+
 
 export const Register = () => {
   const [user, setNewUser] = useState({ image: "./pfPic.jpeg" });
@@ -30,25 +32,12 @@ export const Register = () => {
   };
 
   return (
-    <>
-      <div className="main">
-        <div className="mainEffect">
-          <div className="mainContainer">
-            <div className="header" padding="4" color="white">
-              <h1>Register</h1>
-              <Navbar />
 
-              <Link className="links" to="/design">
-                Design Doc
-              </Link>
-              <Link className="links" to="/search">
-                Search projects
-              </Link>
-            </div>
-            <div className="content">
-              <div className="contentLeft">
+    <Layout title="Register">
+      <LeftContent>
+      <>
                 <form onSubmit={handleNewUser}>
-                  <div id="formdiv">
+                  <div id="formBox">
                     <div className="pairs">
                       UserName:{" "}
                       <input
@@ -111,14 +100,11 @@ export const Register = () => {
                     </div>
                   </div>
                 </form>
-              </div>
-              <div className="contentRight">
-                <div maxW="xl" centerContent></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
+
+              </>
+              </LeftContent>
+              <RightContent></RightContent>
+            </Layout>
+
   );
 };

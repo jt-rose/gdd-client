@@ -3,28 +3,20 @@ import axios from "axios";
 
 import { useNavigate } from "react-router";
 import { Navbar } from "../components/Navbar";
+import { Layout, LeftContent, RightContent } from "../components/Layout";
+
 
 export const Welcome = () => {
   let navigate = useNavigate();
 
   return (
+
+    <Layout title="Home">
+      <LeftContent>
     <>
-      <div className="main">
-        <div className="mainEffect">
-          <div className="mainContainer">
-            <div className="header" padding="4" color="white">
-              <h1>Welcome</h1>
-              <Navbar />
-            </div>
-            <div className="content">
-              <div className="contentLeft"></div>
-              <div className="contentRight">
-                <div maxW="xl" centerContent></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </>
+    </LeftContent>
+    <RightContent></RightContent>
+  </Layout>
   );
 };

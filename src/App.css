@@ -59,7 +59,7 @@
     font-weight: bold;
 }
 #buttForm1:hover{
-    
+
     color: rgb(31, 198, 127);
     border: 3px solid rgb(31, 198, 127);
 }
@@ -92,4 +92,17 @@ ul li{
     height: 100%;
     background-color: rgb(20, 20, 20);
     border-bottom-right-radius: 25px;
+}
+/* home Page Styling */
+.profileCard{
+    width: 300px;
+    height: 200px;
+    background-color: rgb(187, 187, 187);
+    border-radius: 20px;
+
+}
+.profilePic{
+    width: 100px;
+    height: 100px;
+    border-top-left-radius: 20px;
 }

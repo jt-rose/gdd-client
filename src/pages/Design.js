@@ -92,7 +92,7 @@ export const Design = () => {
                 )}
               </div>
               <div className="contentRight">
-                <div maxW="xl" centerContent></div>
+                <div ></div>
               </div>
             </div>
           </div>

@@ -19,7 +19,7 @@ export const Search = () => {
             <div className="content">
               <div className="contentLeft"></div>
               <div className="contentRight">
-                <div maxW="xl" centerContent></div>
+                <div ></div>
               </div>
             </div>
           </div>
