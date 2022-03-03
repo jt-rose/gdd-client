@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import {useNavigate} from 'react-router'
 import { Navbar } from "../components/Navbar";
-import { ChakraProvider, Box, Button,  Drawer, Link,
+import { ChakraProvider, Box, Button,  Drawer, Link, Image,
   DrawerBody,
   DrawerFooter,
   DrawerHeader,
@@ -37,6 +37,26 @@ export const Home = () => {
                     </Box>
                     <Box className= "contentRight">
                         <Container maxW='xl' centerContent>
+
+
+                        <Box>
+                          <Image src='../public/pfPic.png'  />
+                          <Box className='cardContent'>
+                            <Box className='cardName'>
+                             Matthew
+                            </Box>
+                            <Box className='cardInfo'>
+                              <span className='date'>Joined in 2015</span>
+                              Matthew is a musician living in Nashville.
+                            <a>
+
+                              22 Friends
+                            </a>
+                            </Box>
+                          </Box>
+                        </Box>
+
+
 
                         </Container>
                     </Box>

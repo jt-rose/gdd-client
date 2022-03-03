@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import {useNavigate} from 'react-router'
 import { Navbar } from "../components/Navbar";
-import { ChakraProvider, Box, Button,  Drawer, Link,
+import { ChakraProvider, Box, Button,  Drawer, Link, Image,
   DrawerBody,
   DrawerFooter,
   DrawerHeader,
@@ -37,6 +37,9 @@ export const Welcome= () => {
                     </Box>
                     <Box className= "contentRight">
                         <Container maxW='xl' centerContent>
+
+
+                        
 
                         </Container>
                     </Box>
