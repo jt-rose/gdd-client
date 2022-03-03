@@ -52,7 +52,7 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route exact path="/design" element={<Design />} />
+        <Route path="/design/:designid" element={<Design />} />
         <Route exact path="/create" element={<CreateDesign />} />
         <Route exact path="/edit-design" element={<EditDesign />} />
         <Route exact path="/search" element={<Search />} />
