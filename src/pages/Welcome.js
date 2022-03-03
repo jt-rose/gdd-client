@@ -1,5 +1,5 @@
 import '../App.css';
-import { ChakraProvider, div, Button,  Drawer,
+import { ChakraProvider, Box, Button,  Drawer,
   DrawerBody,
   DrawerFooter,
   DrawerHeader,
@@ -17,9 +17,9 @@ export const Welcome = () => {
       <h1>Welcome</h1>
 
 
-        <div className="main">
-            <div className="mainEffect">
-                <div  className="mainContainer">
+        <Box className="main">
+            <Box className="mainEffect">
+                <Box  className="mainContainer">
                   <header>
                       <ul>
                           <li>Link1</li>
@@ -30,9 +30,9 @@ export const Welcome = () => {
                   </header>
 
 
-              </div>
-          </div>
-      </div>
+              </Box>
+          </Box>
+      </Box>
       </>
     );
   }
