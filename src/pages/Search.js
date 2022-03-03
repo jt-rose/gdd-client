@@ -1,49 +1,30 @@
-import {useState, useEffect} from 'react';
-import axios from 'axios'
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-import {useNavigate} from 'react-router'
+import { useNavigate } from "react-router";
 import { Navbar } from "../components/Navbar";
-import { ChakraProvider, Box, Button,  Drawer, Link,
-  DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton, useDisclosure, Container} from '@chakra-ui/react'
 
 export const Search = () => {
-
-    let navigate = useNavigate();
-
-
+  let navigate = useNavigate();
 
   return (
     <>
-
-
-      <Box className="main">
-          <Box className="mainEffect">
-              <Box  className="mainContainer">
-                <Box className='header' padding='4' color='white'>
-                 <h1>Search</h1>
-                 <Navbar />
-
-
-
-                </Box>
-                <Box className= "content">
-                    <Box className= "contentLeft">
-
-                    </Box>
-                    <Box className= "contentRight">
-                        <Container maxW='xl' centerContent>
-
-                        </Container>
-                    </Box>
-                </Box>
-            </Box>
-        </Box>
-    </Box>
+      <div className="main">
+        <div className="mainEffect">
+          <div className="mainContainer">
+            <div className="header" padding="4" color="white">
+              <h1>Search</h1>
+              <Navbar />
+            </div>
+            <div className="content">
+              <div className="contentLeft"></div>
+              <div className="contentRight">
+                <div maxW="xl" centerContent></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
-}
+};
