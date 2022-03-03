@@ -32,7 +32,7 @@ export const Register = () => {
 
   return (
     <>
-      <h1>Register</h1>;
+      <h1>Registssder</h1>;
         <div className="main">
             <div className="mainEffect">
                 <div  className="mainContainer">
