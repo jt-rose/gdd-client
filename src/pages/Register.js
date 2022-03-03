@@ -40,22 +40,14 @@ export const Register = () => {
 
   return (
 
-<<<<<<< HEAD
+
     <Layout title="Register">
       <LeftContent>
       <>
-=======
-              <Link className="links" to="/design">
-                Design Doc
-              </Link>
-              <Link className="links" to="/search">
-                Search projects
-              </Link>
-            </div>
-            <div className="content">
-              <div className="contentLeft">
+
+
                 {errorMessage && <p>{errorMessage}</p>}
->>>>>>> f336b036b31aa5456ba8a32ac2d6781c0d9e0b5e
+
                 <form onSubmit={handleNewUser}>
                   <div id="formBox">
                     <div className="pairs">
@@ -114,7 +106,7 @@ export const Register = () => {
                       <input
                         className="input"
                         name="image"
-                        value="./pfPic.jpeg"
+                        defaulValue="./pfPic.jpeg"
                         onChange={handleChange}
                         required
                       />

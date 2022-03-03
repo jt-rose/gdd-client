@@ -6,6 +6,7 @@ import { Navbar } from "../components/Navbar";
 import { Layout, LeftContent, RightContent } from "../components/Layout";
 import { FaUserFriends } from 'react-icons/fa';
 
+
 export const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [userData, setUserData] = useState(null);
@@ -36,18 +37,20 @@ console.log(userData);
       <LeftContent>
         {!isLoading && (
           <>
-            <div className='profileCard'>
-                <img className='profilePic' src='../../pfPic.png'  />
-                <div className='pCardContent'>
-                    {userData.username}
-                    <span className='date'>{userData.location}</span>
-                    {userData.description}
-                    <a>
-                        <FaUserFriends />22 Friends
-                    </a>
+            <div className="homeDiv">
+                <div className='profileCard'>
+                    <img className='profilePic' src={userData.image}  />
+                    <div className='pCardContent'>
+                        {userData.username}
+                        <span className='date'>{userData.location}</span>
+                        {userData.description}
+                        <a>
+                            <FaUserFriends />22 Friends
+                        </a>
+                    </div>
                 </div>
-            </div>
-
+                </div>
+                <div className="homeDivBottom" >
 
             <p>{String(userData)}</p>
             <label htmlFor="newDesignName">Name</label>
@@ -57,10 +60,27 @@ console.log(userData);
               onChange={(e) => setNewDesignName(e.target.value)}
             />
             <button onClick={handleCreateDesign}>Create</button>
+            </div>
           </>
         )}
+
+
       </LeftContent>
-      <RightContent></RightContent>
+      <RightContent>
+      Collabs
+      <div className='profileCard'>
+          <img className='profilePic' src={userData.image}  />
+          <div className='pCardContent'>
+              {userData.username}
+              <span className='date'>{userData.location}</span>
+              {userData.description}
+              <a>
+                  <FaUserFriends />22 Friends
+              </a>
+          </div>
+      </div>
+
+      </RightContent>
     </Layout>
   );
 };
