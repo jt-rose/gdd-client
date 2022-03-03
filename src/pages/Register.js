@@ -7,6 +7,7 @@ import { Navbar } from "../components/Navbar";
 
 export const Register = () => {
   const [user, setNewUser] = useState({ image: "./pfPic.jpeg" });
+  const [errorMessage, setErrorMessage] = useState(null);
 
   let navigate = useNavigate();
 
@@ -18,8 +19,8 @@ export const Register = () => {
   const handleNewUser = async (e) => {
     console.log(user.username);
     e.preventDefault();
-    post("/user/register", {
-      name: user.username,
+    const response = await post("/user/register", {
+      username: user.username,
       password: user.password,
       email: user.email,
       company: user.company,
@@ -27,6 +28,12 @@ export const Register = () => {
       location: user.location,
       image: user.image,
     });
+    console.log(response);
+    if (!response.data.error) {
+      navigate("/");
+    } else {
+      setErrorMessage(response.data.error.message);
+    }
   };
 
   return (
@@ -47,14 +54,16 @@ export const Register = () => {
             </div>
             <div className="content">
               <div className="contentLeft">
+                {errorMessage && <p>{errorMessage}</p>}
                 <form onSubmit={handleNewUser}>
-                  <div id="formdiv">
+                  <div id="formBox">
                     <div className="pairs">
                       UserName:{" "}
                       <input
                         className="input"
                         name="username"
                         onChange={handleChange}
+                        required
                       />
                     </div>
                     <div className="pairs">
@@ -64,6 +73,7 @@ export const Register = () => {
                         className="input"
                         name="password"
                         onChange={handleChange}
+                        required
                       />
                     </div>
                     <div className="pairs">
@@ -72,6 +82,7 @@ export const Register = () => {
                         className="input"
                         name="email"
                         onChange={handleChange}
+                        required
                       />
                     </div>
                     <div className="pairs">
@@ -80,6 +91,7 @@ export const Register = () => {
                         className="input"
                         name="company"
                         onChange={handleChange}
+                        required
                       />
                     </div>
                     <div className="pairs">
@@ -88,12 +100,14 @@ export const Register = () => {
                         className="input"
                         name="location"
                         onChange={handleChange}
+                        required
                       />
                       Description{" "}
                       <input
                         className="input"
                         name="description"
                         onChange={handleChange}
+                        required
                       />
                       Image url:{" "}
                       <input
@@ -101,6 +115,7 @@ export const Register = () => {
                         name="image"
                         value="./pfPic.jpeg"
                         onChange={handleChange}
+                        required
                       />
                       <input
                         id="buttForm1"
