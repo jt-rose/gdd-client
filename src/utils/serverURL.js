@@ -9,7 +9,7 @@ export const get = (destination) => {
   return axios.get(serverURL + destination, { withCredentials: true });
 };
 export const post = (destination, body) => {
-  return axios.post(serverURL + destination, body, { withCredentials: true });
+  return post(serverURL + destination, body, { withCredentials: true });
 };
 export const put = (destination, body) => {
   return axios.put(serverURL + destination, body, { withCredentials: true });
