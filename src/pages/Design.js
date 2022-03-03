@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
 import { get, put, remove } from "../utils/serverURL";
 import { EditableText } from "../components/EditableText";
+import { EditableCard } from "../components/EditableCard";
 
 export const Design = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -36,9 +37,41 @@ export const Design = () => {
             updateField="name"
             text={data.name}
             setData={setData}
+            // editingTarget={editingTarget}
+            // setEditingTarget={setEditingTarget}
           />
 
           <p>{data.image}</p>
+          {/* {data.story &&} */}
+          <EditableText
+            designid={designid}
+            updateField="story"
+            text={data.story || ""}
+            setData={setData}
+          />
+          {/* {data.characters.map(char => (
+              <EditableCard />
+          ))} */}
+          <p>characters</p>
+          {data.characters.map((c, index) => (
+            <EditableCard
+              designid={designid}
+              cardData={c}
+              currentDataArray={data.characters}
+              editingTarget={{ index }}
+              updateField={"characters"}
+              setData={setData}
+            />
+          ))}
+          <EditableCard
+            designid={designid}
+            cardData={{ name: "", description: "", image: "" }}
+            currentDataArray={data.characters}
+            editingTarget={{ index: data.characters.length }}
+            updateField={"characters"}
+            setData={setData}
+          />
+          <br />
           <button onClick={handleTrash}>Trash</button>
           <button onClick={handleDelete}>Delete</button>
         </>

@@ -1,11 +1,9 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
 import { put } from "../utils/serverURL";
 
 export const EditableText = (props) => {
   const [text, setText] = useState(props.text);
   const [isEditing, setIsEditing] = useState(false);
-  const navigate = useNavigate();
   // use props.setIsEditing
   let update = {};
   update[props.updateField] = text;
@@ -30,13 +28,16 @@ export const EditableText = (props) => {
       <>
         <p>{text}</p>
         <button onClick={() => setIsEditing(true)}>Edit</button>
+        {/* clear */}
       </>
     );
   } else {
     return (
       <>
+        <label htmlFor={props.updateField}>{props.updateField}</label>
         <input
           type="text"
+          id={props.updateField}
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
