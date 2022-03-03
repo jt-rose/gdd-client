@@ -5,6 +5,7 @@ import { EditableText } from "../components/EditableText";
 import { EditableCard } from "../components/EditableCard";
 import axios from "axios";
 
+
 import { Navbar } from "../components/Navbar";
 
 export const Design = () => {
