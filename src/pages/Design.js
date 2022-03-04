@@ -69,6 +69,7 @@ export const Design = () => {
                   currentDataArray={data.characters}
                   editingTarget={{ index }}
                   updateField={"characters"}
+                  buttonName="Edit"
                   setData={setData}
                 />
               ))}
@@ -78,6 +79,7 @@ export const Design = () => {
                 currentDataArray={data.characters}
                 editingTarget={{ index: data.characters.length }}
                 updateField={"characters"}
+                buttonName="Add"
                 setData={setData}
               />
             </section>
@@ -91,6 +93,7 @@ export const Design = () => {
                   currentDataArray={data.locations}
                   editingTarget={{ index }}
                   updateField={"locations"}
+                  buttonName="Edit"
                   setData={setData}
                 />
               ))}
@@ -100,6 +103,7 @@ export const Design = () => {
                 currentDataArray={data.locations}
                 editingTarget={{ index: data.locations.length }}
                 updateField={"locations"}
+                buttonName="Add"
                 setData={setData}
               />
             </section>
@@ -113,6 +117,7 @@ export const Design = () => {
                   currentDataArray={data.items}
                   editingTarget={{ index }}
                   updateField={"items"}
+                  buttonName="Edit"
                   setData={setData}
                 />
               ))}
@@ -122,6 +127,7 @@ export const Design = () => {
                 currentDataArray={data.items}
                 editingTarget={{ index: data.items.length }}
                 updateField={"items"}
+                buttonName="Add"
                 setData={setData}
               />
             </section>
@@ -135,6 +141,7 @@ export const Design = () => {
                   currentDataArray={data.gameplay}
                   editingTarget={{ index }}
                   updateField={"gameplay"}
+                  buttonName="Edit"
                   setData={setData}
                 />
               ))}
@@ -144,6 +151,7 @@ export const Design = () => {
                 currentDataArray={data.gameplay}
                 editingTarget={{ index: data.gameplay.length }}
                 updateField={"gameplay"}
+                buttonName="Add"
                 setData={setData}
               />
             </section>
