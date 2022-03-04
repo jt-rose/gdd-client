@@ -76,7 +76,7 @@ ul li {
   border-radius: 25px;
 }
 .contentLeft {
-  display: flex;
+  /* display: flex; */
   width: 70%;
   height: 100%;
   background-color: rgb(15, 15, 15);

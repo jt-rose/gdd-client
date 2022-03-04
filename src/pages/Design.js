@@ -12,7 +12,9 @@ import { EditableSelect } from "../components/EditableSelect";
 export const Design = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
-  const [editingTarget, setEditingTarget] = useState(null); // {target: 'locations', index: number | null}
+  const [editingTarget, setEditingTarget] = useState(null);
+  // {target: 'locations', index: number | null}
+  const [image, setImage] = useState(null);
   const { designid } = useParams();
   const navigate = useNavigate();
 
@@ -47,6 +49,11 @@ export const Design = () => {
             />
 
             <p>{data.image}</p>
+            {image && <img src={image} />}
+            <input
+              type="file"
+              onChange={(e) => setImage(URL.createObjectURL(e.target.files[0]))}
+            />
 
             <EditableSelect
               designid={designid}
