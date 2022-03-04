@@ -49,7 +49,7 @@ export const Register = () => {
                 {errorMessage && <p>{errorMessage}</p>}
 
                 <form onSubmit={handleNewUser}>
-                  <div id="formBox">
+                  <div className="formBox">
                     <div className="pairs">
                       UserName:{" "}
                       <input
@@ -111,8 +111,8 @@ export const Register = () => {
                         required
                       />
                       <input
-                        id="buttForm1"
-                        className="butt"
+                        className="buttForm1"
+                        
                         type="submit"
                         value="Submit"
                       />

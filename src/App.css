@@ -1,10 +1,60 @@
 *{
     box-sizing: border-box;
+    margin: 0;
+    color: rgb(187, 187, 187);
 }
+#hide{
+
+}
+h1{
+margin-left: 30px;
+margin-bottom: 15px;
+color: rgb(187, 187, 187);
+}
+.nav{
+    /* background-color: red; */
+    padding-top: 15px;
+    align-items: baseline;
+}
+.navBottom{
+    display:flex;
+    flex-direction: row;
+    /* background-color: blue; */
+    align-items: baseline;
+}
+.navBottom button{
+    color: black;
+}
+.navBottom button:hover{
+    transform: scale(1.1);
+    background-color: red;
+}
+
+
+.topnav {
+  overflow: hidden;
+}
+
+.topnav input[type=text] {
+  float: right;
+  padding: 6px;
+  border: none;
+  margin-top: 8px;
+  margin-right: 16px;
+  font-size: 17px;
+}
+.search{
+    float: right;
+
+}
+
+
+
+
 .main{
     display: flex;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     background-image: url('../public/bg.jpeg');
     background-size: cover;
 
@@ -33,12 +83,12 @@
     border-radius: 25px;
 
 }
-#formBox{
+.formBox{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
-    height: 80%;
+    height: 100%;
     color: rgb(187, 187, 187);
     background-color: rgba(0, 0, 0,.5);
     padding: 10px;
@@ -56,52 +106,68 @@
     border-bottom: 3px solid rgb(40, 40, 40);
     box-shadow: 5px 5px 20px rgba(0, 0, 0,.5) ;
 }
-#buttForm1{
+.buttForm1{
+    margin-top: 20px;
     background-color: rgb(2, 57, 14);
     color: black;
     font-weight: bold;
 }
-#buttForm1:hover{
-
+.buttForm1:hover{
     color: rgb(31, 198, 127);
     border: 3px solid rgb(31, 198, 127);
 }
+
+
 .pairs{
     display: flex;
     flex-direction: column;
 }
 ul li{
-    display: inline;
-    margin: 0 10px;
+    list-style: none;
+    margin:  5px;
+}
+li span{
+    margin-right: 5px;
+    color: green;
+}
+.redNum{
+    color: red;
 }
 
 .content{
     display: flex;
     width: 100%;
     height: 90%;
+    background-color: rgb(15, 15, 15);
     border-radius: 25px;
 }
 .contentLeft{
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 100%;
     height: 100%;
     background-color: rgb(15, 15, 15);
     border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
     justify-content: center;
     align-items: center;
 }
 .contentRight{
-    width: 30%;
-    height: 100%;
+    width: 50%;
+    min-height: 100%;
+    padding: 20px;
     background-color: rgb(20, 20, 20);
     border-bottom-right-radius: 25px;
 }
+
+
 /* home Page Styling */
 .homeDiv{
+    display: flex;
     width:100%;
     padding: 10px;
-    border-bottom: 2px solid black;
+    background-color: rgb(50, 50, 50);
+    margin-top: 20px;
 }
 .homeDivBottom{
     width: 100%;
@@ -112,15 +178,160 @@ ul li{
 
 .profileCard{
     width: 300px;
+    background-color: rgb(50, 50, 50);
+    border-radius: 20px;
+    padding: 20px;
+    margin-left: 30px;
+    box-shadow: 5px 5px 5px black,
+    5px 5px 5px black inset,
+    -5px -5px 5px black inset;
+}
+#picBox{
+    display: flex;
+    min-width: 200px;
+    min-height: 100px;
+    margin: auto 0;
+    margin-right: auto;
+}
+.profilePic{
+    width: 150px;
+    height:150px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius:10px;
+
+}
+.pCardContent{
+    background-color: rgb(15, 15, 15);
+    height: 150px;
+    width: 200px;
+    padding-left: 20px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius:10px;
+}
+
+
+.collabCard{
+    width: 90%;
+    min-height:150px;
+    background-color: rgb(50, 50, 50);
+    border-radius: 20px;
+    margin: 10px auto;
+    padding: 20px;
+    box-shadow: 5px 5px 5px black,
+    2px 2px 5px rgba(187, 187, 187,.8) inset,
+    -2px -2px 5px black inset;
+}
+.collabPic{
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    justify-content:flex-end;
+    margin-left: auto;
+    border: 2px solid black;
+}
+.collabContent{
+    /* background-color: red; */
+    height: 100%;
+}
+.collabContentTop{
+    display: flex;
+    flex-direction: row;
+}
+.collabName{
+    display: flex;
+    flex-direction: column;
+    border-bottom: 2px solid black;
+
+}
+.collabContentBottom{
+    display: flex;
+    height: 50%;
+    padding: 10px;
+    /* background-color: blue; */
+}
+#newGDD{
+    display: flex;
+    flex-direction:column;
+    width: 100%;
+    margin:auto;
+    text-align: center;
+    transition: height .5s ease;
+    overflow: hidden;
+}
+#newGDDForm{
+    display: flex;
+    flex-direction:column;
+    width: 50%;
+    margin:auto;
+
+}
+#newGDDLabel{
+margin-left: auto;
+margin-bottom: 5px;
+font-weight: bold;
+}
+#newGDDLabel:hover{
+    transform: scale(1.1);
+    color: red;
+}
+.butt{
+    width: 60%;
+    margin: 0 auto;
+}
+.tags{
+    margin-right:10px;
+    margin-left:5px;
+}
+
+.gddCard{
+    display: flex;
+    width: 70%;
     height: 200px;
     background-color: rgb(50, 50, 50);
     border-radius: 20px;
-    margin-left: 30px;
-    box-shadow: 5px 5px 5px black;
-
+    margin: 10px auto;
+    padding: 20px;
+    box-shadow: 5px 5px 5px black,
+    2px 2px 5px rgba(187, 187, 187,.8) inset,
+    -2px -2px 5px black inset;
 }
-.profilePic{
+
+.gddPic{
     width: 100px;
     height: 100px;
     border-top-left-radius: 20px;
+}
+.gddCardLeft{
+    padding: auto 0;
+    /* background-color:red; */
+}
+.gddCardMid{
+    /* background-color:yellow; */
+    margin:0 auto;
+}
+.gddCardRight{
+    display: flex;
+    flex-direction: column;
+    /* background-color:blue; */
+    margin-left: auto;
+}
+#editGDDButt{
+    width: 50px;
+    margin-left: auto;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+  .gddCard {
+    background-color: lightblue;
+    color: rgb(15, 15, 15);
+
+  }
+  .homeDiv{
+
+  }
+  .pCardContent{
+
+  }
 }
