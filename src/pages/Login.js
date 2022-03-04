@@ -63,8 +63,7 @@ export const Login = () => {
               </form>
 
               </LeftContent>
-              <RightContent >
-              </RightContent>
+              
             </Layout>
   );
 };

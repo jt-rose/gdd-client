@@ -9,7 +9,11 @@ import { Layout, LeftContent, RightContent } from "../components/Layout";
 export const Register = () => {
   const [user, setNewUser] = useState({ image: "./pfPic.jpeg" });
   const [errorMessage, setErrorMessage] = useState(null);
-  console.log(user.image);
+
+
+  const [matches, setMatches] = useState(
+    window.matchMedia("(min-width: 800px)").matches
+  );
 
   let navigate = useNavigate();
 
@@ -62,19 +66,24 @@ export const Register = () => {
       //   image: formdata,
       // }
     );
-    console.log(response);
-    if (!response.data.error) {
-      navigate("/");
+  console.log(response);
+  if (!response.data.error) {
+    navigate("/");
     } else {
-      setErrorMessage(response.data.error.message);
+    setErrorMessage(response.data.error.message);
     }
   };
+  useEffect( async () => {
+    window
+      .matchMedia("(min-width: 890px)")
+      .addEventListener("change", (e) => setMatches(e.matches));
+  }, []);
 
   return (
     <Layout title="Register">
       <LeftContent>
         <>
-          {errorMessage && <p>{errorMessage}</p>}
+        {errorMessage && <p>{errorMessage}</p>}
 
           <form onSubmit={handleNewUser}>
             <div className="formBox">
@@ -123,6 +132,7 @@ export const Register = () => {
                   onChange={handleChange}
                   required
                 />
+                <div className="pairs">
                 Description{" "}
                 <input
                   className="input"
@@ -130,7 +140,13 @@ export const Register = () => {
                   onChange={handleChange}
                   required
                 />
-                Image url: <img src={user.imagePreview} />
+                </div>
+                <div className="pairs">
+                {!matches && (
+                  <div className="regPicBox">
+                    <img className="regPic" src={user.imagePreview} />
+                  </div>
+              )}
                 <input
                   className="input"
                   type="file"
@@ -144,13 +160,22 @@ export const Register = () => {
                   }
                   required
                 />
+                </div>
                 <input className="buttForm1" type="submit" value="Submit" />
               </div>
             </div>
           </form>
         </>
       </LeftContent>
-      <RightContent></RightContent>
+      {matches && (
+      <RightContent>
+
+        <div className="regPicBox">
+          <img className="regPic" src={user.imagePreview} />
+        </div>
+
+      </RightContent>
+      )}
     </Layout>
   );
 };

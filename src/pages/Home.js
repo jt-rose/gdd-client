@@ -6,9 +6,11 @@ import { Navbar } from "../components/Navbar";
 import { Layout, LeftContent, RightContent } from "../components/Layout";
 import { FaUserFriends, FaShareAlt, FaFacebookMessenger } from "react-icons/fa";
 import { IoLogoGameControllerB, IoMdPersonAdd } from "react-icons/io";
-import { GiHoodedAssassin } from "react-icons/gi";
+import { GiHoodedAssassin, GiAxeSword } from "react-icons/gi";
 import { FcSearch } from "react-icons/fc";
 import { RiTeamFill } from "react-icons/ri";
+import { TiWorld } from "react-icons/ti";
+
 
 export const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -46,7 +48,7 @@ export const Home = () => {
       console.log(response.data);
     }
     window
-      .matchMedia("(min-width: 768px)")
+      .matchMedia("(min-width: 890px)")
       .addEventListener("change", (e) => setMatches(e.matches));
   }, []);
 
@@ -57,18 +59,10 @@ export const Home = () => {
       <LeftContent>
         {!isLoading && (
           <>
-            {!matches && (
-              <div className="search">
-                <input type="text" placeholder="Search.." />
-                <button type="submit">
-                  <FcSearch />
-                </button>
-              </div>
-            )}
+
             <div className="homeDiv">
               <div id="picBox">
                 <img className="profilePic" src={data.user.image} />
-
                 <div className="pCardContent">
                   <div className="profileName">
                     <h2>{data.user.username}</h2>
@@ -81,18 +75,18 @@ export const Home = () => {
               <ul id="userStats">
                 <li>
                   <IoLogoGameControllerB />
-                  <span> 5 </span> Game Documents
+                  <span> {data.user.designs.length}</span> Game Documents
                 </li>
                 <li>
                   <RiTeamFill />
-                  <span> 22 </span> Collaborators
+                  <span> {data.user.collabs.length}</span> Collaborators
                 </li>
                 <li>
                   <FaUserFriends />
-                  <span> 5 </span>Game Collabs
+                  <span> {data.user.acceptedRequests.length} </span>Game Collabs
                 </li>
                 <li>
-                  <IoMdPersonAdd /> <span className="redNum">5</span> Collab
+                  <IoMdPersonAdd /> <span className="redNum">{data.user.collabRequests.length}</span> Collab
                   Request
                 </li>
                 <li>
@@ -131,40 +125,30 @@ export const Home = () => {
                     onChange={(e) => setNewDesignName(e.target.value)}
                     required
                   />
-                  <input className="buttForm1" type="submit" value="Ceate" />
+                  <input className="buttForm1" type="submit" value="Create" />
                 </form>
               </div>
 
               {data.myDesigns.map((designs, index) => {
                 return (
-                  <div className="gddCard" key={index}>
+                  <div className="gddCard" key={index} onClick={(e) => navigate("/design/" + designs._id)}>
                     <div className="gddCardLeft">
                       <img className="gddPic" src="../../gmPic.png" />
                       <h2>{designs.name}</h2>
-                      {data.myDesigns.genre}
-                      Creator: {data.myDesigns.creator}
+                      <p>Genre: {designs.genre}</p>
                     </div>
-                    <div className="gddCardMid">
-                      <ul>
-                        <li>Location:</li>
-                        <li>Characters:</li>
-                        <li>items:</li>
-                      </ul>
-                    </div>
-
                     <div className="gddCardRight">
-                      <button
-                        className="buttForm1"
-                        id="editGDDButt"
-                        onClick={(e) => navigate("/design/" + designs._id)}
-                      >
-                        edit
-                      </button>
                       <ul>
-                        <li>Collaborators:</li>
-                        <li>Collaborators:</li>
                         <li>
-                          <FaUserFriends /> Collaborators: 2
+                        <TiWorld/> Locations: {designs.locations.length}
+                        </li>
+                        <li>
+                        <GiHoodedAssassin/> Characters: {designs.characters.length}
+                        </li>
+                        <li>
+                        <GiAxeSword/> Items: {designs.items.length}</li>
+                        <li>
+                          <FaUserFriends/> Collaborators: {designs.locations.length}
                         </li>
                       </ul>
                     </div>
@@ -180,6 +164,8 @@ export const Home = () => {
           {!isLoading && (
             <>
               <h2> Collabs</h2>
+              {data.myDesigns.map((designs, index) => {
+                  return(
               <div className="collabCard">
                 <div className="collabContent">
                   <div className="collabContentTop">
@@ -200,6 +186,8 @@ export const Home = () => {
                   </div>
                 </div>
               </div>
+                );
+            })}
             </>
           )}
         </RightContent>

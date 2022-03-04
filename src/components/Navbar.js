@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 
 export const Navbar = () => {
   let navigate = useNavigate();
+  
   const [matches, setMatches] = useState(
     window.matchMedia("(min-width: 768px)").matches
   );
@@ -44,14 +45,7 @@ export const Navbar = () => {
               logout
             </button>
           </div>
-          {matches && (
-            <div className="search">
-              <input type="text" placeholder="Search.." />
-              <button type="submit">
-                <FcSearch />
-              </button>
-            </div>
-          )}
+
         </div>
       </div>
     </>
