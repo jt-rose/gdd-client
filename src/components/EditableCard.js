@@ -5,27 +5,30 @@ export const EditableCard = (props) => {
   const { cardData, editingTarget } = props;
   const [name, setName] = useState(cardData.name);
   const [description, setDescription] = useState(cardData.description);
-  const [image, setImage] = useState(cardData.image);
+  const [imageFile, setImageFile] = useState(null);
+  const [imageURL, setImageURL] = useState(cardData.image);
   const [isEditing, setIsEditing] = useState(false);
   // use props.setIsEditing
   const currentDataArray = props.currentDataArray;
   let update = {};
   update[props.updateField] = [
     ...currentDataArray.slice(0, editingTarget.index),
-    { name, description, image },
+    { name, description, image: imageURL },
     ...currentDataArray.slice(editingTarget.index + 1),
   ];
   // need update field and index for insertion
-  console.log(update);
+  console.log("update: ", update);
+  console.log("img file: ", imageFile);
+  console.log("img url: ", imageURL);
 
   const handleCancel = () => {
     setIsEditing(false);
     setName(cardData.name);
     setDescription(cardData.description);
-    setImage(cardData.image);
+    setImageFile(null);
+    setImageURL(cardData.image);
   };
 
-  console.log("id: ", props.designid);
   const handleDesignUpdate = async () => {
     const response = await put("/doc/edit/" + props.designid, { update });
     console.log("response data: ", response.data);
@@ -34,7 +37,8 @@ export const EditableCard = (props) => {
     if (cardData.name === "") {
       setName("");
       setDescription("");
-      setImage("");
+      setImageFile(null);
+      setImageURL(""); // change to placeholder
       props.setData(response.data);
     } else {
       props.setData(response.data);
@@ -43,12 +47,24 @@ export const EditableCard = (props) => {
     //navigate("/design/" + props.designid);
   };
 
+  // add image to s3 and store url in anticipation of update
+  const handleImageUpdate = async (e) => {
+    e.preventDefault();
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("image", file);
+    const response = await put("/doc/image-upload", formData);
+    console.log(response.data);
+    setImageFile(file);
+    setImageURL(response.data.image);
+  };
+
   if (!isEditing) {
     return (
       <>
         <h3>{name}</h3>
         <p>{description}</p>
-        <p>{image}</p>
+        <img src={imageURL} />
         {/* remove */}
         <button onClick={() => setIsEditing(true)}>{props.buttonName}</button>
       </>
@@ -86,11 +102,11 @@ export const EditableCard = (props) => {
           Image
         </label>
         <input
-          type="text"
+          type="file"
           id={props.updateField + "-image-" + props.editingTarget.index}
-          value={image}
-          onChange={(e) => setImage(e.target.value)}
+          onChange={handleImageUpdate}
         />
+        <img src={imageURL} />
         <button onClick={handleDesignUpdate}>Update</button>
         <button onClick={handleCancel}>Cancel</button>
       </div>
