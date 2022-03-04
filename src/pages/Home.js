@@ -36,6 +36,7 @@ export const Home = () => {
       <LeftContent>
         {!isLoading && (
           <>
+            <img src={data.user.image} />
             <label htmlFor="newDesignName">Name</label>
             <input
               type="text"

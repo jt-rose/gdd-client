@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { post } from "../utils/serverURL.js";
+import { post, serverURL } from "../utils/serverURL.js";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { Navbar } from "../components/Navbar";
@@ -8,6 +8,7 @@ import { Navbar } from "../components/Navbar";
 export const Register = () => {
   const [user, setNewUser] = useState({ image: "./pfPic.jpeg" });
   const [errorMessage, setErrorMessage] = useState(null);
+  console.log(user.image);
 
   let navigate = useNavigate();
 
@@ -19,15 +20,47 @@ export const Register = () => {
   const handleNewUser = async (e) => {
     console.log(user.username);
     e.preventDefault();
-    const response = await post("/user/register", {
-      username: user.username,
-      password: user.password,
-      email: user.email,
-      company: user.company,
-      description: user.description,
-      location: user.location,
-      image: user.image,
-    });
+
+    const formData = new FormData();
+    formData.append("image", user.image);
+    formData.append("username", user.username);
+    formData.append("password", user.password);
+    formData.append("email", user.email);
+    formData.append("company", user.company);
+    formData.append("description", user.description);
+    formData.append("location", user.location);
+    console.log("file-img: ", formData);
+
+    // const response = await axios.post(
+    //   serverURL + "/user/register",
+    //   {
+    //     username: user.username,
+    //     password: user.password,
+    //     email: user.email,
+    //     company: user.company,
+    //     description: user.description,
+    //     location: user.location,
+    //     image: formdata,
+    //   },
+    //   {
+    //     withCredentials: true,
+    //     headers: { "Content-Type": "multipart/form-data" },
+    //   }
+    // );
+
+    const response = await post(
+      "/user/register",
+      formData
+      // {
+      //   username: user.username,
+      //   password: user.password,
+      //   email: user.email,
+      //   company: user.company,
+      //   description: user.description,
+      //   location: user.location,
+      //   image: formdata,
+      // }
+    );
     console.log(response);
     if (!response.data.error) {
       navigate("/");
@@ -109,12 +142,20 @@ export const Register = () => {
                         onChange={handleChange}
                         required
                       />
-                      Image url:{" "}
+                      Image url: <img src={user.imagePreview} />
                       <input
                         className="input"
+                        type="file"
                         name="image"
-                        value="./pfPic.jpeg"
-                        onChange={handleChange}
+                        onChange={(e) =>
+                          setNewUser({
+                            ...user,
+                            imagePreview: URL.createObjectURL(
+                              e.target.files[0]
+                            ),
+                            image: e.target.files[0],
+                          })
+                        }
                         required
                       />
                       <input

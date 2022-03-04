@@ -6,11 +6,15 @@ import { EditableCard } from "../components/EditableCard";
 import axios from "axios";
 
 import { Navbar } from "../components/Navbar";
+import { Layout, LeftContent, RightContent } from "../components/Layout";
+import { EditableSelect } from "../components/EditableSelect";
 
 export const Design = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
-  const [editingTarget, setEditingTarget] = useState(null); // {target: 'locations', index: number | null}
+  const [editingTarget, setEditingTarget] = useState(null);
+  // {target: 'locations', index: number | null}
+  const [image, setImage] = useState(null);
   const { designid } = useParams();
   const navigate = useNavigate();
 
@@ -31,92 +35,141 @@ export const Design = () => {
   }, []);
 
   return (
-    <>
-      <div className="main">
-        <div className="mainEffect">
-          <div className="mainContainer">
-            <div className="header" padding="4" color="white">
-              <h1>Design</h1>
-              <Navbar />
-            </div>
-            <div className="content">
-              <div className="contentLeft">
-                <h1>GDD Page</h1>
-                <div class="ui card">
-                  <div class="image">
-                    <img src="/images/avatar2/large/kristy.png" />
-                  </div>
-                  <div class="content">
-                    <a class="header">Kristy</a>
-                    <div class="meta">
-                      <span class="date">Joined in 2013</span>
-                    </div>
-                    <div class="description">
-                      Kristy is an art director living in New York.
-                    </div>
-                  </div>
-                  <div class="extra content">
-                    <a>
-                      <i class="user icon"></i>
-                      22 Friends
-                    </a>
-                  </div>
-                </div>
-                {!isLoading && (
-                  <>
-                    <p>{data.name}</p>
-                    <EditableText
-                      designid={designid}
-                      updateField="name"
-                      text={data.name}
-                      setData={setData}
-                      // editingTarget={editingTarget}
-                      // setEditingTarget={setEditingTarget}
-                    />
+    <Layout title={isLoading ? "Design" : data.name}>
+      <LeftContent>
+        {!isLoading && (
+          <>
+            <EditableText
+              designid={designid}
+              updateField="name"
+              text={data.name}
+              setData={setData}
+              // editingTarget={editingTarget}
+              // setEditingTarget={setEditingTarget}
+            />
 
-                    <p>{data.image}</p>
-                    {/* {data.story &&} */}
-                    <EditableText
-                      designid={designid}
-                      updateField="story"
-                      text={data.story || ""}
-                      setData={setData}
-                    />
-                    {/* {data.characters.map(char => (
-              <EditableCard />
-          ))} */}
-                    <p>characters</p>
-                    {data.characters.map((c, index) => (
-                      <EditableCard
-                        designid={designid}
-                        cardData={c}
-                        currentDataArray={data.characters}
-                        editingTarget={{ index }}
-                        updateField={"characters"}
-                        setData={setData}
-                      />
-                    ))}
-                    <EditableCard
-                      designid={designid}
-                      cardData={{ name: "", description: "", image: "" }}
-                      currentDataArray={data.characters}
-                      editingTarget={{ index: data.characters.length }}
-                      updateField={"characters"}
-                      setData={setData}
-                    />
-                    <br />
-                    <button onClick={handleTrash}>Trash</button>
-                    <button onClick={handleDelete}>Delete</button>
-                  </>
-                )}
-              </div>
-              <div className="contentRight">
-                <div maxW="xl" centerContent></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
+            <p>{data.image}</p>
+            {image && <img src={image} />}
+            <input
+              type="file"
+              onChange={(e) => setImage(URL.createObjectURL(e.target.files[0]))}
+            />
+
+            <EditableSelect
+              designid={designid}
+              genre={data.genre}
+              setData={setData}
+            />
+            <EditableText
+              designid={designid}
+              updateField="story"
+              text={data.story || ""}
+              setData={setData}
+            />
+
+            <section>
+              <h2>Characters</h2>
+              {data.characters.map((c, index) => (
+                <EditableCard
+                  designid={designid}
+                  cardData={c}
+                  currentDataArray={data.characters}
+                  editingTarget={{ index }}
+                  updateField={"characters"}
+                  buttonName="Edit"
+                  setData={setData}
+                />
+              ))}
+              <EditableCard
+                designid={designid}
+                cardData={{ name: "", description: "", image: "" }}
+                currentDataArray={data.characters}
+                editingTarget={{ index: data.characters.length }}
+                updateField={"characters"}
+                buttonName="Add"
+                setData={setData}
+              />
+            </section>
+
+            <section>
+              <h2>Locations</h2>
+              {data.locations.map((l, index) => (
+                <EditableCard
+                  designid={designid}
+                  cardData={l}
+                  currentDataArray={data.locations}
+                  editingTarget={{ index }}
+                  updateField={"locations"}
+                  buttonName="Edit"
+                  setData={setData}
+                />
+              ))}
+              <EditableCard
+                designid={designid}
+                cardData={{ name: "", description: "", image: "" }}
+                currentDataArray={data.locations}
+                editingTarget={{ index: data.locations.length }}
+                updateField={"locations"}
+                buttonName="Add"
+                setData={setData}
+              />
+            </section>
+
+            <section>
+              <h2>Items</h2>
+              {data.items.map((item, index) => (
+                <EditableCard
+                  designid={designid}
+                  cardData={item}
+                  currentDataArray={data.items}
+                  editingTarget={{ index }}
+                  updateField={"items"}
+                  buttonName="Edit"
+                  setData={setData}
+                />
+              ))}
+              <EditableCard
+                designid={designid}
+                cardData={{ name: "", description: "", image: "" }}
+                currentDataArray={data.items}
+                editingTarget={{ index: data.items.length }}
+                updateField={"items"}
+                buttonName="Add"
+                setData={setData}
+              />
+            </section>
+
+            <section>
+              <h2>Gameplay Mechanics</h2>
+              {data.gameplay.map((gm, index) => (
+                <EditableCard
+                  designid={designid}
+                  cardData={gm}
+                  currentDataArray={data.gameplay}
+                  editingTarget={{ index }}
+                  updateField={"gameplay"}
+                  buttonName="Edit"
+                  setData={setData}
+                />
+              ))}
+              <EditableCard
+                designid={designid}
+                cardData={{ name: "", description: "", image: "" }}
+                currentDataArray={data.gameplay}
+                editingTarget={{ index: data.gameplay.length }}
+                updateField={"gameplay"}
+                buttonName="Add"
+                setData={setData}
+              />
+            </section>
+
+            <br />
+            <button onClick={handleTrash}>Trash</button>
+            <button onClick={handleDelete}>Delete</button>
+          </>
+        )}
+      </LeftContent>
+      <RightContent></RightContent>
+    </Layout>
   );
 };

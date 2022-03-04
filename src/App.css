@@ -1,95 +1,93 @@
-.main{
-    display: flex;
-    width: 100%;
-    height: 100vh;
-    background-image: url('../public/bg.jpeg');
-    background-size: cover;
-
+.main {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  background-image: url("../public/bg.jpeg");
+  background-size: cover;
 }
-.mainEffect{
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(5px);
+.mainEffect {
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(5px);
 }
-.header{
-    width: 100%;
-    height: 100px;
-    background-color: rgb(40, 40, 40);
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
-    border-bottom: 2px solid rgb(15, 15, 15);
+.header {
+  width: 100%;
+  height: 100px;
+  background-color: rgb(40, 40, 40);
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border-bottom: 2px solid rgb(15, 15, 15);
 }
-.links{
-    margin: 0 20px;
+.links {
+  margin: 0 20px;
 }
-.mainContainer{
-    width: 90%;
-    height: 90%;
-    margin: auto;
-    background-color: rgb(69, 69, 69);
-    border-radius: 25px;
-
+.mainContainer {
+  width: 90%;
+  height: 90%;
+  margin: auto;
+  background-color: rgb(69, 69, 69);
+  border-radius: 25px;
 }
-#formBox{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
-    height: 80%;
-    color: rgb(187, 187, 187);
-    background-color: rgba(0, 0, 0,.5);
-    padding: 10px;
-    border-radius: 10px;
+#formBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 80%;
+  color: rgb(187, 187, 187);
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 10px;
 }
-.input{
-    width: 25vw;
-    height: 50px;
-    margin:0 25px;
-    height: 30px;
-    border: none;
-    float: right;
-    color: white;
-    background-color: rgba(0, 0, 0, .3);
-    border-bottom: 3px solid rgb(40, 40, 40);
-    box-shadow: 5px 5px 20px rgba(0, 0, 0,.5) ;
+.input {
+  width: 25vw;
+  height: 50px;
+  margin: 0 25px;
+  height: 30px;
+  border: none;
+  float: right;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-bottom: 3px solid rgb(40, 40, 40);
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
 }
-#buttForm1{
-    background-color: rgb(2, 57, 14);
-    color: black;
-    font-weight: bold;
+#buttForm1 {
+  background-color: rgb(2, 57, 14);
+  color: black;
+  font-weight: bold;
 }
-#buttForm1:hover{
-    
-    color: rgb(31, 198, 127);
-    border: 3px solid rgb(31, 198, 127);
+#buttForm1:hover {
+  color: rgb(31, 198, 127);
+  border: 3px solid rgb(31, 198, 127);
 }
-.pairs{
-    display: flex;
-    flex-direction: column;
+.pairs {
+  display: flex;
+  flex-direction: column;
 }
-ul li{
-    display: inline;
-    margin: 0 10px;
+ul li {
+  display: inline;
+  margin: 0 10px;
 }
 
-.content{
-    display: flex;
-    width: 100%;
-    height: 90%;
-    border-radius: 25px;
+.content {
+  display: flex;
+  width: 100%;
+  height: 90%;
+  border-radius: 25px;
 }
-.contentLeft{
-    display: flex;
-    width: 70%;
-    height: 100%;
-    background-color: rgb(15, 15, 15);
-    border-bottom-left-radius: 25px;
-    justify-content: center;
-    align-items: center;
+.contentLeft {
+  /* display: flex; */
+  width: 70%;
+  height: 100%;
+  background-color: rgb(15, 15, 15);
+  border-bottom-left-radius: 25px;
+  justify-content: center;
+  align-items: center;
+  color: white;
 }
-.contentRight{
-    width: 30%;
-    height: 100%;
-    background-color: rgb(20, 20, 20);
-    border-bottom-right-radius: 25px;
+.contentRight {
+  width: 30%;
+  height: 100%;
+  background-color: rgb(20, 20, 20);
+  border-bottom-right-radius: 25px;
 }
