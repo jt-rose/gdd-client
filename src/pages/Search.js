@@ -45,25 +45,31 @@ export const Search = () => {
   return (
     <Layout title="Search">
       <LeftContent>
-        <form>
+      <div className="searchFormBox">
+        <form className="searchForm">
+        <div className="pairs">
           <label htmlFor="name">Name</label>
           <input
+          className="input"
             type="text"
             id="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-
+          </div>
+          <div className="pairs">
           <label htmlFor="username">Username</label>
           <input
+            className="input"
             type="text"
             id="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
-
+          </div>
+          <div className="pairs">
           <label htmlFor="genre">Genre</label>
-          <select value={genre} onChange={(e) => setGenre(e.target.value)}>
+          <select className="input" value={genre} onChange={(e) => setGenre(e.target.value)}>
             <option key="select-ANY" value="ANY">
               ANY
             </option>
@@ -73,15 +79,39 @@ export const Search = () => {
               </option>
             ))}
           </select>
-          <button onClick={handleSearch}>Search</button>
+          </div>
+          <button className="buttForm1"onClick={handleSearch}>Search</button>
         </form>
+        </div>
 
+        <div className="searchResults">
         {noResults && <p>no results found</p>}
         {results.map((design) => (
-          <h3 onClick={() => openDesignPage(design._id)}>{design.name}</h3>
+          <div className='searchResultsBox'>
+            <div class="box" id='boxes' onClick={() => openDesignPage(design._id)}>
+              <img className="gddPic" src={design.image}/>
+              <h4 >{design.name}</h4>
+              <div class="clip" id='right' ></div>
+              <div class="clip" id='left'></div>
+              <div class="clip" id='up'></div>
+              <div class="clip" id='down'></div>
+              <span id='rightClip' class="clipper">Click to Open
+                  <h3 >{design.name}</h3>
+              </span>
+              <span id='leftClip' class="clipper">Click to Open
+                <h3 >{design.name}</h3>
+              </span>
+              <span id='upClip' class="clipper">Click to Open
+                  <h3 >{design.name}</h3>
+              </span>
+              <span id='downClip' class="clipper">Click to Open
+                  <h3 >{design.name}</h3>
+              </span>
+            </div>
+          </div>
         ))}
+        </div>
       </LeftContent>
-      <RightContent></RightContent>
     </Layout>
   );
 };
