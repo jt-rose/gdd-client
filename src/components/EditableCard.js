@@ -48,9 +48,9 @@ export const EditableCard = (props) => {
       <>
         <h3>{name}</h3>
         <p>{description}</p>
-        <p>image: {image}</p>
+        <p>{image}</p>
         {/* remove */}
-        <button onClick={() => setIsEditing(true)}>Edit</button>
+        <button onClick={() => setIsEditing(true)}>{props.buttonName}</button>
       </>
     );
   } else {

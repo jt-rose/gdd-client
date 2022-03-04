@@ -6,7 +6,10 @@ export const serverURL =
     : "http://localhost:8000";
 
 export const get = (destination) => {
-  return axios.get(serverURL + destination, { withCredentials: true });
+  return axios.get(serverURL + destination, {
+    withCredentials: true,
+    "Content-Type": "multipart/form-data",
+  });
 };
 export const post = (destination, body) => {
   return axios.post(serverURL + destination, body, { withCredentials: true });
