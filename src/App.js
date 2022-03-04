@@ -9,6 +9,7 @@ import { Register } from "./pages/Register";
 import { Welcome } from "./pages/Welcome";
 import { Search } from "./pages/Search";
 
+
 function App() {
   console.log("NODE ENV is ", process.env.NODE_ENV);
 
