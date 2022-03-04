@@ -12,10 +12,14 @@ export const get = (destination) => {
   });
 };
 export const post = (destination, body) => {
-  return axios.post(serverURL + destination, body, { withCredentials: true });
+  return axios.post(serverURL + destination, body, {
+    withCredentials: true,
+  });
 };
 export const put = (destination, body) => {
-  return axios.put(serverURL + destination, body, { withCredentials: true });
+  return axios.put(serverURL + destination, body, {
+    withCredentials: true,
+  });
 };
 export const remove = (destination) => {
   return axios.delete(serverURL + destination, { withCredentials: true });

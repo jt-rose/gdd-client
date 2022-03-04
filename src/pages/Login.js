@@ -2,6 +2,7 @@ import { post } from "../utils/serverURL";
 import { useNavigate } from "react-router";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Layout, LeftContent, RightContent } from "../components/Layout";
 
 import { Navbar } from "../components/Navbar";
 
@@ -32,36 +33,37 @@ export const Login = () => {
   };
 
   return (
-    <div className="main">
-      <div className="mainEffect">
-        <div className="maindiv">
-          <div className="header" padding="4" color="white">
-            <h1>Login</h1>
-            <Navbar />
-          </div>
-          <div className="content">
-            <div className="contentLeft">
+      <Layout title="Login">
+        <LeftContent>
               {errorMessage && <p>{errorMessage}</p>}
-              <form>
+
+              <form onSubmit={handleSubmit}>
+              <div className="formBox">
+              <div className="pairs">
+              UserName:{" "}
                 <input
+                className="input"
                   type="text"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                 />
+                </div>
+                 <div className="pairs">
+                Password:{" "}
                 <input
+                className="input"
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                <button onClick={handleSubmit}>login</button>
+
+                <input className="buttForm1" type='submit' value='login'/>
+                </div>
+                </div>
               </form>
-            </div>
-            <div className="contentRight">
-              <div maxW="xl" centerContent></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+
+              </LeftContent>
+              
+            </Layout>
   );
 };

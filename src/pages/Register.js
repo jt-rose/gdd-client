@@ -4,11 +4,16 @@ import { post, serverURL } from "../utils/serverURL.js";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { Navbar } from "../components/Navbar";
+import { Layout, LeftContent, RightContent } from "../components/Layout";
 
 export const Register = () => {
   const [user, setNewUser] = useState({ image: "./pfPic.jpeg" });
   const [errorMessage, setErrorMessage] = useState(null);
-  console.log(user.image);
+
+
+  const [matches, setMatches] = useState(
+    window.matchMedia("(min-width: 800px)").matches
+  );
 
   let navigate = useNavigate();
 
@@ -61,120 +66,116 @@ export const Register = () => {
       //   image: formdata,
       // }
     );
-    console.log(response);
-    if (!response.data.error) {
-      navigate("/");
+  console.log(response);
+  if (!response.data.error) {
+    navigate("/");
     } else {
-      setErrorMessage(response.data.error.message);
+    setErrorMessage(response.data.error.message);
     }
   };
+  useEffect( async () => {
+    window
+      .matchMedia("(min-width: 890px)")
+      .addEventListener("change", (e) => setMatches(e.matches));
+  }, []);
 
   return (
-    <>
-      <div className="main">
-        <div className="mainEffect">
-          <div className="mainContainer">
-            <div className="header" padding="4" color="white">
-              <h1>Register</h1>
-              <Navbar />
+    <Layout title="Register">
+      <LeftContent>
+        <>
+        {errorMessage && <p>{errorMessage}</p>}
 
-              <Link className="links" to="/design">
-                Design Doc
-              </Link>
-              <Link className="links" to="/search">
-                Search projects
-              </Link>
-            </div>
-            <div className="content">
-              <div className="contentLeft">
-                {errorMessage && <p>{errorMessage}</p>}
-                <form onSubmit={handleNewUser}>
-                  <div id="formBox">
-                    <div className="pairs">
-                      UserName:{" "}
-                      <input
-                        className="input"
-                        name="username"
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>
-                    <div className="pairs">
-                      Password:{" "}
-                      <input
-                        type="password"
-                        className="input"
-                        name="password"
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>
-                    <div className="pairs">
-                      Email:{" "}
-                      <input
-                        className="input"
-                        name="email"
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>
-                    <div className="pairs">
-                      Company:{" "}
-                      <input
-                        className="input"
-                        name="company"
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>
-                    <div className="pairs">
-                      Location{" "}
-                      <input
-                        className="input"
-                        name="location"
-                        onChange={handleChange}
-                        required
-                      />
-                      Description{" "}
-                      <input
-                        className="input"
-                        name="description"
-                        onChange={handleChange}
-                        required
-                      />
-                      Image url: <img src={user.imagePreview} />
-                      <input
-                        className="input"
-                        type="file"
-                        name="image"
-                        onChange={(e) =>
-                          setNewUser({
-                            ...user,
-                            imagePreview: URL.createObjectURL(
-                              e.target.files[0]
-                            ),
-                            image: e.target.files[0],
-                          })
-                        }
-                        required
-                      />
-                      <input
-                        id="buttForm1"
-                        className="butt"
-                        type="submit"
-                        value="Submit"
-                      />
-                    </div>
+          <form onSubmit={handleNewUser}>
+            <div className="formBox">
+              <div className="pairs">
+                UserName:{" "}
+                <input
+                  className="input"
+                  name="username"
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="pairs">
+                Password:{" "}
+                <input
+                  type="password"
+                  className="input"
+                  name="password"
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="pairs">
+                Email:{" "}
+                <input
+                  className="input"
+                  name="email"
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="pairs">
+                Company:{" "}
+                <input
+                  className="input"
+                  name="company"
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="pairs">
+                Location{" "}
+                <input
+                  className="input"
+                  name="location"
+                  onChange={handleChange}
+                  required
+                />
+                <div className="pairs">
+                Description{" "}
+                <input
+                  className="input"
+                  name="description"
+                  onChange={handleChange}
+                  required
+                />
+                </div>
+                <div className="pairs">
+                {!matches && (
+                  <div className="regPicBox">
+                    <img className="regPic" src={user.imagePreview} />
                   </div>
-                </form>
-              </div>
-              <div className="contentRight">
-                <div maxW="xl" centerContent></div>
+              )}
+                <input
+                  className="input"
+                  type="file"
+                  name="image"
+                  onChange={(e) =>
+                    setNewUser({
+                      ...user,
+                      imagePreview: URL.createObjectURL(e.target.files[0]),
+                      image: e.target.files[0],
+                    })
+                  }
+                  required
+                />
+                </div>
+                <input className="buttForm1" type="submit" value="Submit" />
               </div>
             </div>
-          </div>
+          </form>
+        </>
+      </LeftContent>
+      {matches && (
+      <RightContent>
+
+        <div className="regPicBox">
+          <img className="regPic" src={user.imagePreview} />
         </div>
-      </div>
-    </>
+
+      </RightContent>
+      )}
+    </Layout>
   );
 };

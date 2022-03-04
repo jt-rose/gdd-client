@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
-import { get, put, remove } from "../utils/serverURL";
+import { get, post, put, remove } from "../utils/serverURL";
 import { EditableText } from "../components/EditableText";
 import { EditableCard } from "../components/EditableCard";
 import axios from "axios";
@@ -15,8 +15,26 @@ export const Design = () => {
   const [editingTarget, setEditingTarget] = useState(null);
   // {target: 'locations', index: number | null}
   const [image, setImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
   const { designid } = useParams();
   const navigate = useNavigate();
+
+  // load and preview the image file ahead of submitting the update
+  const handleImageLoad = (e) => {
+    e.preventDefault();
+    setImage(e.target.files[0]);
+    setImagePreview(URL.createObjectURL(e.target.files[0]));
+  };
+
+  const handleSaveImage = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("image", image);
+    formData.append("updateField", "main-image");
+    formData.append("updateIndex", null);
+    const response = await put("/doc/edit/image/" + designid, formData);
+    console.log(response.data);
+  };
 
   const handleDelete = async () => {
     await remove("/doc/delete/" + designid);
@@ -49,11 +67,9 @@ export const Design = () => {
             />
 
             <p>{data.image}</p>
-            {image && <img src={image} />}
-            <input
-              type="file"
-              onChange={(e) => setImage(URL.createObjectURL(e.target.files[0]))}
-            />
+            {imagePreview && <img src={imagePreview} />}
+            <input type="file" onChange={handleImageLoad} />
+            <button onClick={handleSaveImage}>Save Image</button>
 
             <EditableSelect
               designid={designid}
