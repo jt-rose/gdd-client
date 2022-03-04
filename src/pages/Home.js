@@ -162,7 +162,7 @@ export const Home = () => {
           {!isLoading && (
             <>
               <h2> Collabs</h2>
-              {data.myDesigns.map((designs, index) => {
+              {data.myDesigns.reverse().map((designs, index) => {
                   return(
               <div className="collabCard">
                 <div className="collabContent">
