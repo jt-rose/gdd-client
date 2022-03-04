@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { get, post } from "../utils/serverURL";
 import { Navbar } from "../components/Navbar";
 import { Layout, LeftContent, RightContent } from "../components/Layout";
@@ -15,6 +15,7 @@ export const Home = () => {
   const [data, setData] = useState(null);
   const [newDesignName, setNewDesignName] = useState("");
   const [toggle, setToggle] = useState(false);
+  const params = useParams();
 
   const show = () => {
     setToggle((prevState) => !prevState);
@@ -35,7 +36,8 @@ export const Home = () => {
   };
 
   useEffect(async () => {
-    const response = await get("/user");
+    const paramRoute = params.userid ? "/" + params.userid : "";
+    const response = await get("/user" + paramRoute);
     if (response.data.error) {
       navigate("/welcome");
     } else {

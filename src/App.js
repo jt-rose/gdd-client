@@ -9,7 +9,6 @@ import { Register } from "./pages/Register";
 import { Welcome } from "./pages/Welcome";
 import { Search } from "./pages/Search";
 
-
 function App() {
   console.log("NODE ENV is ", process.env.NODE_ENV);
 
@@ -22,6 +21,7 @@ function App() {
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/register" element={<Register />} />
         <Route exact path="/welcome" element={<Welcome />} />
+        <Route path="/user/:userid" element={<Home />} />
         <Route exact path="/" element={<Home />} />
       </Routes>
     </BrowserRouter>
