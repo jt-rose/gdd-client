@@ -25,7 +25,8 @@ export const Home = () => {
 
   let navigate = useNavigate();
 
-  const handleCreateDesign = async () => {
+  const handleCreateDesign = async (e) => {
+    e.preventDefault();
     const response = await post("/doc/create", {
       name: newDesignName,
     });
@@ -54,9 +55,6 @@ export const Home = () => {
       <LeftContent>
         {!isLoading && (
           <>
-            <img src={data.user.image} />
-            <label htmlFor="newDesignName">Name</label>
-
             {!matches && (
               <div className="search">
                 <input type="text" placeholder="Search.." />
