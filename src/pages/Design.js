@@ -57,135 +57,148 @@ export const Design = () => {
       <LeftContent>
         {!isLoading && (
           <>
-            <EditableText
-              designid={designid}
-              updateField="name"
-              text={data.name}
-              setData={setData}
-              // editingTarget={editingTarget}
-              // setEditingTarget={setEditingTarget}
-            />
-
-            <p>{data.image}</p>
-            {imagePreview && <img src={imagePreview} />}
-            <input type="file" onChange={handleImageLoad} />
-            <button onClick={handleSaveImage}>Save Image</button>
-
-            <EditableSelect
-              designid={designid}
-              genre={data.genre}
-              setData={setData}
-            />
-            <EditableText
-              designid={designid}
-              updateField="story"
-              text={data.story || ""}
-              setData={setData}
-            />
-
-            <section>
+            <div className='docPairs'>
+              <div className='docName'>
+                <EditableText
+                  designid={designid}
+                  updateField="name"
+                  text={data.name}
+                  setData={setData}
+                  // editingTarget={editingTarget}
+                  // setEditingTarget={setEditingTarget}
+                />
+              </div>
+              <div className='gddPic2'>
+              {!imagePreview && <img className='gddImg' src={data.image} />}
+              {imagePreview && <img className='gddImg' src={imagePreview} />}
+              </div>
+              <div className='gddPicFile'>
+                <input  className='inputfile' type="file" onChange={handleImageLoad} />
+                <button className='buttForm2' onClick={handleSaveImage}>Save Image</button>
+              </div>
+            </div>
+            <div className='docPairs'>
+              <EditableSelect
+                designid={designid}
+                genre={data.genre}
+                setData={setData}
+              />
+              <div className="story">
+                <EditableText
+                  designid={designid}
+                  updateField="story"
+                  text={data.story || ""}
+                  setData={setData}
+                />
+              </div>
+            </div>
+            <div className='docPairs'>
               <h2>Characters</h2>
-              {data.characters.map((c, index) => (
+              <div className='cardLocation docCard'>
                 <EditableCard
                   designid={designid}
-                  cardData={c}
+                  cardData={{ name: "Character Name", description: "Description", image: "../../gmPic.png" }}
                   currentDataArray={data.characters}
-                  editingTarget={{ index }}
+                  editingTarget={{ index: data.characters.length }}
                   updateField={"characters"}
-                  buttonName="Edit"
+                  buttonName="Add"
                   setData={setData}
                 />
-              ))}
-              <EditableCard
-                designid={designid}
-                cardData={{ name: "", description: "", image: "" }}
-                currentDataArray={data.characters}
-                editingTarget={{ index: data.characters.length }}
-                updateField={"characters"}
-                buttonName="Add"
-                setData={setData}
-              />
-            </section>
-
-            <section>
+                {data.characters.reverse().map((c, index) => (
+                  <EditableCard
+                    designid={designid}
+                    cardData={c}
+                    currentDataArray={data.characters}
+                    editingTarget={{ index }}
+                    updateField={"characters"}
+                    buttonName="Edit"
+                    setData={setData}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className='docPairs'>
               <h2>Locations</h2>
-              {data.locations.map((l, index) => (
+              <div className='cardLocation docCard'>
                 <EditableCard
                   designid={designid}
-                  cardData={l}
+                  cardData={{ name: "Location Name", description: "Description", image: "../../gmPic.png"}}
                   currentDataArray={data.locations}
-                  editingTarget={{ index }}
+                  editingTarget={{ index: data.locations.length }}
                   updateField={"locations"}
-                  buttonName="Edit"
+                  buttonName="Add"
                   setData={setData}
                 />
-              ))}
-              <EditableCard
-                designid={designid}
-                cardData={{ name: "", description: "", image: "" }}
-                currentDataArray={data.locations}
-                editingTarget={{ index: data.locations.length }}
-                updateField={"locations"}
-                buttonName="Add"
-                setData={setData}
-              />
-            </section>
-
-            <section>
+                {data.locations.reverse().map((l, index) => (
+                  <EditableCard
+                    designid={designid}
+                    cardData={l}
+                    currentDataArray={data.locations}
+                    editingTarget={{ index }}
+                    updateField={"locations"}
+                    buttonName="Edit"
+                    setData={setData}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className='docPairs'>
               <h2>Items</h2>
-              {data.items.map((item, index) => (
+              <div className='cardItems docCard'>
                 <EditableCard
                   designid={designid}
-                  cardData={item}
+                  cardData={{ name: "Name", description: "Description", image: "../../gmPic.png" }}
                   currentDataArray={data.items}
-                  editingTarget={{ index }}
+                  editingTarget={{ index: data.items.length }}
                   updateField={"items"}
-                  buttonName="Edit"
+                  buttonName="Add"
                   setData={setData}
                 />
-              ))}
-              <EditableCard
-                designid={designid}
-                cardData={{ name: "", description: "", image: "" }}
-                currentDataArray={data.items}
-                editingTarget={{ index: data.items.length }}
-                updateField={"items"}
-                buttonName="Add"
-                setData={setData}
-              />
-            </section>
-
-            <section>
+                {data.items.map((item, index) => (
+                  <EditableCard
+                    designid={designid}
+                    cardData={item}
+                    currentDataArray={data.items}
+                    editingTarget={{ index }}
+                    updateField={"items"}
+                    buttonName="Edit"
+                    setData={setData}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className='docPairs'>
               <h2>Gameplay Mechanics</h2>
-              {data.gameplay.map((gm, index) => (
+              <div className='cardGpMech docCard'>
                 <EditableCard
                   designid={designid}
-                  cardData={gm}
+                  cardData={{ name: "Gameplay Mechanic", description: "Description", image: "../../gmPic.png"}}
                   currentDataArray={data.gameplay}
-                  editingTarget={{ index }}
+                  editingTarget={{ index: data.gameplay.length }}
                   updateField={"gameplay"}
-                  buttonName="Edit"
+                  buttonName="Add"
                   setData={setData}
                 />
-              ))}
-              <EditableCard
-                designid={designid}
-                cardData={{ name: "", description: "", image: "" }}
-                currentDataArray={data.gameplay}
-                editingTarget={{ index: data.gameplay.length }}
-                updateField={"gameplay"}
-                buttonName="Add"
-                setData={setData}
-              />
-            </section>
-
-            <br />
-            <button onClick={handleTrash}>Trash</button>
-            <button onClick={handleDelete}>Delete</button>
+                {data.gameplay.map((gm, index) => (
+                  <EditableCard
+                    designid={designid}
+                    cardData={gm}
+                    currentDataArray={data.gameplay}
+                    editingTarget={{ index }}
+                    updateField={"gameplay"}
+                    buttonName="Edit"
+                    setData={setData}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className='docButt'>
+              <button id="trash" className='buttForm1' onClick={handleTrash}>Send to Trash</button>
+              <button id="delete" className='buttForm1' onClick={handleDelete}>**Delete Whole Document**</button>
+            </div>
           </>
         )}
       </LeftContent>
-      <RightContent></RightContent>
     </Layout>
   );
 };

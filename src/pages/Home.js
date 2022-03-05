@@ -134,7 +134,7 @@ export const Home = () => {
                 </div>
               )}
 
-              {data.myDesigns.map((designs, index) => {
+              {data.myDesigns.reverse().map((designs, index) => {
                 return (
                   <div
                     className="gddCard"

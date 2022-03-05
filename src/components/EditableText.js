@@ -26,23 +26,28 @@ export const EditableText = (props) => {
   if (!isEditing) {
     return (
       <>
+      <div className='pairs'>
         <p>{text}</p>
-        <button onClick={() => setIsEditing(true)}>Edit</button>
+        <button className='buttForm2' onClick={() => setIsEditing(true)}>Edit</button>
         {/* clear */}
+        </div>
       </>
     );
   } else {
     return (
       <>
+      <div className="storyDiv">
         <label htmlFor={props.updateField}>{props.updateField}</label>
-        <input
+        <textarea
           type="text"
           id={props.updateField}
           value={text}
           onChange={(e) => setText(e.target.value)}
-        />
-        <button onClick={handleDesignUpdate}>Update</button>
-        <button onClick={handleCancel}>Cancel</button>
+          rows='8' column='50'
+        ></textarea>
+        <button className='buttForm1' onClick={handleDesignUpdate}>Update</button>
+        <button className='buttForm1' onClick={handleCancel}>Cancel</button>
+        </div>
       </>
     );
   }

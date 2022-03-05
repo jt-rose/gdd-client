@@ -86,25 +86,25 @@ export const Search = () => {
 
         <div className="searchResults">
         {noResults && <p>no results found</p>}
-        {results.map((design) => (
-          <div className='searchResultsBox'>
-            <div class="box" id='boxes' onClick={() => openDesignPage(design._id)}>
+        {results.map((design, index) => (
+          <div key= {index} className='searchResultsBox'>
+            <div className="box" id='boxes' onClick={() => openDesignPage(design._id)}>
               <img className="gddPic" src={design.image}/>
               <h4 >{design.name}</h4>
-              <div class="clip" id='right' ></div>
-              <div class="clip" id='left'></div>
-              <div class="clip" id='up'></div>
-              <div class="clip" id='down'></div>
-              <span id='rightClip' class="clipper">Click to Open
+              <div  id='right' ></div>
+              <div  id='left'></div>
+              <div  id='up'></div>
+              <div  id='down'></div>
+              <span id='rightClip' className="clipper">Click to Open
                   <h3 >{design.name}</h3>
               </span>
-              <span id='leftClip' class="clipper">Click to Open
+              <span id='leftClip' className="clipper">Click to Open
                 <h3 >{design.name}</h3>
               </span>
-              <span id='upClip' class="clipper">Click to Open
+              <span id='upClip' className="clipper">Click to Open
                   <h3 >{design.name}</h3>
               </span>
-              <span id='downClip' class="clipper">Click to Open
+              <span id='downClip' className="clipper">Click to Open
                   <h3 >{design.name}</h3>
               </span>
             </div>
