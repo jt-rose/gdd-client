@@ -1,60 +1,4 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
-import { get, post } from "../utils/serverURL";
-import { Navbar } from "../components/Navbar";
-import { Layout, LeftContent, RightContent } from "../components/Layout";
-import { FaUserFriends, FaShareAlt, FaFacebookMessenger } from "react-icons/fa";
-import { IoLogoGameControllerB, IoMdPersonAdd } from "react-icons/io";
-import { GiHoodedAssassin, GiAxeSword } from "react-icons/gi";
-import { FcSearch } from "react-icons/fc";
-import { RiTeamFill } from "react-icons/ri";
-import { TiWorld } from "react-icons/ti";
-
-export const Home = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState(null);
-  const [newDesignName, setNewDesignName] = useState("");
-  const [toggle, setToggle] = useState(false);
-  const params = useParams();
-
-  const show = () => {
-    setToggle((prevState) => !prevState);
-  };
-  const [matches, setMatches] = useState(
-    window.matchMedia("(min-width: 800px)").matches
-  );
-
-  let navigate = useNavigate();
-
-  const handleCreateDesign = async (e) => {
-    e.preventDefault();
-    const response = await post("/doc/create", {
-      name: newDesignName,
-    });
-
-    navigate("/design/" + response.data._id);
-  };
-
-  useEffect(() => {
-    const paramRoute = params.username ? "/" + params.username : "";
-    get("/user" + paramRoute).then((response) => {
-      if (response.data.error) {
-        console.log(response.data);
-        navigate("/welcome");
-      } else {
-        setData(response.data);
-        setIsLoading(false);
-        console.log(response.data);
-        window
-          .matchMedia("(min-width: 890px)")
-          .addEventListener("change", (e) => setMatches(e.matches));
-      }
-    });
-  }, [params]);
-
-  // console.log(data);
-  // console.log(data.myDesigns.length);
+export const Profile = () => {
   return (
     <Layout title="Home">
       <LeftContent>
@@ -136,7 +80,7 @@ export const Home = () => {
                 return (
                   <div
                     className="gddCard"
-                    key={"design-" + index}
+                    key={index}
                     onClick={(e) => navigate("/design/" + designs._id)}
                   >
                     <div className="gddCardLeft">
@@ -174,19 +118,15 @@ export const Home = () => {
           {!isLoading && (
             <>
               <h2> Collabs</h2>
-              {data.collaborators.map((collabUser, index) => {
+              {data.myDesigns.map((designs, index) => {
                 return (
-                  <div
-                    className="collabCard"
-                    key={"caollab-" + index}
-                    onClick={() => navigate("/user/" + collabUser.username)}
-                  >
+                  <div className="collabCard">
                     <div className="collabContent">
                       <div className="collabContentTop">
                         <div className="collabName">
-                          <h3>{collabUser.username}</h3>
-                          <span className="date2">{collabUser.username}</span>
-                          {collabUser.description}
+                          <h3>{data.user.username}</h3>
+                          <span className="date2">{data.myDesigns.name}</span>
+                          {data.user.description}
                           <br />
                           Game they are working on
                         </div>
