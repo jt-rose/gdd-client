@@ -104,33 +104,35 @@ export const Home = () => {
             </div>
 
             <div className="homeDivBottom">
-              <div id="newGDD" style={{ height: toggle ? "100px" : "20px" }}>
-                <button
-                  style={{ display: toggle ? "none" : "block" }}
-                  className="buttForm1 butt"
-                  onClick={(event) => show()}
-                >
-                  Create a Game Document
-                </button>
-
-                <form onSubmit={handleCreateDesign} id="newGDDForm">
-                  <label
-                    id="newGDDLabel"
+              {data.myPage && (
+                <div id="newGDD" style={{ height: toggle ? "100px" : "20px" }}>
+                  <button
+                    style={{ display: toggle ? "none" : "block" }}
+                    className="buttForm1 butt"
                     onClick={(event) => show()}
-                    htmlFor="newDesignName"
                   >
-                    CloseX
-                  </label>
-                  <input
-                    placeholder="type name of new document"
-                    type="text"
-                    value={newDesignName}
-                    onChange={(e) => setNewDesignName(e.target.value)}
-                    required
-                  />
-                  <input className="buttForm1" type="submit" value="Create" />
-                </form>
-              </div>
+                    Create a Game Document
+                  </button>
+
+                  <form onSubmit={handleCreateDesign} id="newGDDForm">
+                    <label
+                      id="newGDDLabel"
+                      onClick={(event) => show()}
+                      htmlFor="newDesignName"
+                    >
+                      CloseX
+                    </label>
+                    <input
+                      placeholder="type name of new document"
+                      type="text"
+                      value={newDesignName}
+                      onChange={(e) => setNewDesignName(e.target.value)}
+                      required
+                    />
+                    <input className="buttForm1" type="submit" value="Create" />
+                  </form>
+                </div>
+              )}
 
               {data.myDesigns.map((designs, index) => {
                 return (
