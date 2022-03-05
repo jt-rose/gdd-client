@@ -369,12 +369,29 @@ width: 100%;
   background-color: rgb(50, 50, 50);
   border-top: 2px solid black;
   border-bottom: 2px solid black;
-  box-shadow: 0 5px 10px rgba(255,255,255,0.3) inset,
-  0 -20px 20px rgba(0,0,0,0.8) inset;
+  box-shadow:
+    0 5px 10px rgba(255,255,255,0.3) inset,
+    0 -20px 20px rgba(0,0,0,0.8) inset;
   margin: 10px;
   padding: 10px;
-
 }
+.gddPic2{
+  display: flex;
+  max-width: 90%;
+  height: 250px;
+  background-color: rgb(15, 15, 15);
+  border-radius: 10px;
+  margin:0 auto;
+  margin-bottom: 20px;
+  justify-content: center;
+  align-items: center;
+}
+.gddImg {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+
 .gameImg{
   width: 100px;
   height: 100px;
@@ -691,6 +708,17 @@ width: 100%;
     width: auto;
     margin-right: auto;
   }
+  .docPair{    
+    scroll-snap-align: center;
+  }
+  .docCard{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    flex-direction: row;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+  }
   .gddCard {
     /* background-color: lightblue;
     color: rgb(15, 15, 15); */
@@ -701,6 +729,7 @@ width: 100%;
   }
   .gddCard{
       width: 90%;
+
   }
   .searchForm{
     display: flex;

@@ -26,9 +26,11 @@ export const EditableText = (props) => {
   if (!isEditing) {
     return (
       <>
+      <div className='pairs'>
         <p>{text}</p>
         <button className='buttForm2' onClick={() => setIsEditing(true)}>Edit</button>
         {/* clear */}
+        </div>
       </>
     );
   } else {

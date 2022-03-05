@@ -21,6 +21,7 @@ export const Home = () => {
 
   const show = () => {
     setToggle((prevState) => !prevState);
+    
   };
   const [matches, setMatches] = useState(
     window.matchMedia("(min-width: 800px)").matches
