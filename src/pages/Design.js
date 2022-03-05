@@ -4,7 +4,6 @@ import { get, post, put, remove } from "../utils/serverURL";
 import { EditableText } from "../components/EditableText";
 import { EditableCard } from "../components/EditableCard";
 import axios from "axios";
-
 import { Navbar } from "../components/Navbar";
 import { Layout, LeftContent, RightContent } from "../components/Layout";
 import { EditableSelect } from "../components/EditableSelect";
@@ -57,8 +56,8 @@ export const Design = () => {
       <LeftContent>
         {!isLoading && (
           <>
-            <div className='docPairs'>
-              <div className='docName'>
+            <div className="docPairs">
+              <div className="docName">
                 <EditableText
                   designid={designid}
                   updateField="name"
@@ -68,16 +67,22 @@ export const Design = () => {
                   // setEditingTarget={setEditingTarget}
                 />
               </div>
-              <div className='gddPic2'>
-              {!imagePreview && <img className='gddImg' src={data.image} />}
-              {imagePreview && <img className='gddImg' src={imagePreview} />}
+              <div className="gddPic2">
+                {!imagePreview && <img className="gddImg" src={data.image} />}
+                {imagePreview && <img className="gddImg" src={imagePreview} />}
               </div>
-              <div className='gddPicFile'>
-                <input  className='inputfile' type="file" onChange={handleImageLoad} />
-                <button className='buttForm2' onClick={handleSaveImage}>Save Image</button>
+              <div className="gddPicFile">
+                <input
+                  className="inputfile"
+                  type="file"
+                  onChange={handleImageLoad}
+                />
+                <button className="buttForm2" onClick={handleSaveImage}>
+                  Save Image
+                </button>
               </div>
             </div>
-            <div className='docPairs'>
+            <div className="docPairs">
               <EditableSelect
                 designid={designid}
                 genre={data.genre}
@@ -92,16 +97,21 @@ export const Design = () => {
                 />
               </div>
             </div>
-            <div className='docPairs'>
+            <div className="docPairs">
               <h2>Characters</h2>
-              <div className='cardLocation docCard'>
+              <div className="cardLocation docCard">
                 <EditableCard
                   designid={designid}
-                  cardData={{ name: "Character Name", description: "Description", image: "../../gmPic.png" }}
+                  cardData={{
+                    name: "Character Name",
+                    description: "Description",
+                    image: "../../gmPic.png",
+                  }}
                   currentDataArray={data.characters}
                   editingTarget={{ index: data.characters.length }}
                   updateField={"characters"}
                   buttonName="Add"
+                  addNew={true}
                   setData={setData}
                 />
                 {data.characters.reverse().map((c, index) => (
@@ -117,16 +127,21 @@ export const Design = () => {
                 ))}
               </div>
             </div>
-            <div className='docPairs'>
+            <div className="docPairs">
               <h2>Locations</h2>
-              <div className='cardLocation docCard'>
+              <div className="cardLocation docCard">
                 <EditableCard
                   designid={designid}
-                  cardData={{ name: "Location Name", description: "Description", image: "../../gmPic.png"}}
+                  cardData={{
+                    name: "Location Name",
+                    description: "Description",
+                    image: "../../gmPic.png",
+                  }}
                   currentDataArray={data.locations}
                   editingTarget={{ index: data.locations.length }}
                   updateField={"locations"}
                   buttonName="Add"
+                  addNew={true}
                   setData={setData}
                 />
                 {data.locations.reverse().map((l, index) => (
@@ -142,16 +157,21 @@ export const Design = () => {
                 ))}
               </div>
             </div>
-            <div className='docPairs'>
+            <div className="docPairs">
               <h2>Items</h2>
-              <div className='cardItems docCard'>
+              <div className="cardItems docCard">
                 <EditableCard
                   designid={designid}
-                  cardData={{ name: "Name", description: "Description", image: "../../gmPic.png" }}
+                  cardData={{
+                    name: "Name",
+                    description: "Description",
+                    image: "../../gmPic.png",
+                  }}
                   currentDataArray={data.items}
                   editingTarget={{ index: data.items.length }}
                   updateField={"items"}
                   buttonName="Add"
+                  addNew={true}
                   setData={setData}
                 />
                 {data.items.map((item, index) => (
@@ -167,16 +187,21 @@ export const Design = () => {
                 ))}
               </div>
             </div>
-            <div className='docPairs'>
+            <div className="docPairs">
               <h2>Gameplay Mechanics</h2>
-              <div className='cardGpMech docCard'>
+              <div className="cardGpMech docCard">
                 <EditableCard
                   designid={designid}
-                  cardData={{ name: "Gameplay Mechanic", description: "Description", image: "../../gmPic.png"}}
+                  cardData={{
+                    name: "Gameplay Mechanic",
+                    description: "Description",
+                    image: "../../gmPic.png",
+                  }}
                   currentDataArray={data.gameplay}
                   editingTarget={{ index: data.gameplay.length }}
                   updateField={"gameplay"}
                   buttonName="Add"
+                  addNew={true}
                   setData={setData}
                 />
                 {data.gameplay.map((gm, index) => (
@@ -192,9 +217,13 @@ export const Design = () => {
                 ))}
               </div>
             </div>
-            <div className='docButt'>
-              <button id="trash" className='buttForm1' onClick={handleTrash}>Send to Trash</button>
-              <button id="delete" className='buttForm1' onClick={handleDelete}>**Delete Whole Document**</button>
+            <div className="docButt">
+              <button id="trash" className="buttForm1" onClick={handleTrash}>
+                Send to Trash
+              </button>
+              <button id="delete" className="buttForm1" onClick={handleDelete}>
+                **Delete Whole Document**
+              </button>
             </div>
           </>
         )}
