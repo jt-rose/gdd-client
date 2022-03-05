@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { put } from "../utils/serverURL";
 
+import { FaPlus } from "react-icons/fa";
+
 export const EditableCard = (props) => {
   const { cardData, editingTarget } = props;
   const [name, setName] = useState(cardData.name);
@@ -59,77 +61,98 @@ export const EditableCard = (props) => {
     setImageURL(response.data.image);
   };
 
-  if (!isEditing) {
+  if (!isEditing && props.addNew) {
     return (
       <>
-      <div className='docPair' onClick={() => setIsEditing(true)}>
-
-        <div className='editCard'>
-        <div className='picPair'>
-        <img className='gameImg'src={imageURL} />
-        {/* remove */}
-        <button className='buttForm1' onClick={() => setIsEditing(true)}>{props.buttonName}</button>
-        </div>
-        <div className='gameName'>
-        <h3>{name}</h3>
+        <div className="docPair" onClick={() => setIsEditing(true)}>
+          <div className="editCard">
+            <div className="add-icon-center">
+              <FaPlus className="add-icon" />
+            </div>
           </div>
-        <p>{description}</p>
-        </div>
         </div>
       </>
-
+    );
+  } else if (!isEditing) {
+    return (
+      <>
+        <div className="docPair" onClick={() => setIsEditing(true)}>
+          <div className="editCard">
+            <div className="picPair">
+              <img className="gameImg" src={imageURL} />
+              {/* remove */}
+              <button className="buttForm1" onClick={() => setIsEditing(true)}>
+                {props.buttonName}
+              </button>
+            </div>
+            <div className="gameName">
+              <h3>{name}</h3>
+            </div>
+            <p>{description}</p>
+          </div>
+        </div>
+      </>
     );
   } else {
     return (
       <div className="docPairModal">
-          <div className="modal-content2">
-      <div className='zoomInfoBox pairs'>
-        <label htmlFor={props.updateField + "-name-" + props.editingTarget.index}>
-          Name
-        </label>
-        <input className='input'
-          type="text"
-          id={props.updateField + "-name-" + props.editingTarget.index}
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <label
-          htmlFor={
-            props.updateField + "-description-" + props.editingTarget.index
-          }
-        >
-
-        Description
-        </label>
-        <input className='input'
-          type="text"
-          id={props.updateField + "-description-" + props.editingTarget.index}
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <label
-          htmlFor={props.updateField + "-image-" + props.editingTarget.index}
-        >
-          Image
-        </label>
-        <input className='input'
-          type="file"
-          id={props.updateField + "-image-" + props.editingTarget.index}
-          onChange={handleImageUpdate}
-        />
+        <div className="modal-content2">
+          <div className="zoomInfoBox pairs">
+            <label
+              htmlFor={props.updateField + "-name-" + props.editingTarget.index}
+            >
+              Name
+            </label>
+            <input
+              className="input"
+              type="text"
+              id={props.updateField + "-name-" + props.editingTarget.index}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <label
+              htmlFor={
+                props.updateField + "-description-" + props.editingTarget.index
+              }
+            >
+              Description
+            </label>
+            <input
+              className="input"
+              type="text"
+              id={
+                props.updateField + "-description-" + props.editingTarget.index
+              }
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+            <label
+              htmlFor={
+                props.updateField + "-image-" + props.editingTarget.index
+              }
+            >
+              Image
+            </label>
+            <input
+              className="input"
+              type="file"
+              id={props.updateField + "-image-" + props.editingTarget.index}
+              onChange={handleImageUpdate}
+            />
+          </div>
+          <div className="docImgButtBox">
+            <div className="docZoomImgBox">
+              <img className="docZoomImg" src={imageURL} />
+            </div>
+            <button className="buttForm1" onClick={handleDesignUpdate}>
+              Update
+            </button>
+            <button className="buttForm1" onClick={handleCancel}>
+              Cancel
+            </button>
+          </div>
         </div>
-        <div className='docImgButtBox'>
-        <div className='docZoomImgBox'>
-        <img className="docZoomImg" src={imageURL} />
-        </div>
-        <button className='buttForm1' onClick={handleDesignUpdate}>Update</button>
-        <button className='buttForm1' onClick={handleCancel}>Cancel</button>
       </div>
-      </div>
-      </div>
-
-
     );
-
   }
 };
