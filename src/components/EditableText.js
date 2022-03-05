@@ -34,15 +34,18 @@ export const EditableText = (props) => {
   } else {
     return (
       <>
+      <div className="storyDiv">
         <label htmlFor={props.updateField}>{props.updateField}</label>
-        <input
+        <textarea
           type="text"
           id={props.updateField}
           value={text}
           onChange={(e) => setText(e.target.value)}
-        />
+          rows='8' column='50'
+        ></textarea>
         <button className='buttForm1' onClick={handleDesignUpdate}>Update</button>
         <button className='buttForm1' onClick={handleCancel}>Cancel</button>
+        </div>
       </>
     );
   }
