@@ -62,22 +62,32 @@ export const EditableCard = (props) => {
   if (!isEditing) {
     return (
       <>
-        <h3>{name}</h3>
-        <p>{description}</p>
-        <img src={imageURL} />
+      <div className='docPair' onClick={() => setIsEditing(true)}>
+
+        <div className='editCard'>
+        <div className='picPair'>
+        <img className='gameImg'src={imageURL} />
         {/* remove */}
-        <button onClick={() => setIsEditing(true)}>{props.buttonName}</button>
+        <button className='buttForm1' onClick={() => setIsEditing(true)}>{props.buttonName}</button>
+        </div>
+        <div className='gameName'>
+        <h3>{name}</h3>
+          </div>
+        <p>{description}</p>
+        </div>
+        </div>
       </>
+
     );
   } else {
     return (
-      <div className="pairs">
-        <label
-          htmlFor={props.updateField + "-name-" + props.editingTarget.index}
-        >
+      <div className="docPairModal">
+          <div className="modal-content2">
+      <div className='zoomInfoBox pairs'>
+        <label htmlFor={props.updateField + "-name-" + props.editingTarget.index}>
           Name
         </label>
-        <input
+        <input className='input'
           type="text"
           id={props.updateField + "-name-" + props.editingTarget.index}
           value={name}
@@ -88,9 +98,10 @@ export const EditableCard = (props) => {
             props.updateField + "-description-" + props.editingTarget.index
           }
         >
-          Description
+
+        Description
         </label>
-        <input
+        <input className='input'
           type="text"
           id={props.updateField + "-description-" + props.editingTarget.index}
           value={description}
@@ -101,15 +112,24 @@ export const EditableCard = (props) => {
         >
           Image
         </label>
-        <input
+        <input className='input'
           type="file"
           id={props.updateField + "-image-" + props.editingTarget.index}
           onChange={handleImageUpdate}
         />
-        <img src={imageURL} />
-        <button onClick={handleDesignUpdate}>Update</button>
-        <button onClick={handleCancel}>Cancel</button>
+        </div>
+        <div className='docImgButtBox'>
+        <div className='docZoomImgBox'>
+        <img className="docZoomImg" src={imageURL} />
+        </div>
+        <button className='buttForm1' onClick={handleDesignUpdate}>Update</button>
+        <button className='buttForm1' onClick={handleCancel}>Cancel</button>
       </div>
+      </div>
+      </div>
+
+
     );
+
   }
 };

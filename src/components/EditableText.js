@@ -27,7 +27,7 @@ export const EditableText = (props) => {
     return (
       <>
         <p>{text}</p>
-        <button onClick={() => setIsEditing(true)}>Edit</button>
+        <button className='buttForm2' onClick={() => setIsEditing(true)}>Edit</button>
         {/* clear */}
       </>
     );
@@ -41,8 +41,8 @@ export const EditableText = (props) => {
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
-        <button onClick={handleDesignUpdate}>Update</button>
-        <button onClick={handleCancel}>Cancel</button>
+        <button className='buttForm1' onClick={handleDesignUpdate}>Update</button>
+        <button className='buttForm1' onClick={handleCancel}>Cancel</button>
       </>
     );
   }
