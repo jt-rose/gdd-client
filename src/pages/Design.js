@@ -80,6 +80,22 @@ export const Design = () => {
     }
   };
 
+  const handleJoinReject = async (requestingUserId) => {
+    const response = await post("/doc/join/reject", {
+      designId: designid,
+      requestingUserId,
+    });
+    console.log(response.data);
+    if (!response.data.error) {
+      setData(response.data.designDoc);
+      setMyProject(response.data.myProject);
+      setPendingCollabrequest(response.data.pendingCollabRequest);
+      setIsDesignCreator(response.data.isDesignCreator);
+      setCollaborators(response.data.collaborators);
+      setCollabRequestUsers(response.data.collabRequestUserData);
+    }
+  };
+
   useEffect(async () => {
     const response = await get("/doc/" + designid);
     setData(response.data.designDoc);
@@ -318,7 +334,9 @@ export const Design = () => {
                     <button onClick={() => handleJoinAccept(u._id)}>
                       Accept
                     </button>
-                    <button onClick={() => {}}>Reject</button>
+                    <button onClick={() => handleJoinReject(u._id)}>
+                      Reject
+                    </button>
                   </div>
                 ))}
               </div>
