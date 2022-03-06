@@ -17,7 +17,6 @@ export const EditableSelect = (props) => {
 
   const handleDesignUpdate = async () => {
     const response = await put("/doc/edit/" + props.designid, { update });
-    console.log(response.data);
     setIsEditing(false);
     props.setData(response.data);
     //navigate("/design/" + props.designid);
@@ -27,7 +26,11 @@ export const EditableSelect = (props) => {
     return (
       <>
         <h2>{genre}</h2>
-        <button className='buttForm2' onClick={() => setIsEditing(true)}>Edit Genre</button>
+        {props.myProject && (
+          <button className="buttForm2" onClick={() => setIsEditing(true)}>
+            Edit Genre
+          </button>
+        )}
       </>
     );
   } else {

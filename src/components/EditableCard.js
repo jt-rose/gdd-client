@@ -18,10 +18,6 @@ export const EditableCard = (props) => {
     { name, description, image: imageURL },
     ...currentDataArray.slice(editingTarget.index + 1),
   ];
-  // need update field and index for insertion
-  console.log("update: ", update);
-  console.log("img file: ", imageFile);
-  console.log("img url: ", imageURL);
 
   const handleCancel = () => {
     setIsEditing(false);
@@ -33,7 +29,6 @@ export const EditableCard = (props) => {
 
   const handleDesignUpdate = async () => {
     const response = await put("/doc/edit/" + props.designid, { update });
-    console.log("response data: ", response.data);
     setIsEditing(false);
 
     if (cardData.name === "") {
@@ -56,7 +51,6 @@ export const EditableCard = (props) => {
     const formData = new FormData();
     formData.append("image", file);
     const response = await put("/doc/image-upload", formData);
-    console.log(response.data);
     setImageFile(file);
     setImageURL(response.data.image);
   };
@@ -76,11 +70,13 @@ export const EditableCard = (props) => {
   } else if (!isEditing) {
     return (
       <>
-        <div className="docPair" onClick={() => setIsEditing(true)}>
+        <div
+          className="docPair"
+          onClick={props.myProject ? () => setIsEditing(true) : () => {}}
+        >
           <div className="editCard">
             <div className="picPair">
               <img className="gameImg" src={imageURL} />
-              {/* remove */}              
             </div>
             <div className="gameName">
               <h3>{name}</h3>
