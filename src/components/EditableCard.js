@@ -70,14 +70,13 @@ export const EditableCard = (props) => {
   } else if (!isEditing) {
     return (
       <>
-        <div className="docPair" onClick={() => setIsEditing(true)}>
+        <div
+          className="docPair"
+          onClick={props.myProject ? () => setIsEditing(true) : () => {}}
+        >
           <div className="editCard">
             <div className="picPair">
               <img className="gameImg" src={imageURL} />
-              {/* remove */}
-              <button className="buttForm1" onClick={() => setIsEditing(true)}>
-                {props.buttonName}
-              </button>
             </div>
             <div className="gameName">
               <h3>{name}</h3>

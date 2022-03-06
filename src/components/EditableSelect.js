@@ -26,9 +26,11 @@ export const EditableSelect = (props) => {
     return (
       <>
         <h2>{genre}</h2>
-        <button className="buttForm2" onClick={() => setIsEditing(true)}>
-          Edit Genre
-        </button>
+        {props.myProject && (
+          <button className="buttForm2" onClick={() => setIsEditing(true)}>
+            Edit Genre
+          </button>
+        )}
       </>
     );
   } else {

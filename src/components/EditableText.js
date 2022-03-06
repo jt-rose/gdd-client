@@ -13,7 +13,6 @@ export const EditableText = (props) => {
     setText(props.text);
   };
 
-  console.log("id: ", props.designid);
   const handleDesignUpdate = async () => {
     const response = await put("/doc/edit/" + props.designid, { update });
     setIsEditing(false);
@@ -24,11 +23,13 @@ export const EditableText = (props) => {
     return (
       <>
         <div className="pairs">
-          <p>{text}</p>
-          <button className="buttForm2" onClick={() => setIsEditing(true)}>
-            Edit
-          </button>
-          {/* clear */}
+          {props.large ? <h1>{text}</h1> : <p>{text}</p>}
+
+          {props.myProject && (
+            <button className="buttForm2" onClick={() => setIsEditing(true)}>
+              Edit
+            </button>
+          )}
         </div>
       </>
     );
