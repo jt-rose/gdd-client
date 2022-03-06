@@ -11,6 +11,7 @@ import { EditableSelect } from "../components/EditableSelect";
 export const Design = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
+  const [myProject, setMyProject] = useState(false);
   const [editingTarget, setEditingTarget] = useState(null);
   // {target: 'locations', index: number | null}
   const [image, setImage] = useState(null);
@@ -47,7 +48,9 @@ export const Design = () => {
 
   useEffect(async () => {
     const response = await get("/doc/" + designid);
-    setData(response.data);
+    setData(response.data.designDoc);
+    setMyProject(response.data.myProject);
+    console.log(response.data);
     setIsLoading(false);
   }, []);
 
@@ -116,6 +119,7 @@ export const Design = () => {
                 />
                 {data.characters.reverse().map((c, index) => (
                   <EditableCard
+                    key={"char-card-" + index}
                     designid={designid}
                     cardData={c}
                     currentDataArray={data.characters}
@@ -146,6 +150,7 @@ export const Design = () => {
                 />
                 {data.locations.reverse().map((l, index) => (
                   <EditableCard
+                    key={"loc-card-" + index}
                     designid={designid}
                     cardData={l}
                     currentDataArray={data.locations}
@@ -176,6 +181,7 @@ export const Design = () => {
                 />
                 {data.items.map((item, index) => (
                   <EditableCard
+                    key={"item-card-" + index}
                     designid={designid}
                     cardData={item}
                     currentDataArray={data.items}
@@ -206,6 +212,7 @@ export const Design = () => {
                 />
                 {data.gameplay.map((gm, index) => (
                   <EditableCard
+                    key={"gameplay-card-" + index}
                     designid={designid}
                     cardData={gm}
                     currentDataArray={data.gameplay}
