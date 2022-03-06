@@ -330,7 +330,8 @@ li span {
 .gddPic {
   width: 100px;
   height: 100px;
-  border-top-left-radius: 20px;
+  border-radius: 50%;
+  border: 2px solid rgb(50, 50, 50);
 }
 .gddCardLeft {
   padding-right: 10px;
@@ -570,9 +571,14 @@ li span {
   align-items: center;
   justify-content: center;
 }
+#searchImg{
+  margin: auto;
+}
 .box {
+  display: flex;
+  flex-direction: column;
   position: relative;
-  height: 150px;
+  min-height: 150px;
   width: 150px;
   background: transparent;
   background-size: 200px 200px;
@@ -585,6 +591,7 @@ li span {
   /* padding: 8px 16px; */
   margin: 10px;
   border-radius: 10px;
+  text-align: center;
 }
 .clip {
   height: 100%;

@@ -80,10 +80,7 @@ export const EditableCard = (props) => {
           <div className="editCard">
             <div className="picPair">
               <img className="gameImg" src={imageURL} />
-              {/* remove */}
-              <button className="buttForm1" onClick={() => setIsEditing(true)}>
-                {props.buttonName}
-              </button>
+              {/* remove */}              
             </div>
             <div className="gameName">
               <h3>{name}</h3>

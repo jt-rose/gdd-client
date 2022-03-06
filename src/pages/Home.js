@@ -32,7 +32,6 @@ export const Home = () => {
     const response = await post("/doc/create", {
       name: newDesignName,
     });
-
     navigate("/design/" + response.data._id);
   };
 
@@ -102,7 +101,6 @@ export const Home = () => {
                 </li>
               </ul>
             </div>
-
             <div className="homeDivBottom">
               {data.myPage && (
                 <div id="newGDD" style={{ height: toggle ? "100px" : "20px" }}>
@@ -113,7 +111,6 @@ export const Home = () => {
                   >
                     Create a Game Document
                   </button>
-
                   <form onSubmit={handleCreateDesign} id="newGDDForm">
                     <label
                       id="newGDDLabel"
@@ -133,7 +130,6 @@ export const Home = () => {
                   </form>
                 </div>
               )}
-
               {data.myDesigns.reverse().map((designs, index) => {
                 return (
                   <div
@@ -142,7 +138,7 @@ export const Home = () => {
                     onClick={(e) => navigate("/design/" + designs._id)}
                   >
                     <div className="gddCardLeft">
-                      <img className="gddPic" src="../../gmPic.png" />
+                      <img className="gddPic" src={designs.image}/>
                       <h2>{designs.name}</h2>
                       <p>Genre: {designs.genre}</p>
                     </div>

@@ -45,56 +45,54 @@ export const Search = () => {
   return (
     <Layout title="Search">
       <LeftContent>
-      <div className="searchFormBox">
-        <form className="searchForm">
-        <div className="pairs">
-          <label htmlFor="name">Name</label>
-          <input
-          className="input"
-            type="text"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          </div>
-          <div className="pairs">
-          <label htmlFor="username">Username</label>
-          <input
-            className="input"
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          </div>
-          <div className="pairs">
-          <label htmlFor="genre">Genre</label>
-          <select className="input" value={genre} onChange={(e) => setGenre(e.target.value)}>
-            <option key="select-ANY" value="ANY">
-              ANY
-            </option>
-            {GENRE.map((g) => (
-              <option key={"select-" + g} value={g}>
-                {g}
-              </option>
-            ))}
-          </select>
-          </div>
-          <button className="buttForm1"onClick={handleSearch}>Search</button>
-        </form>
+        <div className="searchFormBox">
+          <form className="searchForm">
+            <div className="pairs">
+              <label htmlFor="name">Name</label>
+              <input
+                className="input"
+                type="text"
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div className="pairs">
+              <label htmlFor="username">Username</label>
+              <input
+                className="input"
+                type="text"
+                id="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
+            <div className="pairs">
+              <label htmlFor="genre">Genre</label>
+              <select className="input" value={genre} onChange={(e) => setGenre(e.target.value)}>
+                <option key="select-ANY" value="ANY">
+                  ANY
+                </option>
+                {GENRE.map((g) => (
+                  <option key={"select-" + g} value={g}>
+                    {g}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <button className="buttForm1"onClick={handleSearch}>Search</button>
+          </form>
         </div>
-
         <div className="searchResults">
-        {noResults && <p>no results found</p>}
-        {results.map((design, index) => (
-          <div key= {index} className='searchResultsBox'>
-            <div className="box" id='boxes' onClick={() => openDesignPage(design._id)}>
-              <img className="gddPic" src={design.image}/>
+          {noResults && <p>no results found</p>}
+          {results.map((design, index) => (
+            <div className="box" key= {index}  onClick={() => openDesignPage(design._id)}>
+              <img id='searchImg' className="gddPic" src={design.image}/>
               <h4 >{design.name}</h4>
-              <div  id='right' ></div>
-              <div  id='left'></div>
-              <div  id='up'></div>
-              <div  id='down'></div>
+              <div class="clip" id='right' ></div>
+              <div class="clip" id='left'></div>
+              <div class="clip" id='up'></div>
+              <div class="clip" id='down'></div>
               <span id='rightClip' className="clipper">Click to Open
                   <h3 >{design.name}</h3>
               </span>
@@ -108,8 +106,7 @@ export const Search = () => {
                   <h3 >{design.name}</h3>
               </span>
             </div>
-          </div>
-        ))}
+          ))}
         </div>
       </LeftContent>
     </Layout>
