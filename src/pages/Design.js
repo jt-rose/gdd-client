@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
-import { get, put, remove } from "../utils/serverURL";
+import { get, post, put, remove } from "../utils/serverURL";
 import { EditableText } from "../components/EditableText";
 import { EditableCard } from "../components/EditableCard";
 import { Layout, LeftContent, RightContent } from "../components/Layout";
@@ -13,6 +13,11 @@ export const Design = () => {
   // {target: 'locations', index: number | null}
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
+  const [pendingCollabRequest, setPendingCollabrequest] = useState(false);
+  const [isDesignCreator, setIsDesignCreator] = useState(false);
+  const [collaborators, setCollaborators] = useState([]);
+  const [collabRequestUsers, setCollabRequestUsers] = useState([]);
+
   const { designid } = useParams();
   const navigate = useNavigate();
 
@@ -43,10 +48,28 @@ export const Design = () => {
     navigate("/");
   };
 
+  const handleJoinRequest = async () => {
+    const response = await post("/doc/join", {
+      designId: designid,
+    });
+    if (!response.data.error) {
+      setData(response.data.designDoc);
+      setMyProject(response.data.myProject);
+      setPendingCollabrequest(response.data.pendingCollabRequest);
+      setIsDesignCreator(response.data.isDesignCreator);
+      setCollaborators(response.data.collaborators);
+      setCollabRequestUsers(response.data.collabRequestUserData);
+    }
+  };
+
   useEffect(async () => {
     const response = await get("/doc/" + designid);
     setData(response.data.designDoc);
     setMyProject(response.data.myProject);
+    setPendingCollabrequest(response.data.pendingCollabRequest);
+    setIsDesignCreator(response.data.isDesignCreator);
+    setCollaborators(response.data.collaborators);
+    setCollabRequestUsers(response.data.collabRequestUserData);
     console.log(response.data);
     setIsLoading(false);
   }, []);
@@ -137,7 +160,7 @@ export const Design = () => {
                     setData={setData}
                   />
                 ))}
-                {data.characters.length === 0 && (
+                {!myProject && data.characters.length === 0 && (
                   <p>-- No characters listed yet --</p>
                 )}
               </div>
@@ -176,7 +199,7 @@ export const Design = () => {
                     setData={setData}
                   />
                 ))}
-                {data.locations.length === 0 && (
+                {!myProject && data.locations.length === 0 && (
                   <p>-- No locations listed yet --</p>
                 )}
               </div>
@@ -215,7 +238,9 @@ export const Design = () => {
                     setData={setData}
                   />
                 ))}
-                {data.items.length === 0 && <p>-- No items listed yet --</p>}
+                {!myProject && data.items.length === 0 && (
+                  <p>-- No items listed yet --</p>
+                )}
               </div>
             </div>
             <div className="docPairs">
@@ -252,12 +277,33 @@ export const Design = () => {
                     setData={setData}
                   />
                 ))}
-                {data.gameplay.length === 0 && (
+                {!myProject && data.gameplay.length === 0 && (
                   <p>-- No gameplay mechanics listed yet --</p>
                 )}
               </div>
             </div>
-            {myProject && (
+            {!myProject && !pendingCollabRequest && (
+              <button onClick={handleJoinRequest}>
+                Request to Join Design Team
+              </button>
+            )}
+            {pendingCollabRequest && (
+              <p>-- A request to join this design team has been sent! --</p>
+            )}
+
+            {isDesignCreator && data.collabRequestUsers.length && (
+              <div>
+                <h2>Collaboration Requests</h2>
+                {collabRequestUsers.map((u, index) => (
+                  <div key={"collab-request-" + index}>
+                    <p>{u.username} wants to join this project</p>
+                    <button>Accept</button>
+                    <button>Reject</button>
+                  </div>
+                ))}
+              </div>
+            )}
+            {isDesignCreator && (
               <div className="docButt">
                 <button id="trash" className="buttForm1" onClick={handleTrash}>
                   Send to Trash
