@@ -49,9 +49,27 @@ export const Design = () => {
   };
 
   const handleJoinRequest = async () => {
+    console.log("hi");
     const response = await post("/doc/join", {
       designId: designid,
     });
+    console.log(response.data);
+    if (!response.data.error) {
+      setData(response.data.designDoc);
+      setMyProject(response.data.myProject);
+      setPendingCollabrequest(response.data.pendingCollabRequest);
+      setIsDesignCreator(response.data.isDesignCreator);
+      setCollaborators(response.data.collaborators);
+      setCollabRequestUsers(response.data.collabRequestUserData);
+    }
+  };
+
+  const handleJoinAccept = async (requestingUserId) => {
+    const response = await post("/doc/join/accept", {
+      designId: designid,
+      requestingUserId,
+    });
+    console.log(response.data);
     if (!response.data.error) {
       setData(response.data.designDoc);
       setMyProject(response.data.myProject);
@@ -287,18 +305,20 @@ export const Design = () => {
                 Request to Join Design Team
               </button>
             )}
-            {pendingCollabRequest && (
+            {!myProject && pendingCollabRequest && (
               <p>-- A request to join this design team has been sent! --</p>
             )}
 
-            {isDesignCreator && data.collabRequestUsers.length && (
+            {isDesignCreator && data.collabRequestUsers.length !== 0 && (
               <div>
                 <h2>Collaboration Requests</h2>
                 {collabRequestUsers.map((u, index) => (
                   <div key={"collab-request-" + index}>
                     <p>{u.username} wants to join this project</p>
-                    <button>Accept</button>
-                    <button>Reject</button>
+                    <button onClick={() => handleJoinAccept(u._id)}>
+                      Accept
+                    </button>
+                    <button onClick={() => {}}>Reject</button>
                   </div>
                 ))}
               </div>
