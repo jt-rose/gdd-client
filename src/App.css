@@ -100,7 +100,8 @@ padding-top: 20px;
   color: rgb(187, 187, 187);
   background-color: rgba(0, 0, 0, 0.5);
   padding: 10px;
-  margin-bottom: 20px;
+  margin: 20px auto;
+  border: 2px solid rgb(187, 187, 187);
   border-radius: 10px;
 }
 .input {
@@ -120,10 +121,10 @@ padding-top: 20px;
 .buttForm1 {
   margin: auto;
   margin-top: 20px;
-
   background-color: rgb(2, 57, 14);
   color: black;
   font-weight: bold;
+  font-size: 20px;
   width: 60%;
 }
 .buttForm1:hover {
@@ -135,6 +136,7 @@ padding-top: 20px;
   background-color: rgb(2, 57, 14);
   color: black;
   font-weight: bold;
+  font-size: 20px;
   padding: 2px;
 }
 .buttForm2:hover {
@@ -570,18 +572,15 @@ z-index: 2;
 .docPairModal {
   display: flex;
   position: fixed;
-
-
   z-index: 1;
   left: 0;
   bottom: 0;
   padding: 25px;
-  min-width: 100vw;
+  min-width: 100%;
   min-height: 100%;
   /* overflow: auto; */
   background-color: rgba(0, 0, 0, 0.8);
   margin: 0 auto;
-
 }
 .zoomInfoBox {
   display: flex;
@@ -592,6 +591,7 @@ z-index: 2;
   justify-content: center;
   margin: auto;
   margin-right: 10px;
+  border: 2px solid rgb(187, 187, 187);
   border-radius: 15px;
 }
 .docZoomImgBox {
@@ -627,6 +627,16 @@ z-index: 2;
   align-items: center;
   justify-content: center;
   text-align: center;
+}
+.modalDesc{
+  width: 100%;
+  padding: 10px;
+  margin: 10px auto;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px solid rgb(187, 187, 187);
+  font-weight: bold;
+
 }
 @keyframes zoom {
   from {
@@ -718,7 +728,8 @@ z-index: 2;
   color: rgb(187, 187, 187);
   background-color: rgba(0, 0, 0, 0.5);
   padding: 10px;
-  margin-bottom: 20px;
+  margin: 20px;
+  border: 2px solid rgb(187, 187, 187);
   border-radius: 10px;
 }
 
@@ -905,22 +916,9 @@ z-index: 2;
 }
 @media only screen and (max-width: 930px) {
   *{
-    margin: 0;
+    margin: 0 auto;
   }
   .modal-content2 {
     flex-direction: column;
   }
-}
-
-.add-icon-center {
-  width: 100%;
-  height: 250px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.add-icon {
-  padding: 3em;
-  width: 100%;
-  height: 100%;
 }
