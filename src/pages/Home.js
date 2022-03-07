@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { get, post } from "../utils/serverURL";
@@ -16,6 +16,9 @@ export const Home = () => {
   const [data, setData] = useState(null);
   const [newDesignName, setNewDesignName] = useState("");
   const [toggle, setToggle] = useState(false);
+  // ran into a memory leak issue, resolved after following this:
+  // https://stackoverflow.com/questions/54954385/react-useeffect-causing-cant-perform-a-react-state-update-on-an-unmounted-comp
+  const componentMounted = useRef(true);
   const params = useParams();
 
   const show = () => {
@@ -42,13 +45,16 @@ export const Home = () => {
         // console.log(response.data);
         navigate("/welcome");
       } else {
-        console.log(response);
-        setData(response.data);
-        setIsLoading(false);
-        // console.log(response.data);
-        window
-          .matchMedia("(min-width: 890px)")
-          .addEventListener("change", (e) => setMatches(e.matches));
+        if (componentMounted.current) {
+          console.log(response);
+          setData(response.data);
+          setIsLoading(false);
+          // console.log(response.data);
+          window
+            .matchMedia("(min-width: 890px)")
+            .addEventListener("change", (e) => setMatches(e.matches));
+        }
+        return () => (componentMounted.current = false);
       }
     });
   }, [params]);

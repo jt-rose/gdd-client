@@ -17,7 +17,6 @@ export const Design = () => {
   const [isDesignCreator, setIsDesignCreator] = useState(false);
   const [collaborators, setCollaborators] = useState([]);
   const [collabRequestUsers, setCollabRequestUsers] = useState([]);
-  const params = useParams();
 
   const { designid } = useParams();
   const navigate = useNavigate();
@@ -97,8 +96,6 @@ export const Design = () => {
     }
   };
 
-
-
   useEffect(async () => {
     const response = await get("/doc/" + designid);
     setData(response.data.designDoc);
@@ -164,7 +161,7 @@ export const Design = () => {
               </div>
             </div>
             <div className="docPairs">
-              <h2>CHARACTERS</h2>
+              <h2>Characters</h2>
               <div className="cardLocation docCard">
                 {myProject && (
                   <EditableCard
@@ -203,7 +200,7 @@ export const Design = () => {
               </div>
             </div>
             <div className="docPairs">
-              <h2>LOCATIONS</h2>
+              <h2>Locations</h2>
               <div className="cardLocation docCard">
                 {myProject && (
                   <EditableCard
@@ -242,7 +239,7 @@ export const Design = () => {
               </div>
             </div>
             <div className="docPairs">
-              <h2>ITEMS</h2>
+              <h2>Items</h2>
               <div className="cardItems docCard">
                 {myProject && (
                   <EditableCard
@@ -281,7 +278,7 @@ export const Design = () => {
               </div>
             </div>
             <div className="docPairs">
-              <h2>GAMPLAY MECHANICS</h2>
+              <h2>Gameplay Mechanics</h2>
               <div className="cardGpMech docCard">
                 {myProject && (
                   <EditableCard
@@ -321,29 +318,42 @@ export const Design = () => {
             </div>
 
             {!myProject && !pendingCollabRequest && (
-              <div id='requestBox'>
-              <button className='buttForm1'  onClick={handleJoinRequest}>
-                Request to Join Design Team
-              </button>
+              <div id="requestBox">
+                <button className="buttForm1" onClick={handleJoinRequest}>
+                  Request to Join Design Team
+                </button>
               </div>
             )}
             {!myProject && pendingCollabRequest && (
-              <div id='requestBox'>
-              <p className='glow'>-- A request to join this design team has been sent! --</p>
+              <div id="requestBox">
+                <p className="glow">
+                  -- A request to join this design team has been sent! --
+                </p>
               </div>
             )}
 
             {isDesignCreator && data.collabRequestUsers.length !== 0 && (
-              <div className='collabBox'>
-                <h2 className='glow'>Collaboration Requests</h2>
+              <div className="collabBox">
+                <h2 className="glow">Collaboration Requests</h2>
                 {collabRequestUsers.map((u, index) => (
                   <div key={"collab-request-" + index}>
-                    <p><span id='reqName'>{u.username}</span> wants to join this project</p>
-                    <div id='requestButtBox'>
-                      <button className='buttForm1' id="accept"  onClick={() => handleJoinAccept(u._id)}>
+                    <p>
+                      <span id="reqName">{u.username}</span> wants to join this
+                      project
+                    </p>
+                    <div id="requestButtBox">
+                      <button
+                        className="buttForm1"
+                        id="accept"
+                        onClick={() => handleJoinAccept(u._id)}
+                      >
                         Accept
                       </button>
-                      <button className='buttForm1' id="delete" onClick={() => handleJoinReject(u._id)}>
+                      <button
+                        className="buttForm1"
+                        id="delete"
+                        onClick={() => handleJoinReject(u._id)}
+                      >
                         Reject
                       </button>
                     </div>

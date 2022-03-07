@@ -9,7 +9,8 @@ export const EditableCard = (props) => {
   const [description, setDescription] = useState(cardData.description);
   const [imageFile, setImageFile] = useState(null);
   const [imageURL, setImageURL] = useState(cardData.image);
-  const [isEditing, setIsEditing] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [toggleEdit, setToggleEdit] = useState(false);
   // use props.setIsEditing
   const currentDataArray = props.currentDataArray;
   let update = {};
@@ -20,7 +21,8 @@ export const EditableCard = (props) => {
   ];
 
   const handleCancel = () => {
-    setIsEditing(false);
+    setToggleEdit(false);
+    setShowModal(false);
     setName(cardData.name);
     setDescription(cardData.description);
     setImageFile(null);
@@ -29,7 +31,7 @@ export const EditableCard = (props) => {
 
   const handleDesignUpdate = async () => {
     const response = await put("/doc/edit/" + props.designid, { update });
-    setIsEditing(false);
+    setShowModal(false);
 
     if (cardData.name === "") {
       setName("");
@@ -55,10 +57,10 @@ export const EditableCard = (props) => {
     setImageURL(response.data.image);
   };
 
-  if (!isEditing && props.addNew) {
+  if (!showModal && props.addNew) {
     return (
       <>
-        <div className="docPair" onClick={() => setIsEditing(true)}>
+        <div className="docPair" onClick={() => setShowModal(true)}>
           <div className="editCard">
             <div className="add-icon-center">
               <FaPlus className="add-icon" />
@@ -67,13 +69,10 @@ export const EditableCard = (props) => {
         </div>
       </>
     );
-  } else if (!isEditing) {
+  } else if (!showModal) {
     return (
       <>
-        <div
-          className="docPair"
-          onClick={props.myProject ? () => setIsEditing(true) : () => {}}
-        >
+        <div className="docPair" onClick={() => setShowModal(true)}>
           <div className="editCard">
             <div className="picPair">
               <img className="gameImg" src={imageURL} />
@@ -90,60 +89,78 @@ export const EditableCard = (props) => {
     return (
       <div className="docPairModal">
         <div className="modal-content2">
-          <div className="zoomInfoBox pairs">
-            <label
-              htmlFor={props.updateField + "-name-" + props.editingTarget.index}
-            >
-              Name
-            </label>
-            <input
-              className="input"
-              type="text"
-              id={props.updateField + "-name-" + props.editingTarget.index}
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <label
-              htmlFor={
-                props.updateField + "-description-" + props.editingTarget.index
-              }
-            >
-              Description
-            </label>
-            <input
-              className="input"
-              type="text"
-              id={
-                props.updateField + "-description-" + props.editingTarget.index
-              }
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-            <label
-              htmlFor={
-                props.updateField + "-image-" + props.editingTarget.index
-              }
-            >
-              Image
-            </label>
-            <input
-              className="input"
-              type="file"
-              id={props.updateField + "-image-" + props.editingTarget.index}
-              onChange={handleImageUpdate}
-            />
-          </div>
-          <div className="docImgButtBox">
-            <div className="docZoomImgBox">
-              <img className="docZoomImg" src={imageURL} />
-            </div>
-            <button className="buttForm1" onClick={handleDesignUpdate}>
-              Update
-            </button>
-            <button className="buttForm1" onClick={handleCancel}>
-              Cancel
-            </button>
-          </div>
+          {props.myProject && (
+            <button onClick={() => setToggleEdit(!toggleEdit)}>Edit</button>
+          )}
+          {toggleEdit ? (
+            <>
+              <div className="zoomInfoBox pairs">
+                <label
+                  htmlFor={
+                    props.updateField + "-name-" + props.editingTarget.index
+                  }
+                >
+                  Name
+                </label>
+                <input
+                  className="input"
+                  type="text"
+                  id={props.updateField + "-name-" + props.editingTarget.index}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+                <label
+                  htmlFor={
+                    props.updateField +
+                    "-description-" +
+                    props.editingTarget.index
+                  }
+                >
+                  Description
+                </label>
+                <input
+                  className="input"
+                  type="text"
+                  id={
+                    props.updateField +
+                    "-description-" +
+                    props.editingTarget.index
+                  }
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                />
+                <label
+                  htmlFor={
+                    props.updateField + "-image-" + props.editingTarget.index
+                  }
+                >
+                  Image
+                </label>
+                <input
+                  className="input"
+                  type="file"
+                  id={props.updateField + "-image-" + props.editingTarget.index}
+                  onChange={handleImageUpdate}
+                />
+              </div>
+              <div className="docImgButtBox">
+                <div className="docZoomImgBox">
+                  <img className="docZoomImg" src={imageURL} />
+                </div>
+                <button className="buttForm1" onClick={handleDesignUpdate}>
+                  Update
+                </button>
+                <button className="buttForm1" onClick={handleCancel}>
+                  Cancel
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              <h2>Hi I'm content</h2>
+              <button onClick={() => setShowModal(false)}>Close</button>
+            </>
+          )}
         </div>
       </div>
     );
