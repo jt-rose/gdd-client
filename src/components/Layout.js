@@ -1,4 +1,6 @@
+import { useEffect, useState } from "react";
 import { Navbar } from "./Navbar";
+import { get } from "../utils/serverURL";
 
 export const LeftContent = (props) => {
   return <div className="contentLeft">{props.children}</div>;
@@ -9,13 +11,20 @@ export const RightContent = (props) => {
 };
 
 export const Layout = (props) => {
+  const [user, setUser] = useState(null);
+  console.log(user);
+
+  useEffect(() => {
+    get("/user/me").then((response) => setUser(response.data));
+  }, []);
+
   return (
     <div className="main">
       <div className="mainEffect">
         <div className="mainContainer">
           <div className="header" padding="4" color="white">
             <h1>{props.title}</h1>
-            <Navbar />
+            <Navbar user={user} setUser={setUser} />
           </div>
           <div className="content">{props.children}</div>
         </div>
