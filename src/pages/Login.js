@@ -28,42 +28,38 @@ export const Login = () => {
       setUsername("");
       setPassword("");
     }
-
     // if unsuccessful, redirect back to login with error message
   };
 
   return (
-      <Layout title="Login">
-        <LeftContent>
-              {errorMessage && <p>{errorMessage}</p>}
-
-              <form onSubmit={handleSubmit}>
-              <div className="formBox">
-              <div className="pairs">
+    <Layout title="Login">
+      <LeftContent>
+        {errorMessage && <p>{errorMessage}</p>}
+        <form onSubmit={handleSubmit}>
+          <div className="formBox">
+            <div className="pairs">
               UserName:{" "}
-                <input
+              <input
                 className="input"
-                  type="text"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                />
-                </div>
-                 <div className="pairs">
-                Password:{" "}
-                <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
+            <div className="pairs">
+              Password:{" "}
+              <input
                 className="input"
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-
-                <input className="buttForm1" type='submit' value='login'/>
-                </div>
-                </div>
-              </form>
-
-              </LeftContent>
-              
-            </Layout>
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <input className="buttForm1" type='submit' value='Login'/>
+              <button className='buttForm2' onClick= {(e) => navigate('/register')}>Register</button>
+            </div>
+          </div>
+        </form>
+      </LeftContent>
+    </Layout>
   );
 };

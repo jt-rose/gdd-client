@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 export const Navbar = () => {
   let navigate = useNavigate();
-  
+
   const [matches, setMatches] = useState(
     window.matchMedia("(min-width: 768px)").matches
   );
@@ -25,27 +25,19 @@ export const Navbar = () => {
   return (
     <>
       <div className="nav">
-        <div className="navTop"></div>
-
         <div className="navBottom">
-          <div className="n">
-            <Link className="links" to="/">
-              Home
-            </Link>
-            <Link className="links" to="/register">
-              Register
-            </Link>
-            <Link className="links" to="/login">
-              Login
-            </Link>
-            <Link className="links" to="/search">
-              Search
-            </Link>
-            <button className="links" onClick={handleLogout}>
-              logout
-            </button>
-          </div>
-
+          <Link className="links" to="/">
+            Home
+          </Link>
+          <Link className="links" to="/login">
+            Login
+          </Link>
+          <Link className="links" to="/search">
+            Search
+          </Link>
+          <button className="links" onClick={handleLogout}>
+            logout
+          </button>
         </div>
       </div>
     </>

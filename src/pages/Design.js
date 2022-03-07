@@ -17,6 +17,7 @@ export const Design = () => {
   const [isDesignCreator, setIsDesignCreator] = useState(false);
   const [collaborators, setCollaborators] = useState([]);
   const [collabRequestUsers, setCollabRequestUsers] = useState([]);
+  const params = useParams();
 
   const { designid } = useParams();
   const navigate = useNavigate();
@@ -69,7 +70,7 @@ export const Design = () => {
       designId: designid,
       requestingUserId,
     });
-    console.log(response.data);
+
     if (!response.data.error) {
       setData(response.data.designDoc);
       setMyProject(response.data.myProject);
@@ -95,6 +96,8 @@ export const Design = () => {
       setCollabRequestUsers(response.data.collabRequestUserData);
     }
   };
+
+
 
   useEffect(async () => {
     const response = await get("/doc/" + designid);
@@ -316,27 +319,34 @@ export const Design = () => {
                 )}
               </div>
             </div>
+
             {!myProject && !pendingCollabRequest && (
-              <button onClick={handleJoinRequest}>
+              <div id='requestBox'>
+              <button className='buttForm1'  onClick={handleJoinRequest}>
                 Request to Join Design Team
               </button>
+              </div>
             )}
             {!myProject && pendingCollabRequest && (
-              <p>-- A request to join this design team has been sent! --</p>
+              <div id='requestBox'>
+              <p className='glow'>-- A request to join this design team has been sent! --</p>
+              </div>
             )}
 
             {isDesignCreator && data.collabRequestUsers.length !== 0 && (
-              <div>
-                <h2>Collaboration Requests</h2>
+              <div className='collabBox'>
+                <h2 className='glow'>Collaboration Requests</h2>
                 {collabRequestUsers.map((u, index) => (
                   <div key={"collab-request-" + index}>
-                    <p>{u.username} wants to join this project</p>
-                    <button onClick={() => handleJoinAccept(u._id)}>
-                      Accept
-                    </button>
-                    <button onClick={() => handleJoinReject(u._id)}>
-                      Reject
-                    </button>
+                    <p><span id='reqName'>{u.username}</span> wants to join this project</p>
+                    <div id='requestButtBox'>
+                      <button className='buttForm1' id="accept"  onClick={() => handleJoinAccept(u._id)}>
+                        Accept
+                      </button>
+                      <button className='buttForm1' id="delete" onClick={() => handleJoinReject(u._id)}>
+                        Reject
+                      </button>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -351,7 +361,7 @@ export const Design = () => {
                   className="buttForm1"
                   onClick={handleDelete}
                 >
-                  **Delete Whole Document**
+                  **Delete Document**
                 </button>
               </div>
             )}

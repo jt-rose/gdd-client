@@ -21,22 +21,51 @@ export const Welcome = () => {
   };
 
   return (
-    <div>
-      <h1>GameDocs</h1>
-      <p>Welcome to GameDocs - lorem ipsum</p>
-      <button onClick={moveToRegister}>create an account</button>
-      <button onClick={moveToLogin}>sign in</button>
-      <button onClick={moveToSearch}>browse GDD</button>
+    <div className="main">
+      <div className="mainEffect">
+        <div className="mainContainer">
+          <div className="header" padding="4" color="white">
+            <div>
+              <h1>GameDocs</h1>
+              <div className='contentLeft'>
+                <p>Welcome to GameDocs </p>
+                <button className='buttForm2' onClick={moveToRegister}>create an account</button>
+                <button  className='buttForm2' onClick={moveToLogin}>sign in</button>
+                <button className='buttForm2' onClick={moveToSearch}>browse GDD</button>
+                <div className='logos'>
+                  <div className='logoBox'>
+                    <img className='gameLogo'src="../../atari.png"/>
+                  </div>
+                  <div className='logoBox'>
+                    <img className='gameLogo'src="../../sega.png"/>
+                  </div>
+                  <div className='logoBox'>
+                    <img className='gameLogo'src="../../n64.png"/>
+                  </div>
+                  <div className='logoBox'>
+                    <img className='gameLogo'src="../../nin.png"/>
+                  </div>
+                  <div className='logoBox'>
+                    <img className='gameLogo'src="../../ps.png"/>
+                  </div>
+                  <div className='logoBox'>
+                    <img className='gameLogo'src="../../ps5.jpeg"/>
+                  </div>
+                  <div className='logoBox'>
+                    <img className='gameLogo'src="../../xbox.png"/>
+                  </div>
+                  <div className='logoBox'>
+                    <img className='gameLogo'src="../../xboxX.jpeg"/>
+                  </div>
+                  <div className='logoBox'>
+                    <img className='gameLogo'src="../../pc.png"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  );
-  //   return (
-
-  //     <Layout title="Home">
-  //       <LeftContent>
-  //     <>
-  //     </>
-  //     </LeftContent>
-  //     <RightContent></RightContent>
-  //   </Layout>
-  //   );
+  )
 };

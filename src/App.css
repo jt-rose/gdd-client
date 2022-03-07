@@ -13,7 +13,7 @@ h1 {
 }
 .header {
   position: relative;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.8),
+  box-shadow:
     5px 5px 10px rgba(187, 187, 187, 0.5) inset,
     -5px -5px 10px rgba(0, 0, 0, 0.8) inset;
 }
@@ -176,17 +176,40 @@ li span {
   border-bottom-right-radius: 25px;
   justify-content: center;
   align-items: center;
+
 }
 .contentRight {
+  display: flex;
+  flex-direction: column;
   width: 40%;
   min-height: 100%;
   padding: 10px;
   background-color: rgb(20, 20, 20);
   border-bottom-right-radius: 25px;
   box-shadow: 2px 2px 5px black inset;
-}
 
-/* =========home Page Styling ============*/
+}
+/* =========WELCOME Page Styling ============*/
+.logoBox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 75px;
+  height:75px;
+  margin:20px;
+}
+.gameLogo{
+  max-width: 100%;
+  max-height:100%;
+
+}
+.logos{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+/* =========HOME Page Styling ============*/
 .homeDiv {
   display: flex;
   width: 100%;
@@ -234,7 +257,9 @@ li span {
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
-
+.collabTop{
+  display: flex;
+}
 .collabCard {
   width: 90%;
   min-height: 150px;
@@ -242,8 +267,14 @@ li span {
   border-radius: 20px;
   margin: 10px auto;
   padding: 10px;
+  transition: transform 0.5s ease;
   box-shadow: 5px 5px 5px black, 2px 2px 5px rgba(187, 187, 187, 0.8) inset,
     -2px -2px 5px black inset;
+}
+.collabCard:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+  z-index: 2;
 }
 .collabPic {
   width: 75px;
@@ -252,6 +283,7 @@ li span {
   justify-content: flex-end;
   margin-left: auto;
   border: 2px solid black;
+  flex-shrink: 0;
 }
 .collabContent {
   /* background-color: red; */
@@ -330,7 +362,8 @@ li span {
 .gddPic {
   width: 100px;
   height: 100px;
-  border-top-left-radius: 20px;
+  border-radius: 50%;
+  border: 2px solid rgb(50, 50, 50);
 }
 .gddCardLeft {
   padding-right: 10px;
@@ -345,6 +378,43 @@ li span {
   justify-content: center;
   align-items: center;
   margin: auto;
+}
+.bottomRight{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+
+}
+.collabCard2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40%;
+  height: 150px;
+  background-color: rgb(50, 50, 50);
+  border-radius: 20px;
+  margin: 10px;
+  padding: 5px;
+  transition: transform 0.5s ease;
+  box-shadow: 5px 5px 5px black, 2px 2px 5px rgba(187, 187, 187, 0.8) inset,
+    -2px -2px 5px black inset;
+}
+.gdd3nameBox{
+  overflow: hidden;
+}
+.gddPic3 {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  border: 2px solid rgb(50, 50, 50);
+}
+.collabCard2:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+  z-index: 2;
 }
 /* =====Design Doc PAGE===== */
 .docPairs {
@@ -437,6 +507,7 @@ li span {
   margin-bottom: 20px;
 }
 #trash {
+  width: 150px;
   background-color: rgb(173, 152, 7);
 }
 #trash:hover {
@@ -444,6 +515,7 @@ li span {
   border: 3px solid rgb(226, 254, 0);
 }
 #delete {
+  width: 150px;
   background-color: rgb(120, 4, 0);
 }
 #delete:hover {
@@ -520,6 +592,54 @@ li span {
 #char {
   background-color: white;
 }
+.collabBox{
+  display: flex;
+  width: 100%;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  text-align: center;
+  border-bottom: 2px solid grey;
+  padding-bottom: 20px;
+}
+#requestBox{
+  display: flex;
+  flex-direction: column;
+  width:100%;
+  margin: 20px auto;
+  align-items: center;
+  justify-content: center;
+}
+#requestButtBox{
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  margin: auto;
+
+}
+.glow{
+  font-weight: bold;
+  animation: glowing 1s ease-in-out infinite alternate;
+  margin: 10px;
+}
+@keyframes glowing {
+  from {
+    text-shadow:0 0 5px black, 0 0 5px white,
+    0 0 5px rgb(27, 92, 0), 0 0 5px rgb(27, 92, 0),
+    0 0 5px rgb(27, 92, 0), 0 0 5px rgb(27, 92, 0);
+}
+  to {
+    text-shadow:0 0 5px black, 0 0 5px white,
+    0 0 10px rgb(27, 92, 0), 0 0 10px rgb(27, 92, 0),
+    20px 0 20px rgb(27, 92, 0), -20px 0 20px rgb(27, 92, 0);
+  }
+}
+#reqName{
+  color: rgb(147, 0, 171);
+  font-weight: bold;
+}
+#accept {
+  width: 200px;
+}
 
 /* =====REGISTRATION PAGE===== */
 .regPicBox {
@@ -570,9 +690,14 @@ li span {
   align-items: center;
   justify-content: center;
 }
+#searchImg{
+  margin: auto;
+}
 .box {
+  display: flex;
+  flex-direction: column;
   position: relative;
-  height: 150px;
+  min-height: 150px;
   width: 150px;
   background: transparent;
   background-size: 200px 200px;
@@ -585,6 +710,7 @@ li span {
   /* padding: 8px 16px; */
   margin: 10px;
   border-radius: 10px;
+  text-align: center;
 }
 .clip {
   height: 100%;
