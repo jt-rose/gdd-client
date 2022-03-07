@@ -8,9 +8,13 @@
 }
 h1 {
   margin-left: 30px;
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
   color: rgb(187, 187, 187);
+padding-top: 20px;
 }
+/* .title{
+  margin-top: 30px;
+} */
 .header {
   position: relative;
   box-shadow:
@@ -190,6 +194,15 @@ li span {
 
 }
 /* =========WELCOME Page Styling ============*/
+.sliderMain{
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+}
+.slider{
+  overflow: hidden;
+margin-bottom: 20px;
+}
 .logoBox{
   display: flex;
   justify-content: center;
@@ -199,16 +212,48 @@ li span {
   margin:20px;
 }
 .gameLogo{
-  max-width: 100%;
-  max-height:100%;
-
+  max-width: 75px;
 }
-.logos{
+.slider::before, .slider::after {
+background: linear-gradient(to right, rgba(15, 15, 15, 1),
+ rgba(15, 15, 15, 0) );
+content: "";
+height: 100px;
+position: absolute;
+width: 150px;
+z-index: 2;
+}
+.slider::after {
+  right: 4%;
+  top: 200px;
+   transform: rotateZ(180deg);
+}
+.slider::before {
+  left:4%;
+  top: 200px;
+}
+.logos {
+  animation: scroll 30s linear infinite;
   display: flex;
-  flex-wrap: wrap;
+  width: calc(115px * 18);
+  display: flex;
+  /* flex-wrap: wrap; */
+  flex-direction: row;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, .125);
+	height: 100px;
+	margin: auto;
+	position: relative;
+
 }
+
+@keyframes scroll {
+	0% { transform: translateX(0);
+  }
+	100% { transform: translateX(calc(-115px * 9));}
+}
+
 /* =========HOME Page Styling ============*/
 .homeDiv {
   display: flex;
@@ -525,16 +570,18 @@ li span {
 .docPairModal {
   display: flex;
   position: fixed;
+
+
   z-index: 1;
-  /* right: 0;
-  bottom: 0; */
+  left: 0;
+  bottom: 0;
   padding: 25px;
   min-width: 100vw;
   min-height: 100%;
   /* overflow: auto; */
   background-color: rgba(0, 0, 0, 0.8);
   margin: 0 auto;
-  z-index: 1;
+
 }
 .zoomInfoBox {
   display: flex;
@@ -551,7 +598,7 @@ li span {
   min-width: 390px;
   min-height: 390px;
   max-width: 500px;
-  max-height: 500px;
+  /* max-height: 500px; */
   /* background-color: purple; */
 }
 .docZoomImg {
@@ -801,8 +848,11 @@ li span {
   .main {
     display: block;
   }
+  .mainEffect{
+    width: 100%;
+  }
   .mainContainer {
-    width: 100vw;
+    width: 100%;
     margin: 0;
   }
   #userStats {
@@ -832,6 +882,15 @@ li span {
   .gddCard {
     width: 90%;
   }
+  .docPairModal{
+    position: fixed;
+    padding: 0;
+    height: 100vh;
+    bottom: 10px;
+  }
+.zoomInfoBox{
+  margin: 0;
+}
   .searchForm {
     display: flex;
     min-height: 50px;
@@ -845,6 +904,9 @@ li span {
   }
 }
 @media only screen and (max-width: 930px) {
+  *{
+    margin: 0;
+  }
   .modal-content2 {
     flex-direction: column;
   }
