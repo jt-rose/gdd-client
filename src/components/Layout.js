@@ -23,7 +23,7 @@ export const Layout = (props) => {
       <div className="mainEffect">
         <div className="mainContainer">
           <div className="header" padding="4" color="white">
-            <h1>{props.title}</h1>
+            <h1 className="title">{props.title}</h1>
             <Navbar user={user} setUser={setUser} />
           </div>
           <div className="content">{props.children}</div>

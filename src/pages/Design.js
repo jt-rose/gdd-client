@@ -164,7 +164,7 @@ export const Design = () => {
               </div>
             </div>
             <div className="docPairs">
-              <h2>Characters</h2>
+              <h2>CHARACTERS</h2>
               <div className="cardLocation docCard">
                 {myProject && (
                   <EditableCard
@@ -203,7 +203,7 @@ export const Design = () => {
               </div>
             </div>
             <div className="docPairs">
-              <h2>Locations</h2>
+              <h2>LOCATIONS</h2>
               <div className="cardLocation docCard">
                 {myProject && (
                   <EditableCard
@@ -242,7 +242,7 @@ export const Design = () => {
               </div>
             </div>
             <div className="docPairs">
-              <h2>Items</h2>
+              <h2>ITEMS</h2>
               <div className="cardItems docCard">
                 {myProject && (
                   <EditableCard
@@ -281,7 +281,7 @@ export const Design = () => {
               </div>
             </div>
             <div className="docPairs">
-              <h2>Gameplay Mechanics</h2>
+              <h2>GAMPLAY MECHANICS</h2>
               <div className="cardGpMech docCard">
                 {myProject && (
                   <EditableCard
