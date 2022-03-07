@@ -35,16 +35,17 @@ export const Home = () => {
     navigate("/design/" + response.data._id);
   };
 
+
   useEffect(() => {
     const paramRoute = params.username ? "/" + params.username : "";
     get("/user" + paramRoute).then((response) => {
       if (response.data.error) {
-        console.log(response.data);
+        // console.log(response.data);
         navigate("/welcome");
       } else {
         setData(response.data);
         setIsLoading(false);
-        console.log(response.data);
+        // console.log(response.data);
         window
           .matchMedia("(min-width: 890px)")
           .addEventListener("change", (e) => setMatches(e.matches));
@@ -52,7 +53,7 @@ export const Home = () => {
     });
   }, [params]);
 
-  // console.log(data);
+  console.log('data ' + data);
   // console.log(data.myDesigns.length);
   return (
     <Layout title="Home">
@@ -85,7 +86,8 @@ export const Home = () => {
                   <span> {data.user.acceptedRequests.length} </span>Game Collabs
                 </li>
                 <li>
-                  <IoMdPersonAdd />{" "}
+                  <IoMdPersonAdd />
+                    {" "}
                   <span className="redNum">
                     {data.user.collabRequests.length}
                   </span>{" "}
@@ -156,7 +158,7 @@ export const Home = () => {
                         </li>
                         <li>
                           <FaUserFriends /> Collaborators:{" "}
-                          {designs.locations.length}
+                          {designs.collaborators.length}
                         </li>
                       </ul>
                     </div>
@@ -171,35 +173,53 @@ export const Home = () => {
         <RightContent>
           {!isLoading && (
             <>
-              <h2> Collabs</h2>
-              {data.collaborators.map((collabUser, index) => {
-                return (
-                  <div
-                    className="collabCard"
-                    key={"caollab-" + index}
-                    onClick={() => navigate("/user/" + collabUser.username)}
-                  >
-                    <div className="collabContent">
-                      <div className="collabContentTop">
-                        <div className="collabName">
-                          <h3>{collabUser.username}</h3>
-                          <span className="date2">{collabUser.username}</span>
-                          {collabUser.description}
-                          <br />
-                          Game they are working on
+              <h2> Collaborators</h2>
+              <div className='collabTop'>
+                {data.collaborators.map((collabUser, index) => {
+                  return (
+                    <div
+                      className="collabCard"
+                      key={"caollab-" + index}
+                      onClick={() => navigate("/user/" + collabUser.username)}
+                    >
+                      <div className="collabContent">
+                        <div className="collabContentTop">
+                          <div className="collabName">
+                            <h3>{collabUser.username}</h3>
+                            <span className="date2">{collabUser.username}</span>
+
+                            {collabUser.description}
+                            <br />
+                            Game they are working on
+                          </div>
+                          <img className="collabPic" src={collabUser.image} />
                         </div>
-                        <img className="collabPic" src="../../pfPic.png" />
-                      </div>
-                      <div className="collabContentBottom">
-                        <IoLogoGameControllerB />
-                        <div className="tags">Dungeon Level</div>
-                        <GiHoodedAssassin />
-                        <div className="tags"> Characters</div>
+                        <div className="collabContentBottom">
+                          <IoLogoGameControllerB />
+                          <div className="tags">Dungeon Level</div>
+                          <GiHoodedAssassin />
+                          <div className="tags"> Characters</div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
+              <h2>Collaboration</h2>
+              <div className='bottomRight'>
+              {data.user.collabs.map((collab, index) => {
+                return (
+                  <>
+              <div key = {index} className="collabCard2" onClick={() => navigate("/design/" + data.collabDesigns[index]._id)}>
+                <div className="gdd3nameBox">
+                  <p  >{data.collabDesigns[index].name} </p>
+                </div>
+                <img className="gddPic3" src={data.collabDesigns[index].image}/>
+              </div>
+              </>
+            );
+          })}
+          </div>
             </>
           )}
         </RightContent>
