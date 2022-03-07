@@ -35,7 +35,6 @@ export const Home = () => {
     navigate("/design/" + response.data._id);
   };
 
-
   useEffect(() => {
     const paramRoute = params.username ? "/" + params.username : "";
     get("/user" + paramRoute).then((response) => {
@@ -43,6 +42,7 @@ export const Home = () => {
         // console.log(response.data);
         navigate("/welcome");
       } else {
+        console.log(response);
         setData(response.data);
         setIsLoading(false);
         // console.log(response.data);
@@ -53,7 +53,7 @@ export const Home = () => {
     });
   }, [params]);
 
-  console.log('data ' + data);
+  console.log("data " + data);
   // console.log(data.myDesigns.length);
   return (
     <Layout title="Home">
@@ -86,8 +86,7 @@ export const Home = () => {
                   <span> {data.user.acceptedRequests.length} </span>Game Collabs
                 </li>
                 <li>
-                  <IoMdPersonAdd />
-                    {" "}
+                  <IoMdPersonAdd />{" "}
                   <span className="redNum">
                     {data.user.collabRequests.length}
                   </span>{" "}
@@ -140,7 +139,7 @@ export const Home = () => {
                     onClick={(e) => navigate("/design/" + designs._id)}
                   >
                     <div className="gddCardLeft">
-                      <img className="gddPic" src={designs.image}/>
+                      <img className="gddPic" src={designs.image} />
                       <h2>{designs.name}</h2>
                       <p>Genre: {designs.genre}</p>
                     </div>
@@ -174,7 +173,7 @@ export const Home = () => {
           {!isLoading && (
             <>
               <h2> Collaborators</h2>
-              <div className='collabTop'>
+              <div className="collabTop">
                 {data.collaborators.map((collabUser, index) => {
                   return (
                     <div
@@ -187,7 +186,6 @@ export const Home = () => {
                           <div className="collabName">
                             <h3>{collabUser.username}</h3>
                             <span className="date2">{collabUser.username}</span>
-
                             {collabUser.description}
                             <br />
                             Game they are working on
@@ -206,20 +204,22 @@ export const Home = () => {
                 })}
               </div>
               <h2>Collaboration</h2>
-              <div className='bottomRight'>
-              {data.user.collabs.map((collab, index) => {
-                return (
-                  <>
-              <div key = {index} className="collabCard2" onClick={() => navigate("/design/" + data.collabDesigns[index]._id)}>
-                <div className="gdd3nameBox">
-                  <p  >{data.collabDesigns[index].name} </p>
-                </div>
-                <img className="gddPic3" src={data.collabDesigns[index].image}/>
+              <div className="bottomRight">
+                {data.collabDesigns.map((collab, index) => {
+                  return (
+                    <div
+                      key={"collab-" + index}
+                      className="collabCard2"
+                      onClick={() => navigate("/design/" + collab._id)}
+                    >
+                      <div className="gdd3nameBox">
+                        <p>{collab.name} </p>
+                      </div>
+                      <img className="gddPic3" src={collab.image} />
+                    </div>
+                  );
+                })}
               </div>
-              </>
-            );
-          })}
-          </div>
             </>
           )}
         </RightContent>
