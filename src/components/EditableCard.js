@@ -79,9 +79,10 @@ export const EditableCard = (props) => {
               <img className="gameImg" src={imageURL} />
             </div>
             <div className="gameName">
-              <h3>{name}</h3>
-            </div>
+              <h3 className='name'>{name}</h3>
+
             <p>{description}</p>
+            </div>
           </div>
         </div>
       </>

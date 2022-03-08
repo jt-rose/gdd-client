@@ -371,7 +371,7 @@ export const Design = () => {
                   className="buttForm1"
                   onClick={handleDelete}
                 >
-                  **Delete Document**
+                  **Delete** Document
                 </button>
               </div>
             )}
