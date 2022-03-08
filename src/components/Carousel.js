@@ -4,7 +4,7 @@ export const Carousel = (props) => {
     <>
       <div className="sliderMain">
         <div className="slider">
-          <div className="logos">
+          <div className="logos" >
             <div className="logoBox">
               <img className="gameLogo" src="../../atari.png" />
             </div>

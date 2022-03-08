@@ -210,11 +210,13 @@ li span {
   flex-direction: row;
   width: 90%;
   margin-top: 20px;
+
 }
 .carolBox{
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 75px;
 }
 .slider {
   overflow: hidden;
@@ -224,12 +226,12 @@ li span {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 75px;
-  height: 75px;
+  width: 50px;
+  height: 50px;
   margin: 20px;
 }
 .gameLogo {
-  max-width: 75px;
+  max-width: 50px;
 }
 /* .slider::before,
 .slider::after {
@@ -256,7 +258,7 @@ li span {
 .logos {
   animation: scroll 40s linear infinite;
   display: flex;
-  width: calc(115px * 18);
+  width: calc(90px * 18);
   display: flex;
   /* flex-wrap: wrap; */
   flex-direction: row;
@@ -267,13 +269,20 @@ li span {
   margin: auto;
   position: relative;
 }
+.logos:hover{
+  animation-play-state: paused;
+
+}
+.gameLogo:hover{
+  transform: scale(1.2);
+}
 
 @keyframes scroll {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(calc(-115px * 9));
+    transform: translateX(calc(-90px * 9));
   }
 }
 
