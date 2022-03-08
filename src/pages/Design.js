@@ -130,11 +130,12 @@ export const Design = () => {
                   large={true}
                   myProject={myProject}
                 />
+                <div className="smallImgBox" onClick={() => navigate("/user/" + creator.username)}>
+                  <p>created by <span id='accentColor'>{creator.username}</span></p>
+                  <img className="smallImg" src={creator.image} />
+                </div>
               </div>
-              <div onClick={() => navigate("/user/" + creator.username)}>
-                <img src={creator.image} style={{ width: "50px" }} />
-                <p>created by {creator.username}</p>
-              </div>
+
 
               <div className="gddPic2">
                 {!imagePreview && <img className="gddImg" src={data.image} />}
@@ -335,6 +336,18 @@ export const Design = () => {
                 )}
               </div>
             </div>
+            <div className="docPairs">
+              <h2>COLLABORATORS</h2>
+              <div className="cardGpMech docCard">
+                {collaborators.map((collabs, index) => (
+                <div key={"coll-card-" + index} className="collabCard3" onClick={() => navigate("/user/" + collabs.username)}  >
+                  <img className="collabPic" src={collabs.image} />
+                  <h3 className="collabName3">{collabs.username}</h3>
+                </div>
+
+              ))}
+              </div>
+            </div>
 
             {!myProject && !pendingCollabRequest && (
               <div id="requestBox">
@@ -355,11 +368,16 @@ export const Design = () => {
               <div className="collabBox">
                 <h2 className="glow">Collaboration Requests</h2>
                 {collabRequestUsers.map((u, index) => (
-                  <div key={"collab-request-" + index}>
+                  <div className="collabBoxName" key={"collab-request-" + index}>
+
+                  <div className="smallImgBox2" onClick={() => navigate("/user/" + u.username)}>
+                    <img className="smallImg2" src={u.image}/>
                     <p>
                       <span id="reqName">{u.username}</span> wants to join this
                       project
                     </p>
+                  </div>
+
                     <div id="requestButtBox">
                       <button
                         className="buttForm1"
