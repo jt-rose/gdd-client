@@ -209,6 +209,14 @@ li span {
   display: flex;
   flex-direction: row;
   width: 90%;
+  margin-top: 20px;
+
+}
+.carolBox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75px;
 }
 .slider {
   overflow: hidden;
@@ -218,39 +226,39 @@ li span {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 75px;
-  height: 75px;
+  width: 50px;
+  height: 50px;
   margin: 20px;
 }
 .gameLogo {
-  max-width: 75px;
+  max-width: 50px;
 }
-.slider::before,
+/* .slider::before,
 .slider::after {
   background: linear-gradient(
     to right,
-    rgba(15, 15, 15, 1),
-    rgba(15, 15, 15, 0)
+    rgba(69, 69, 69,1),
+    rgba(69, 69, 69,.2)
   );
   content: "";
   height: 100px;
   position: absolute;
-  width: 150px;
+  width: 50px;
   z-index: 2;
 }
 .slider::after {
-  right: 4%;
-  top: 200px;
+  right: 8%;
+  top: 170px;
   transform: rotateZ(180deg);
 }
 .slider::before {
-  left: 4%;
-  top: 200px;
-}
+  left: 8%;
+  top:170px;
+} */
 .logos {
-  animation: scroll 30s linear infinite;
+  animation: scroll 40s linear infinite;
   display: flex;
-  width: calc(115px * 18);
+  width: calc(90px * 18);
   display: flex;
   /* flex-wrap: wrap; */
   flex-direction: row;
@@ -261,13 +269,20 @@ li span {
   margin: auto;
   position: relative;
 }
+.logos:hover{
+  animation-play-state: paused;
+
+}
+.gameLogo:hover{
+  transform: scale(1.2);
+}
 
 @keyframes scroll {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(calc(-115px * 9));
+    transform: translateX(calc(-90px * 9));
   }
 }
 

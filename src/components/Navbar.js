@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { remove } from "../utils/serverURL";
 import { useState, useEffect } from "react";
-
+import { Carousel } from './Carousel';
 export const Navbar = (props) => {
   let navigate = useNavigate();
 
@@ -41,6 +41,7 @@ export const Navbar = (props) => {
           )}
         </div>
       </div>
+    
     </>
   );
 };
