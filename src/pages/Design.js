@@ -182,6 +182,20 @@ export const Design = () => {
             <div className="docPairs">
               <h2>CHARACTERS</h2>
               <div className="cardLocation docCard">
+                {data.designDoc.characters.map((c, index) => (
+                  <EditableCard
+                    key={"char-card-" + index}
+                    designid={designid}
+                    cardData={c}
+                    currentDataArray={data.designDoc.characters}
+                    editingTarget={{ index }}
+                    updateField={"characters"}
+                    buttonName="Edit"
+                    myProject={data.myProject}
+                    setData={setData}
+                    setModalFixedSize={setModalFixedSize}
+                  />
+                ))}
                 {data.myProject && (
                   <AddNewCard
                     designid={designid}
@@ -201,21 +215,6 @@ export const Design = () => {
                     setModalFixedSize={setModalFixedSize}
                   />
                 )}
-
-                {data.designDoc.characters.reverse().map((c, index) => (
-                  <EditableCard
-                    key={"char-card-" + index}
-                    designid={designid}
-                    cardData={c}
-                    currentDataArray={data.designDoc.characters}
-                    editingTarget={{ index }}
-                    updateField={"characters"}
-                    buttonName="Edit"
-                    myProject={data.myProject}
-                    setData={setData}
-                    setModalFixedSize={setModalFixedSize}
-                  />
-                ))}
                 {!data.myProject && data.designDoc.characters.length === 0 && (
                   <p>-- No characters listed yet --</p>
                 )}
@@ -224,6 +223,20 @@ export const Design = () => {
             <div className="docPairs">
               <h2>LOCATIONS</h2>
               <div className="cardLocation docCard">
+                {data.designDoc.locations.map((l, index) => (
+                  <EditableCard
+                    key={"loc-card-" + index}
+                    designid={designid}
+                    cardData={l}
+                    currentDataArray={data.designDoc.locations}
+                    editingTarget={{ index }}
+                    updateField={"locations"}
+                    buttonName="Edit"
+                    myProject={data.myProject}
+                    setData={setData}
+                    setModalFixedSize={setModalFixedSize}
+                  />
+                ))}
                 {data.myProject && (
                   <AddNewCard
                     designid={designid}
@@ -243,21 +256,6 @@ export const Design = () => {
                     setModalFixedSize={setModalFixedSize}
                   />
                 )}
-
-                {data.designDoc.locations.reverse().map((l, index) => (
-                  <EditableCard
-                    key={"loc-card-" + index}
-                    designid={designid}
-                    cardData={l}
-                    currentDataArray={data.designDoc.locations}
-                    editingTarget={{ index }}
-                    updateField={"locations"}
-                    buttonName="Edit"
-                    myProject={data.myProject}
-                    setData={setData}
-                    setModalFixedSize={setModalFixedSize}
-                  />
-                ))}
                 {!data.myProject && data.designDoc.locations.length === 0 && (
                   <p>-- No locations listed yet --</p>
                 )}
@@ -266,6 +264,20 @@ export const Design = () => {
             <div className="docPairs">
               <h2>ITEMS</h2>
               <div className="cardItems docCard">
+                {data.designDoc.items.map((item, index) => (
+                  <EditableCard
+                    key={"item-card-" + index}
+                    designid={designid}
+                    cardData={item}
+                    currentDataArray={data.designDoc.items}
+                    editingTarget={{ index }}
+                    updateField={"items"}
+                    buttonName="Edit"
+                    myProject={data.myProject}
+                    setData={setData}
+                    setModalFixedSize={setModalFixedSize}
+                  />
+                ))}
                 {data.myProject && (
                   <AddNewCard
                     designid={designid}
@@ -285,21 +297,6 @@ export const Design = () => {
                     setModalFixedSize={setModalFixedSize}
                   />
                 )}
-
-                {data.designDoc.items.map((item, index) => (
-                  <EditableCard
-                    key={"item-card-" + index}
-                    designid={designid}
-                    cardData={item}
-                    currentDataArray={data.designDoc.items}
-                    editingTarget={{ index }}
-                    updateField={"items"}
-                    buttonName="Edit"
-                    myProject={data.myProject}
-                    setData={setData}
-                    setModalFixedSize={setModalFixedSize}
-                  />
-                ))}
                 {!data.myProject && data.designDoc.items.length === 0 && (
                   <p>-- No items listed yet --</p>
                 )}
@@ -308,6 +305,20 @@ export const Design = () => {
             <div className="docPairs">
               <h2>GAMEPLAY MECHANICS</h2>
               <div className="cardGpMech docCard">
+                {data.designDoc.gameplay.map((gm, index) => (
+                  <EditableCard
+                    key={"gameplay-card-" + index}
+                    designid={designid}
+                    cardData={gm}
+                    currentDataArray={data.designDoc.gameplay}
+                    editingTarget={{ index }}
+                    updateField={"gameplay"}
+                    buttonName="Edit"
+                    myProject={data.myProject}
+                    setData={setData}
+                    setModalFixedSize={setModalFixedSize}
+                  />
+                ))}
                 {data.myProject && (
                   <AddNewCard
                     designid={designid}
@@ -327,21 +338,6 @@ export const Design = () => {
                     setModalFixedSize={setModalFixedSize}
                   />
                 )}
-
-                {data.designDoc.gameplay.map((gm, index) => (
-                  <EditableCard
-                    key={"gameplay-card-" + index}
-                    designid={designid}
-                    cardData={gm}
-                    currentDataArray={data.designDoc.gameplay}
-                    editingTarget={{ index }}
-                    updateField={"gameplay"}
-                    buttonName="Edit"
-                    myProject={data.myProject}
-                    setData={setData}
-                    setModalFixedSize={setModalFixedSize}
-                  />
-                ))}
                 {!data.myProject && data.designDoc.gameplay.length === 0 && (
                   <p>-- No gameplay mechanics listed yet --</p>
                 )}
