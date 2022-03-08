@@ -612,7 +612,7 @@ li span {
   background-color: rgba(0, 0, 0, 0.9);
   align-items: center;
   justify-content: center;
-  margin: auto;
+  margin: 0;
   margin-right: 10px;
   border: 2px solid rgb(187, 187, 187);
   border-radius: 15px;
@@ -637,6 +637,7 @@ li span {
 }
 .modal-content2 {
   display: flex;
+  align-items: center;
   margin: auto;
   max-width: 100%;
   animation-name: zoom;
