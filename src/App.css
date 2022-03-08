@@ -590,12 +590,13 @@ li span {
 }
 .docPairModal {
   display: flex;
+  justify-content: center;
   position: fixed;
   z-index: 1;
   top: 0;
   left: 0;
   padding: 25px;
-  min-width: 100vh;
+  min-width: 100%;
   min-height: 100%;
   /* overflow: auto; */
   background-color: rgba(0, 0, 0, 0.8);
@@ -638,7 +639,7 @@ li span {
 .modal-content2 {
   display: flex;
   align-items: center;
-  margin: auto;
+  margin: auto 0;
   max-width: 75%;
   animation-name: zoom;
   animation-duration: 0.6s;
