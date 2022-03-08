@@ -17,6 +17,7 @@ export const Design = () => {
   const [isDesignCreator, setIsDesignCreator] = useState(false);
   const [collaborators, setCollaborators] = useState([]);
   const [collabRequestUsers, setCollabRequestUsers] = useState([]);
+  const [modalFixedSize, setModalFixedSize] = useState(false);
 
   const { designid } = useParams();
   const navigate = useNavigate();
@@ -109,7 +110,11 @@ export const Design = () => {
   }, []);
 
   return (
-    <Layout title="Game Design Document">
+    <Layout
+      title="Game Design Document"
+      designPage={true}
+      modalFixedSize={modalFixedSize}
+    >
       <LeftContent>
         {!isLoading && (
           <>
@@ -178,6 +183,7 @@ export const Design = () => {
                     addNew={true}
                     myProject={myProject}
                     setData={setData}
+                    setModalFixedSize={setModalFixedSize}
                   />
                 )}
 
@@ -192,6 +198,7 @@ export const Design = () => {
                     buttonName="Edit"
                     myProject={myProject}
                     setData={setData}
+                    setModalFixedSize={setModalFixedSize}
                   />
                 ))}
                 {!myProject && data.characters.length === 0 && (
@@ -217,6 +224,7 @@ export const Design = () => {
                     addNew={true}
                     myProject={myProject}
                     setData={setData}
+                    setModalFixedSize={setModalFixedSize}
                   />
                 )}
 
@@ -231,6 +239,7 @@ export const Design = () => {
                     buttonName="Edit"
                     myProject={myProject}
                     setData={setData}
+                    setModalFixedSize={setModalFixedSize}
                   />
                 ))}
                 {!myProject && data.locations.length === 0 && (
@@ -256,6 +265,7 @@ export const Design = () => {
                     addNew={true}
                     myProject={myProject}
                     setData={setData}
+                    setModalFixedSize={setModalFixedSize}
                   />
                 )}
 
@@ -270,6 +280,7 @@ export const Design = () => {
                     buttonName="Edit"
                     myProject={myProject}
                     setData={setData}
+                    setModalFixedSize={setModalFixedSize}
                   />
                 ))}
                 {!myProject && data.items.length === 0 && (
@@ -295,6 +306,7 @@ export const Design = () => {
                     addNew={true}
                     myProject={myProject}
                     setData={setData}
+                    setModalFixedSize={setModalFixedSize}
                   />
                 )}
 
@@ -309,6 +321,7 @@ export const Design = () => {
                     buttonName="Edit"
                     myProject={myProject}
                     setData={setData}
+                    setModalFixedSize={setModalFixedSize}
                   />
                 ))}
                 {!myProject && data.gameplay.length === 0 && (

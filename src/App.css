@@ -620,7 +620,7 @@ li span {
 .docZoomImgBox {
   display: flex;
   margin: auto;
-  min-width: 390px;
+  min-width: 320px;
   min-height: 600px;
   max-width: 600px;
   /* max-height: 500px; */
@@ -883,6 +883,9 @@ li span {
   .main {
     display: block;
   }
+  .main.design-page {
+    display: flex;
+  }
   .mainEffect {
     width: 100%;
   }
@@ -905,6 +908,8 @@ li span {
     flex-direction: row;
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
+    padding: 0;
+    margin: 0;
   }
   .gddCard {
     /* background-color: lightblue;
@@ -919,8 +924,9 @@ li span {
   }
   .docPairModal {
     position: fixed;
-    padding: 0;
+    padding: 10px;
     height: 100vh;
+    left: 0;
     bottom: 10px;
   }
   .zoomInfoBox {
@@ -959,4 +965,10 @@ li span {
   padding: 3em;
   width: 100%;
   height: 100%;
+}
+
+/* modal-fixed background size */
+.modal-fixed {
+  height: 100vh;
+  overflow: hidden;
 }
