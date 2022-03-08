@@ -11,8 +11,8 @@ export const EditableCard = (props) => {
   const [imageURL, setImageURL] = useState(cardData.image);
   const [showModal, setShowModal] = useState(false);
   const [toggleEdit, setToggleEdit] = useState(false);
-  const [scrollPosition, setPosition] = useState(0);
-  console.log("scroll: ", scrollPosition);
+  //   const [scrollPosition, setPosition] = useState(0);
+  //   console.log("scroll: ", scrollPosition);
   // use props.setIsEditing
   const currentDataArray = props.currentDataArray;
   let update = {};
@@ -35,6 +35,7 @@ export const EditableCard = (props) => {
   const handleDesignUpdate = async () => {
     const response = await put("/doc/edit/" + props.designid, { update });
     setShowModal(false);
+    props.setModalFixedSize(false);
     setToggleEdit(!toggleEdit);
 
     if (cardData.name === "") {
@@ -61,14 +62,14 @@ export const EditableCard = (props) => {
     setImageURL(response.data.image);
   };
 
-  useEffect(() => {
-    function updatePosition() {
-      setPosition(window.pageYOffset);
-    }
-    window.addEventListener("scroll", updatePosition);
-    updatePosition();
-    return () => window.removeEventListener("scroll", updatePosition);
-  }, []);
+  //   useEffect(() => {
+  //     function updatePosition() {
+  //       setPosition(window.pageYOffset);
+  //     }
+  //     window.addEventListener("scroll", updatePosition);
+  //     updatePosition();
+  //     return () => window.removeEventListener("scroll", updatePosition);
+  //   }, []);
 
   if (!showModal && props.addNew) {
     return (
