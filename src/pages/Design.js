@@ -9,6 +9,7 @@ import { EditableSelect } from "../components/EditableSelect";
 export const Design = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
+  const [creator, setCreator] = useState(null);
   const [myProject, setMyProject] = useState(false);
   // {target: 'locations', index: number | null}
   const [image, setImage] = useState(null);
@@ -100,6 +101,7 @@ export const Design = () => {
   useEffect(async () => {
     const response = await get("/doc/" + designid);
     setData(response.data.designDoc);
+    setCreator(response.data.creator);
     setMyProject(response.data.myProject);
     setPendingCollabrequest(response.data.pendingCollabRequest);
     setIsDesignCreator(response.data.isDesignCreator);
@@ -128,6 +130,10 @@ export const Design = () => {
                   large={true}
                   myProject={myProject}
                 />
+              </div>
+              <div onClick={() => navigate("/user/" + creator.username)}>
+                <img src={creator.image} style={{ width: "50px" }} />
+                <p>created by {creator.username}</p>
               </div>
 
               <div className="gddPic2">
