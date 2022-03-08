@@ -32,6 +32,7 @@ export const EditableCard = (props) => {
   const handleDesignUpdate = async () => {
     const response = await put("/doc/edit/" + props.designid, { update });
     setShowModal(false);
+    setToggleEdit(!toggleEdit)
 
     if (cardData.name === "") {
       setName("");
@@ -89,9 +90,7 @@ export const EditableCard = (props) => {
     return (
       <div className="docPairModal">
         <div className="modal-content2">
-          {props.myProject && (
-            <button onClick={() => setToggleEdit(!toggleEdit)}>Edit</button>
-          )}
+
           {toggleEdit ? (
             <>
               <div className="zoomInfoBox pairs">
@@ -157,8 +156,18 @@ export const EditableCard = (props) => {
             </>
           ) : (
             <>
-              <h2>Hi I'm content</h2>
-              <button onClick={() => setShowModal(false)}>Close</button>
+              <div className="docImgButtBox">
+                <div className="docZoomImgBox">
+                  <img className="docZoomImg" src={imageURL} />
+                </div>
+                <div className='modalDesc'>
+                <p>{description}</p>
+                </div>
+                {props.myProject && (
+                  <button className="buttForm2" onClick={() => setToggleEdit(!toggleEdit)}>Edit</button>
+                )}
+                <button className="buttForm1" onClick={() => setShowModal(false)}>Close</button>
+              </div>
             </>
           )}
         </div>
