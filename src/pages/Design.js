@@ -9,6 +9,7 @@ import { EditableSelect } from "../components/EditableSelect";
 export const Design = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
+  const [creator, setCreator] = useState(null);
   const [myProject, setMyProject] = useState(false);
   // {target: 'locations', index: number | null}
   const [image, setImage] = useState(null);
@@ -17,6 +18,7 @@ export const Design = () => {
   const [isDesignCreator, setIsDesignCreator] = useState(false);
   const [collaborators, setCollaborators] = useState([]);
   const [collabRequestUsers, setCollabRequestUsers] = useState([]);
+  const [modalFixedSize, setModalFixedSize] = useState(false);
 
   const { designid } = useParams();
   const navigate = useNavigate();
@@ -99,6 +101,7 @@ export const Design = () => {
   useEffect(async () => {
     const response = await get("/doc/" + designid);
     setData(response.data.designDoc);
+    setCreator(response.data.creator);
     setMyProject(response.data.myProject);
     setPendingCollabrequest(response.data.pendingCollabRequest);
     setIsDesignCreator(response.data.isDesignCreator);
@@ -109,7 +112,11 @@ export const Design = () => {
   }, []);
 
   return (
-    <Layout title="Game Design Document">
+    <Layout
+      title="Game Design Document"
+      designPage={true}
+      modalFixedSize={modalFixedSize}
+    >
       <LeftContent>
         {!isLoading && (
           <>
@@ -123,6 +130,10 @@ export const Design = () => {
                   large={true}
                   myProject={myProject}
                 />
+              </div>
+              <div onClick={() => navigate("/user/" + creator.username)}>
+                <img src={creator.image} style={{ width: "50px" }} />
+                <p>created by {creator.username}</p>
               </div>
 
               <div className="gddPic2">
@@ -161,7 +172,7 @@ export const Design = () => {
               </div>
             </div>
             <div className="docPairs">
-              <h2>Characters</h2>
+              <h2>CHARACTERS</h2>
               <div className="cardLocation docCard">
                 {myProject && (
                   <EditableCard
@@ -178,6 +189,7 @@ export const Design = () => {
                     addNew={true}
                     myProject={myProject}
                     setData={setData}
+                    setModalFixedSize={setModalFixedSize}
                   />
                 )}
 
@@ -192,6 +204,7 @@ export const Design = () => {
                     buttonName="Edit"
                     myProject={myProject}
                     setData={setData}
+                    setModalFixedSize={setModalFixedSize}
                   />
                 ))}
                 {!myProject && data.characters.length === 0 && (
@@ -200,7 +213,7 @@ export const Design = () => {
               </div>
             </div>
             <div className="docPairs">
-              <h2>Locations</h2>
+              <h2>LOCATIONS</h2>
               <div className="cardLocation docCard">
                 {myProject && (
                   <EditableCard
@@ -217,6 +230,7 @@ export const Design = () => {
                     addNew={true}
                     myProject={myProject}
                     setData={setData}
+                    setModalFixedSize={setModalFixedSize}
                   />
                 )}
 
@@ -231,6 +245,7 @@ export const Design = () => {
                     buttonName="Edit"
                     myProject={myProject}
                     setData={setData}
+                    setModalFixedSize={setModalFixedSize}
                   />
                 ))}
                 {!myProject && data.locations.length === 0 && (
@@ -239,7 +254,7 @@ export const Design = () => {
               </div>
             </div>
             <div className="docPairs">
-              <h2>Items</h2>
+              <h2>ITEMS</h2>
               <div className="cardItems docCard">
                 {myProject && (
                   <EditableCard
@@ -256,6 +271,7 @@ export const Design = () => {
                     addNew={true}
                     myProject={myProject}
                     setData={setData}
+                    setModalFixedSize={setModalFixedSize}
                   />
                 )}
 
@@ -270,6 +286,7 @@ export const Design = () => {
                     buttonName="Edit"
                     myProject={myProject}
                     setData={setData}
+                    setModalFixedSize={setModalFixedSize}
                   />
                 ))}
                 {!myProject && data.items.length === 0 && (
@@ -278,7 +295,7 @@ export const Design = () => {
               </div>
             </div>
             <div className="docPairs">
-              <h2>Gameplay Mechanics</h2>
+              <h2>GAMEPLAY MECHANICS</h2>
               <div className="cardGpMech docCard">
                 {myProject && (
                   <EditableCard
@@ -295,6 +312,7 @@ export const Design = () => {
                     addNew={true}
                     myProject={myProject}
                     setData={setData}
+                    setModalFixedSize={setModalFixedSize}
                   />
                 )}
 
@@ -309,6 +327,7 @@ export const Design = () => {
                     buttonName="Edit"
                     myProject={myProject}
                     setData={setData}
+                    setModalFixedSize={setModalFixedSize}
                   />
                 ))}
                 {!myProject && data.gameplay.length === 0 && (
