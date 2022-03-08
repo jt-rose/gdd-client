@@ -142,9 +142,11 @@ export const EditableCard = (props) => {
                 >
                   Description
                 </label>
-                <input
-                  className="input"
+                <textarea
+                  className="input2"
                   type="text"
+                  rows="8"
+                  column="50"
                   id={
                     props.updateField +
                     "-description-" +
@@ -152,7 +154,7 @@ export const EditableCard = (props) => {
                   }
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                />
+                ></textarea>
                 <label
                   htmlFor={
                     props.updateField + "-image-" + props.editingTarget.index

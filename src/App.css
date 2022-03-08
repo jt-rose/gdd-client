@@ -4,8 +4,7 @@
   padding: 0;
   color: rgb(187, 187, 187);
 }
-#hide {
-}
+
 h1 {
   margin-left: 30px;
   /* margin-bottom: 15px; */
@@ -285,9 +284,6 @@ li span {
   height: 70%;
   /* background-color:blue; */
   padding: 10px;
-}
-#userStats {
-  /* background-color: red; */
 }
 
 .profileCard {
@@ -597,9 +593,9 @@ li span {
   position: fixed;
   z-index: 1;
   top: 0;
-
+  left: 0;
   padding: 25px;
-  min-width: 100%;
+  min-width: 100vh;
   min-height: 100%;
   /* overflow: auto; */
   background-color: rgba(0, 0, 0, 0.8);
@@ -607,7 +603,7 @@ li span {
 }
 .zoomInfoBox {
   display: flex;
-  height: 200px;
+  height: 250px;
   flex-direction: column;
   background-color: rgba(0, 0, 0, 0.9);
   align-items: center;
@@ -616,6 +612,7 @@ li span {
   margin-right: 10px;
   border: 2px solid rgb(187, 187, 187);
   border-radius: 15px;
+  padding: 15px 10px;
 }
 .docZoomImgBox {
   display: flex;
@@ -623,11 +620,14 @@ li span {
   min-width: 320px;
   min-height: 600px;
   max-width: 600px;
+  justify-content: flex-end;
   /* max-height: 500px; */
   /* background-color: purple; */
 }
 .docZoomImg {
   margin: auto;
+  margin-top: auto;
+  margin-bottom: 20px;
   max-width: 100%;
   max-height: 100%;
 }
@@ -639,7 +639,7 @@ li span {
   display: flex;
   align-items: center;
   margin: auto;
-  max-width: 100%;
+  max-width: 75%;
   animation-name: zoom;
   animation-duration: 0.6s;
   /* background-color: yellow; */
@@ -912,14 +912,7 @@ li span {
     padding: 0;
     margin: 0;
   }
-  .gddCard {
-    /* background-color: lightblue;
-    color: rgb(15, 15, 15); */
-  }
-  .homeDiv {
-  }
-  .pCardContent {
-  }
+
   .gddCard {
     width: 90%;
   }
