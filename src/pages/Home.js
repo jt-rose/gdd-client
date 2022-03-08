@@ -110,7 +110,7 @@ export const Home = () => {
             </div>
             <div className="homeDivBottom">
               {data.myPage && (
-                <div id="newGDD" style={{ height: toggle ? "100px" : "20px" }}>
+                <div id="newGDD" style={{ height: toggle ? "100px" : "28px" }}>
                   <button
                     style={{ display: toggle ? "none" : "block" }}
                     className="buttForm1 butt"
@@ -126,7 +126,7 @@ export const Home = () => {
                     >
                       CloseX
                     </label>
-                    <input
+                    <input className= 'input'
                       placeholder="type name of new document"
                       type="text"
                       value={newDesignName}
@@ -178,7 +178,8 @@ export const Home = () => {
         <RightContent>
           {!isLoading && (
             <>
-              <h2> Collaborators</h2>
+            {data.collabDesigns >0 ?
+              <h2 className='collabTitle'> Collaborators</h2>: null}
               <div className="collabTop">
                 {data.collaborators.map((collabUser, index) => {
                   return (
@@ -209,7 +210,8 @@ export const Home = () => {
                   );
                 })}
               </div>
-              <h2>Collaboration</h2>
+              {data.collabDesigns >0 ?
+              <h2 className='collabTitle' >Collaboration</h2> : null}
               <div className="bottomRight">
                 {data.collabDesigns.map((collab, index) => {
                   return (
