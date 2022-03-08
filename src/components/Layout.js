@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navbar } from "./Navbar";
+import { Carousel } from './Carousel';
 import { get } from "../utils/serverURL";
 
 export const LeftContent = (props) => {
@@ -28,11 +29,20 @@ export const Layout = (props) => {
         <div className="mainContainer">
           <div className="header" padding="4" color="white">
             <h1 className="title">{props.title}</h1>
+
             <Navbar user={user} setUser={setUser} />
+
           </div>
+          <div className='carolBox'>
+          <Carousel/>
+          </div>
+
           <div className="content">{props.children}</div>
+
+
         </div>
       </div>
     </div>
+
   );
 };

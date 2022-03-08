@@ -209,6 +209,12 @@ li span {
   display: flex;
   flex-direction: row;
   width: 90%;
+  margin-top: 20px;
+}
+.carolBox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .slider {
   overflow: hidden;
@@ -225,30 +231,30 @@ li span {
 .gameLogo {
   max-width: 75px;
 }
-.slider::before,
+/* .slider::before,
 .slider::after {
   background: linear-gradient(
     to right,
-    rgba(15, 15, 15, 1),
-    rgba(15, 15, 15, 0)
+    rgba(69, 69, 69,1),
+    rgba(69, 69, 69,.2)
   );
   content: "";
   height: 100px;
   position: absolute;
-  width: 150px;
+  width: 50px;
   z-index: 2;
 }
 .slider::after {
-  right: 4%;
-  top: 200px;
+  right: 8%;
+  top: 170px;
   transform: rotateZ(180deg);
 }
 .slider::before {
-  left: 4%;
-  top: 200px;
-}
+  left: 8%;
+  top:170px;
+} */
 .logos {
-  animation: scroll 30s linear infinite;
+  animation: scroll 40s linear infinite;
   display: flex;
   width: calc(115px * 18);
   display: flex;
