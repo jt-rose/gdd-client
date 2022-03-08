@@ -69,7 +69,11 @@ export const Search = () => {
             </div>
             <div className="pairs">
               <label htmlFor="genre">Genre</label>
-              <select className="input" value={genre} onChange={(e) => setGenre(e.target.value)}>
+              <select
+                className="input"
+                value={genre}
+                onChange={(e) => setGenre(e.target.value)}
+              >
                 <option key="select-ANY" value="ANY">
                   ANY
                 </option>
@@ -80,30 +84,40 @@ export const Search = () => {
                 ))}
               </select>
             </div>
-            <button className="buttForm1"onClick={handleSearch}>Search</button>
+            <button className="buttForm1" onClick={handleSearch}>
+              Search
+            </button>
           </form>
         </div>
         <div className="searchResults">
           {noResults && <p>no results found</p>}
           {results.map((design, index) => (
-            <div className="box" key= {index}  onClick={() => openDesignPage(design._id)}>
-              <img id='searchImg' className="gddPic" src={design.image}/>
-              <h4 >{design.name}</h4>
-              <div class="clip" id='right' ></div>
-              <div class="clip" id='left'></div>
-              <div class="clip" id='up'></div>
-              <div class="clip" id='down'></div>
-              <span id='rightClip' className="clipper">Click to Open
-                  <h3 >{design.name}</h3>
+            <div
+              className="box"
+              key={index}
+              onClick={() => openDesignPage(design._id)}
+            >
+              <img id="searchImg" className="gddPic" src={design.image} />
+              <h4>{design.name}</h4>
+              <div className="clip" id="right"></div>
+              <div className="clip" id="left"></div>
+              <div className="clip" id="up"></div>
+              <div className="clip" id="down"></div>
+              <span id="rightClip" className="clipper">
+                Click to Open
+                <h3>{design.name}</h3>
               </span>
-              <span id='leftClip' className="clipper">Click to Open
-                <h3 >{design.name}</h3>
+              <span id="leftClip" className="clipper">
+                Click to Open
+                <h3>{design.name}</h3>
               </span>
-              <span id='upClip' className="clipper">Click to Open
-                  <h3 >{design.name}</h3>
+              <span id="upClip" className="clipper">
+                Click to Open
+                <h3>{design.name}</h3>
               </span>
-              <span id='downClip' className="clipper">Click to Open
-                  <h3 >{design.name}</h3>
+              <span id="downClip" className="clipper">
+                Click to Open
+                <h3>{design.name}</h3>
               </span>
             </div>
           ))}
