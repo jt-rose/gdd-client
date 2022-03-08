@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { put } from "../utils/serverURL";
 
 import { FaPlus } from "react-icons/fa";
@@ -11,6 +11,8 @@ export const EditableCard = (props) => {
   const [imageURL, setImageURL] = useState(cardData.image);
   const [showModal, setShowModal] = useState(false);
   const [toggleEdit, setToggleEdit] = useState(false);
+  //   const [scrollPosition, setPosition] = useState(0);
+  //   console.log("scroll: ", scrollPosition);
   // use props.setIsEditing
   const currentDataArray = props.currentDataArray;
   let update = {};
@@ -27,11 +29,14 @@ export const EditableCard = (props) => {
     setDescription(cardData.description);
     setImageFile(null);
     setImageURL(cardData.image);
+    props.setModalFixedSize(false);
   };
 
   const handleDesignUpdate = async () => {
     const response = await put("/doc/edit/" + props.designid, { update });
     setShowModal(false);
+    props.setModalFixedSize(false);
+    setToggleEdit(!toggleEdit);
 
     if (cardData.name === "") {
       setName("");
@@ -57,10 +62,25 @@ export const EditableCard = (props) => {
     setImageURL(response.data.image);
   };
 
+  //   useEffect(() => {
+  //     function updatePosition() {
+  //       setPosition(window.pageYOffset);
+  //     }
+  //     window.addEventListener("scroll", updatePosition);
+  //     updatePosition();
+  //     return () => window.removeEventListener("scroll", updatePosition);
+  //   }, []);
+
   if (!showModal && props.addNew) {
     return (
       <>
-        <div className="docPair" onClick={() => setShowModal(true)}>
+        <div
+          className="docPair"
+          onClick={() => {
+            props.setModalFixedSize(true);
+            setShowModal(true);
+          }}
+        >
           <div className="editCard">
             <div className="add-icon-center">
               <FaPlus className="add-icon" />
@@ -72,15 +92,22 @@ export const EditableCard = (props) => {
   } else if (!showModal) {
     return (
       <>
-        <div className="docPair" onClick={() => setShowModal(true)}>
+        <div
+          className="docPair"
+          onClick={() => {
+            props.setModalFixedSize(true);
+            setShowModal(true);
+          }}
+        >
           <div className="editCard">
             <div className="picPair">
               <img className="gameImg" src={imageURL} />
             </div>
             <div className="gameName">
-              <h3>{name}</h3>
+              <h3 className="name">{name}</h3>
+
+              <p>{description}</p>
             </div>
-            <p>{description}</p>
           </div>
         </div>
       </>
@@ -89,9 +116,6 @@ export const EditableCard = (props) => {
     return (
       <div className="docPairModal">
         <div className="modal-content2">
-          {props.myProject && (
-            <button onClick={() => setToggleEdit(!toggleEdit)}>Edit</button>
-          )}
           {toggleEdit ? (
             <>
               <div className="zoomInfoBox pairs">
@@ -118,9 +142,11 @@ export const EditableCard = (props) => {
                 >
                   Description
                 </label>
-                <input
-                  className="input"
+                <textarea
+                  className="input2"
                   type="text"
+                  rows="8"
+                  column="50"
                   id={
                     props.updateField +
                     "-description-" +
@@ -128,7 +154,7 @@ export const EditableCard = (props) => {
                   }
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                />
+                ></textarea>
                 <label
                   htmlFor={
                     props.updateField + "-image-" + props.editingTarget.index
@@ -157,8 +183,31 @@ export const EditableCard = (props) => {
             </>
           ) : (
             <>
-              <h2>Hi I'm content</h2>
-              <button onClick={() => setShowModal(false)}>Close</button>
+              <div className="docImgButtBox">
+                <div className="docZoomImgBox">
+                  <img className="docZoomImg" src={imageURL} />
+                </div>
+                <div className="modalDesc">
+                  <p>{description}</p>
+                </div>
+                {props.myProject && (
+                  <button
+                    className="buttForm2"
+                    onClick={() => setToggleEdit(!toggleEdit)}
+                  >
+                    Edit
+                  </button>
+                )}
+                <button
+                  className="buttForm1"
+                  onClick={() => {
+                    props.setModalFixedSize(false);
+                    setShowModal(false);
+                  }}
+                >
+                  Close
+                </button>
+              </div>
             </>
           )}
         </div>

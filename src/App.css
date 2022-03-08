@@ -4,21 +4,19 @@
   padding: 0;
   color: rgb(187, 187, 187);
 }
-#hide {
-}
+
 h1 {
   margin-left: 30px;
   /* margin-bottom: 15px; */
   color: rgb(187, 187, 187);
-padding-top: 20px;
+  padding-top: 20px;
 }
 /* .title{
   margin-top: 30px;
 } */
 .header {
   position: relative;
-  box-shadow:
-    5px 5px 10px rgba(187, 187, 187, 0.5) inset,
+  box-shadow: 5px 5px 10px rgba(187, 187, 187, 0.5) inset,
     -5px -5px 10px rgba(0, 0, 0, 0.8) inset;
 }
 .nav {
@@ -100,7 +98,8 @@ padding-top: 20px;
   color: rgb(187, 187, 187);
   background-color: rgba(0, 0, 0, 0.5);
   padding: 10px;
-  margin-bottom: 20px;
+  margin: 20px auto;
+  border: 2px solid rgb(187, 187, 187);
   border-radius: 10px;
 }
 .input {
@@ -116,14 +115,27 @@ padding-top: 20px;
   border-bottom: 3px solid rgb(40, 40, 40);
   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
 }
+.input2 {
+  width: 90%;
+  min-width: 300px;
+  height: 200px;
+  margin: 0 auto;
+  /* height: 30px; */
+  border: none;
+  float: right;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-bottom: 3px solid rgb(40, 40, 40);
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
+}
 
 .buttForm1 {
   margin: auto;
   margin-top: 20px;
-
   background-color: rgb(2, 57, 14);
   color: black;
   font-weight: bold;
+  font-size: 18px;
   width: 60%;
 }
 .buttForm1:hover {
@@ -135,6 +147,7 @@ padding-top: 20px;
   background-color: rgb(2, 57, 14);
   color: black;
   font-weight: bold;
+  font-size: 18px;
   padding: 2px;
 }
 .buttForm2:hover {
@@ -180,7 +193,6 @@ li span {
   border-bottom-right-radius: 25px;
   justify-content: center;
   align-items: center;
-
 }
 .contentRight {
   display: flex;
@@ -191,45 +203,48 @@ li span {
   background-color: rgb(20, 20, 20);
   border-bottom-right-radius: 25px;
   box-shadow: 2px 2px 5px black inset;
-
 }
 /* =========WELCOME Page Styling ============*/
-.sliderMain{
+.sliderMain {
   display: flex;
   flex-direction: row;
   width: 90%;
 }
-.slider{
+.slider {
   overflow: hidden;
-margin-bottom: 20px;
+  margin-bottom: 20px;
 }
-.logoBox{
+.logoBox {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 75px;
-  height:75px;
-  margin:20px;
+  height: 75px;
+  margin: 20px;
 }
-.gameLogo{
+.gameLogo {
   max-width: 75px;
 }
-.slider::before, .slider::after {
-background: linear-gradient(to right, rgba(15, 15, 15, 1),
- rgba(15, 15, 15, 0) );
-content: "";
-height: 100px;
-position: absolute;
-width: 150px;
-z-index: 2;
+.slider::before,
+.slider::after {
+  background: linear-gradient(
+    to right,
+    rgba(15, 15, 15, 1),
+    rgba(15, 15, 15, 0)
+  );
+  content: "";
+  height: 100px;
+  position: absolute;
+  width: 150px;
+  z-index: 2;
 }
 .slider::after {
   right: 4%;
   top: 200px;
-   transform: rotateZ(180deg);
+  transform: rotateZ(180deg);
 }
 .slider::before {
-  left:4%;
+  left: 4%;
   top: 200px;
 }
 .logos {
@@ -241,17 +256,19 @@ z-index: 2;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, .125);
-	height: 100px;
-	margin: auto;
-	position: relative;
-
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.125);
+  height: 100px;
+  margin: auto;
+  position: relative;
 }
 
 @keyframes scroll {
-	0% { transform: translateX(0);
+  0% {
+    transform: translateX(0);
   }
-	100% { transform: translateX(calc(-115px * 9));}
+  100% {
+    transform: translateX(calc(-115px * 9));
+  }
 }
 
 /* =========HOME Page Styling ============*/
@@ -267,9 +284,6 @@ z-index: 2;
   height: 70%;
   /* background-color:blue; */
   padding: 10px;
-}
-#userStats {
-  /* background-color: red; */
 }
 
 .profileCard {
@@ -302,7 +316,10 @@ z-index: 2;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
-.collabTop{
+.collabTitle {
+  border-bottom: 2px solid blue;
+}
+.collabTop {
   display: flex;
 }
 .collabCard {
@@ -424,13 +441,12 @@ z-index: 2;
   align-items: center;
   margin: auto;
 }
-.bottomRight{
+.bottomRight {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
   height: 100%;
-
 }
 .collabCard2 {
   display: flex;
@@ -446,7 +462,7 @@ z-index: 2;
   box-shadow: 5px 5px 5px black, 2px 2px 5px rgba(187, 187, 187, 0.8) inset,
     -2px -2px 5px black inset;
 }
-.gdd3nameBox{
+.gdd3nameBox {
   overflow: hidden;
 }
 .gddPic3 {
@@ -488,13 +504,13 @@ z-index: 2;
 .gddImg {
   max-width: 100%;
   max-height: 100%;
+  margin: auto;
 }
 
 .gameImg {
-  width: 100px;
-  height: 100px;
-  margin-right: auto;
-  border-top-left-radius: 10px;
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
 }
 .docName {
   display: flex;
@@ -513,7 +529,7 @@ z-index: 2;
 .editCard {
   display: flex;
   width: 200px;
-  min-height: 250px;
+  height: 250px;
   flex-direction: column;
   align-items: center;
   background-color: rgb(15, 15, 15);
@@ -521,6 +537,7 @@ z-index: 2;
   border-radius: 10px;
   box-shadow: 0 8px 8px black;
   transition: transform 0.5s ease;
+  overflow: hidden;
 }
 .editCard:hover {
   transform: scale(1.1);
@@ -530,6 +547,7 @@ z-index: 2;
 .picPair {
   display: flex;
   width: 100%;
+  max-height: 150px;
   justify-content: center;
   padding-right: 5px;
   margin-right: auto;
@@ -540,8 +558,11 @@ z-index: 2;
   border-top-right-radius: 10px;
 }
 .gameName {
-  border-bottom: 2px solid blue;
   margin-bottom: 5px;
+  overflow: hidden;
+}
+.name {
+  border-bottom: 2px solid blue;
 }
 .docButt {
   display: flex;
@@ -569,40 +590,45 @@ z-index: 2;
 }
 .docPairModal {
   display: flex;
+  justify-content: center;
   position: fixed;
-
-
   z-index: 1;
+  top: 0;
   left: 0;
-  bottom: 0;
   padding: 25px;
-  min-width: 100vw;
+  min-width: 100%;
   min-height: 100%;
   /* overflow: auto; */
   background-color: rgba(0, 0, 0, 0.8);
   margin: 0 auto;
-
 }
 .zoomInfoBox {
   display: flex;
-  height: 200px;
+  height: 250px;
   flex-direction: column;
   background-color: rgba(0, 0, 0, 0.9);
   align-items: center;
   justify-content: center;
-  margin: auto;
+  margin: 0;
   margin-right: 10px;
+  border: 2px solid rgb(187, 187, 187);
   border-radius: 15px;
+  padding: 15px 10px;
 }
 .docZoomImgBox {
-  min-width: 390px;
-  min-height: 390px;
-  max-width: 500px;
+  display: flex;
+  margin: auto;
+  min-width: 320px;
+  min-height: 600px;
+  max-width: 600px;
+  justify-content: flex-end;
   /* max-height: 500px; */
   /* background-color: purple; */
 }
 .docZoomImg {
+  margin: auto;
   margin-top: auto;
+  margin-bottom: 20px;
   max-width: 100%;
   max-height: 100%;
 }
@@ -612,7 +638,9 @@ z-index: 2;
 }
 .modal-content2 {
   display: flex;
-  margin: auto;
+  align-items: center;
+  margin: auto 0;
+  max-width: 75%;
   animation-name: zoom;
   animation-duration: 0.6s;
   /* background-color: yellow; */
@@ -628,6 +656,16 @@ z-index: 2;
   justify-content: center;
   text-align: center;
 }
+.modalDesc {
+  width: 100%;
+  padding: 10px;
+  margin: 10px auto;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px solid rgb(187, 187, 187);
+  font-weight: bold;
+}
+
 @keyframes zoom {
   from {
     transform: scale(0);
@@ -639,7 +677,7 @@ z-index: 2;
 #char {
   background-color: white;
 }
-.collabBox{
+.collabBox {
   display: flex;
   width: 100%;
   flex-wrap: nowrap;
@@ -648,39 +686,37 @@ z-index: 2;
   border-bottom: 2px solid grey;
   padding-bottom: 20px;
 }
-#requestBox{
+#requestBox {
   display: flex;
   flex-direction: column;
-  width:100%;
+  width: 100%;
   margin: 20px auto;
   align-items: center;
   justify-content: center;
 }
-#requestButtBox{
+#requestButtBox {
   display: flex;
   flex-direction: column;
   width: 200px;
   margin: auto;
-
 }
-.glow{
+.glow {
   font-weight: bold;
   animation: glowing 1s ease-in-out infinite alternate;
   margin: 10px;
 }
 @keyframes glowing {
   from {
-    text-shadow:0 0 5px black, 0 0 5px white,
-    0 0 5px rgb(27, 92, 0), 0 0 5px rgb(27, 92, 0),
-    0 0 5px rgb(27, 92, 0), 0 0 5px rgb(27, 92, 0);
-}
+    text-shadow: 0 0 5px black, 0 0 5px white, 0 0 5px rgb(27, 92, 0),
+      0 0 5px rgb(27, 92, 0), 0 0 5px rgb(27, 92, 0), 0 0 5px rgb(27, 92, 0);
+  }
   to {
-    text-shadow:0 0 5px black, 0 0 5px white,
-    0 0 10px rgb(27, 92, 0), 0 0 10px rgb(27, 92, 0),
-    20px 0 20px rgb(27, 92, 0), -20px 0 20px rgb(27, 92, 0);
+    text-shadow: 0 0 5px black, 0 0 5px white, 0 0 10px rgb(27, 92, 0),
+      0 0 10px rgb(27, 92, 0), 20px 0 20px rgb(27, 92, 0),
+      -20px 0 20px rgb(27, 92, 0);
   }
 }
-#reqName{
+#reqName {
   color: rgb(147, 0, 171);
   font-weight: bold;
 }
@@ -718,7 +754,8 @@ z-index: 2;
   color: rgb(187, 187, 187);
   background-color: rgba(0, 0, 0, 0.5);
   padding: 10px;
-  margin-bottom: 20px;
+  margin: 20px;
+  border: 2px solid rgb(187, 187, 187);
   border-radius: 10px;
 }
 
@@ -737,7 +774,7 @@ z-index: 2;
   align-items: center;
   justify-content: center;
 }
-#searchImg{
+#searchImg {
   margin: auto;
 }
 .box {
@@ -848,7 +885,10 @@ z-index: 2;
   .main {
     display: block;
   }
-  .mainEffect{
+  .main.design-page {
+    display: flex;
+  }
+  .mainEffect {
     width: 100%;
   }
   .mainContainer {
@@ -870,27 +910,23 @@ z-index: 2;
     flex-direction: row;
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
+    padding: 0;
+    margin: 0;
   }
-  .gddCard {
-    /* background-color: lightblue;
-    color: rgb(15, 15, 15); */
-  }
-  .homeDiv {
-  }
-  .pCardContent {
-  }
+
   .gddCard {
     width: 90%;
   }
-  .docPairModal{
+  .docPairModal {
     position: fixed;
-    padding: 0;
+    padding: 10px;
     height: 100vh;
+    left: 0;
     bottom: 10px;
   }
-.zoomInfoBox{
-  margin: 0;
-}
+  .zoomInfoBox {
+    margin: 0;
+  }
   .searchForm {
     display: flex;
     min-height: 50px;
@@ -904,14 +940,15 @@ z-index: 2;
   }
 }
 @media only screen and (max-width: 930px) {
-  *{
-    margin: 0;
+  * {
+    margin: 0 auto;
   }
   .modal-content2 {
     flex-direction: column;
   }
 }
 
+/* Add Icons */
 .add-icon-center {
   width: 100%;
   height: 250px;
@@ -923,4 +960,10 @@ z-index: 2;
   padding: 3em;
   width: 100%;
   height: 100%;
+}
+
+/* modal-fixed background size */
+.modal-fixed {
+  height: 100vh;
+  overflow: hidden;
 }

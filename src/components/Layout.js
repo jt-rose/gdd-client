@@ -19,7 +19,11 @@ export const Layout = (props) => {
   }, []);
 
   return (
-    <div className="main">
+    <div
+      className={`main ${props.designPage && "design-page"} ${
+        props.modalFixedSize && "modal-fixed"
+      }`}
+    >
       <div className="mainEffect">
         <div className="mainContainer">
           <div className="header" padding="4" color="white">

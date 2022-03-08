@@ -38,7 +38,7 @@ export const EditableText = (props) => {
       <>
         <div className="storyDiv">
           <label htmlFor={props.updateField}>{props.updateField}</label>
-          <textarea
+          <textarea className='input2'
             type="text"
             id={props.updateField}
             value={text}
