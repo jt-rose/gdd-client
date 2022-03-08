@@ -178,8 +178,8 @@ export const Home = () => {
         <RightContent>
           {!isLoading && (
             <>
-            {data.collabDesigns >0 ?
-              <h2 className='collabTitle'> Collaborators</h2>: null}
+
+              <h2 className='collabTitle'> Collaborators</h2>
               <div className="collabTop">
                 {data.collaborators.map((collabUser, index) => {
                   return (
@@ -192,16 +192,15 @@ export const Home = () => {
                         <div className="collabContentTop">
                           <div className="collabName">
                             <h3>{collabUser.username}</h3>
-                            <span className="date2">{collabUser.username}</span>
+                            
                             {collabUser.description}
-                            <br />
-                            Game they are working on
+
                           </div>
                           <img className="collabPic" src={collabUser.image} />
                         </div>
                         <div className="collabContentBottom">
                           <IoLogoGameControllerB />
-                          <div className="tags">Dungeon Level</div>
+                          <div className="tags"> Level</div>
                           <GiHoodedAssassin />
                           <div className="tags"> Characters</div>
                         </div>
@@ -210,8 +209,8 @@ export const Home = () => {
                   );
                 })}
               </div>
-              {data.collabDesigns >0 ?
-              <h2 className='collabTitle' >Collaboration</h2> : null}
+
+              <h2 className='collabTitle' >Collaboration</h2>
               <div className="bottomRight">
                 {data.collabDesigns.map((collab, index) => {
                   return (
