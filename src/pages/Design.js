@@ -2,22 +2,22 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
 import { get, post, put, remove } from "../utils/serverURL";
 import { EditableText } from "../components/EditableText";
-import { EditableCard } from "../components/EditableCard";
+import { AddNewCard, EditableCard } from "../components/EditableCard";
 import { Layout, LeftContent, RightContent } from "../components/Layout";
 import { EditableSelect } from "../components/EditableSelect";
 
 export const Design = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
-  const [creator, setCreator] = useState(null);
-  const [myProject, setMyProject] = useState(false);
+  //   const [creator, setCreator] = useState(null);
+  //   const [myProject, setMyProject] = useState(false);
   // {target: 'locations', index: number | null}
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
-  const [pendingCollabRequest, setPendingCollabrequest] = useState(false);
-  const [isDesignCreator, setIsDesignCreator] = useState(false);
-  const [collaborators, setCollaborators] = useState([]);
-  const [collabRequestUsers, setCollabRequestUsers] = useState([]);
+  //   const [pendingCollabRequest, setPendingCollabrequest] = useState(false);
+  //   const [isDesignCreator, setIsDesignCreator] = useState(false);
+  //   const [collaborators, setCollaborators] = useState([]);
+  //   const [collabRequestUsers, setCollabRequestUsers] = useState([]);
   const [modalFixedSize, setModalFixedSize] = useState(false);
 
   const { designid } = useParams();
@@ -57,12 +57,12 @@ export const Design = () => {
     });
     console.log(response.data);
     if (!response.data.error) {
-      setData(response.data.designDoc);
-      setMyProject(response.data.myProject);
-      setPendingCollabrequest(response.data.pendingCollabRequest);
-      setIsDesignCreator(response.data.isDesignCreator);
-      setCollaborators(response.data.collaborators);
-      setCollabRequestUsers(response.data.collabRequestUserData);
+      setData(response.data);
+      //   setMyProject(response.data.myProject);
+      //   setPendingCollabrequest(response.data.pendingCollabRequest);
+      //   setIsDesignCreator(response.data.isDesignCreator);
+      //   setCollaborators(response.data.collaborators);
+      //   setCollabRequestUsers(response.data.collabRequestUserData);
     }
   };
 
@@ -73,12 +73,12 @@ export const Design = () => {
     });
 
     if (!response.data.error) {
-      setData(response.data.designDoc);
-      setMyProject(response.data.myProject);
-      setPendingCollabrequest(response.data.pendingCollabRequest);
-      setIsDesignCreator(response.data.isDesignCreator);
-      setCollaborators(response.data.collaborators);
-      setCollabRequestUsers(response.data.collabRequestUserData);
+      setData(response.data);
+      //   setMyProject(response.data.myProject);
+      //   setPendingCollabrequest(response.data.pendingCollabRequest);
+      //   setIsDesignCreator(response.data.isDesignCreator);
+      //   setCollaborators(response.data.collaborators);
+      //   setCollabRequestUsers(response.data.collabRequestUserData);
     }
   };
 
@@ -89,24 +89,24 @@ export const Design = () => {
     });
     console.log(response.data);
     if (!response.data.error) {
-      setData(response.data.designDoc);
-      setMyProject(response.data.myProject);
-      setPendingCollabrequest(response.data.pendingCollabRequest);
-      setIsDesignCreator(response.data.isDesignCreator);
-      setCollaborators(response.data.collaborators);
-      setCollabRequestUsers(response.data.collabRequestUserData);
+      setData(response.data);
+      //   setMyProject(response.data.myProject);
+      //   setPendingCollabrequest(response.data.pendingCollabRequest);
+      //   setIsDesignCreator(response.data.isDesignCreator);
+      //   setCollaborators(response.data.collaborators);
+      //   setCollabRequestUsers(response.data.collabRequestUserData);
     }
   };
 
   useEffect(async () => {
     const response = await get("/doc/" + designid);
-    setData(response.data.designDoc);
-    setCreator(response.data.creator);
-    setMyProject(response.data.myProject);
-    setPendingCollabrequest(response.data.pendingCollabRequest);
-    setIsDesignCreator(response.data.isDesignCreator);
-    setCollaborators(response.data.collaborators);
-    setCollabRequestUsers(response.data.collabRequestUserData);
+    setData(response.data);
+    // setCreator(response.data.creator);
+    // setMyProject(response.data.myProject);
+    // setPendingCollabrequest(response.data.pendingCollabRequest);
+    // setIsDesignCreator(response.data.isDesignCreator);
+    // setCollaborators(response.data.collaborators);
+    // setCollabRequestUsers(response.data.collabRequestUserData);
     console.log(response.data);
     setIsLoading(false);
   }, []);
@@ -125,23 +125,30 @@ export const Design = () => {
                 <EditableText
                   designid={designid}
                   updateField="name"
-                  text={data.name}
+                  text={data.designDoc.name}
                   setData={setData}
                   large={true}
-                  myProject={myProject}
+                  myProject={data.myProject}
                 />
-                <div className="smallImgBox" onClick={() => navigate("/user/" + creator.username)}>
-                  <p>created by <span id='accentColor'>{creator.username}</span></p>
-                  <img className="smallImg" src={creator.image} />
+                <div
+                  className="smallImgBox"
+                  onClick={() => navigate("/user/" + data.creator.username)}
+                >
+                  <p>
+                    created by{" "}
+                    <span id="accentColor">{data.creator.username}</span>
+                  </p>
+                  <img className="smallImg" src={data.creator.image} />
                 </div>
               </div>
 
-
               <div className="gddPic2">
-                {!imagePreview && <img className="gddImg" src={data.image} />}
+                {!imagePreview && (
+                  <img className="gddImg" src={data.designDoc.image} />
+                )}
                 {imagePreview && <img className="gddImg" src={imagePreview} />}
               </div>
-              {myProject && (
+              {data.myProject && (
                 <div className="gddPicFile">
                   <input
                     className="inputfile"
@@ -157,16 +164,16 @@ export const Design = () => {
             <div className="docPairs">
               <EditableSelect
                 designid={designid}
-                genre={data.genre}
-                myProject={myProject}
+                genre={data.designDoc.genre}
+                myProject={data.myProject}
                 setData={setData}
               />
               <div className="story">
                 <EditableText
                   designid={designid}
                   updateField="story"
-                  text={data.story || ""}
-                  myProject={myProject}
+                  text={data.designDoc.story || ""}
+                  myProject={data.myProject}
                   setData={setData}
                 />
                 {!data.story && <p>-- No story listed yet --</p>}
@@ -175,40 +182,41 @@ export const Design = () => {
             <div className="docPairs">
               <h2>CHARACTERS</h2>
               <div className="cardLocation docCard">
-                {myProject && (
-                  <EditableCard
+                {data.myProject && (
+                  <AddNewCard
                     designid={designid}
-                    cardData={{
-                      name: "Character Name",
-                      description: "Description",
-                      image: "../../gmPic.png",
-                    }}
-                    currentDataArray={data.characters}
-                    editingTarget={{ index: data.characters.length }}
+                    key={"char-card-add"}
+                    // cardData={{
+                    //   name: "Character Name",
+                    //   description: "Description",
+                    //   image: "../../gmPic.png",
+                    // }}
+                    currentDataArray={data.designDoc.characters}
+                    editingTarget={{ index: data.designDoc.characters.length }}
                     updateField={"characters"}
                     buttonName="Add"
                     addNew={true}
-                    myProject={myProject}
+                    myProject={data.myProject}
                     setData={setData}
                     setModalFixedSize={setModalFixedSize}
                   />
                 )}
 
-                {data.characters.reverse().map((c, index) => (
+                {data.designDoc.characters.reverse().map((c, index) => (
                   <EditableCard
                     key={"char-card-" + index}
                     designid={designid}
                     cardData={c}
-                    currentDataArray={data.characters}
+                    currentDataArray={data.designDoc.characters}
                     editingTarget={{ index }}
                     updateField={"characters"}
                     buttonName="Edit"
-                    myProject={myProject}
+                    myProject={data.myProject}
                     setData={setData}
                     setModalFixedSize={setModalFixedSize}
                   />
                 ))}
-                {!myProject && data.characters.length === 0 && (
+                {!data.myProject && data.designDoc.characters.length === 0 && (
                   <p>-- No characters listed yet --</p>
                 )}
               </div>
@@ -216,40 +224,41 @@ export const Design = () => {
             <div className="docPairs">
               <h2>LOCATIONS</h2>
               <div className="cardLocation docCard">
-                {myProject && (
-                  <EditableCard
+                {data.myProject && (
+                  <AddNewCard
                     designid={designid}
-                    cardData={{
-                      name: "Location Name",
-                      description: "Description",
-                      image: "../../gmPic.png",
-                    }}
-                    currentDataArray={data.locations}
-                    editingTarget={{ index: data.locations.length }}
+                    key={"location-card-add"}
+                    // cardData={{
+                    //   name: "Location Name",
+                    //   description: "Description",
+                    //   image: "../../gmPic.png",
+                    // }}
+                    currentDataArray={data.designDoc.locations}
+                    editingTarget={{ index: data.designDoc.locations.length }}
                     updateField={"locations"}
                     buttonName="Add"
                     addNew={true}
-                    myProject={myProject}
+                    myProject={data.myProject}
                     setData={setData}
                     setModalFixedSize={setModalFixedSize}
                   />
                 )}
 
-                {data.locations.reverse().map((l, index) => (
+                {data.designDoc.locations.reverse().map((l, index) => (
                   <EditableCard
                     key={"loc-card-" + index}
                     designid={designid}
                     cardData={l}
-                    currentDataArray={data.locations}
+                    currentDataArray={data.designDoc.locations}
                     editingTarget={{ index }}
                     updateField={"locations"}
                     buttonName="Edit"
-                    myProject={myProject}
+                    myProject={data.myProject}
                     setData={setData}
                     setModalFixedSize={setModalFixedSize}
                   />
                 ))}
-                {!myProject && data.locations.length === 0 && (
+                {!data.myProject && data.designDoc.locations.length === 0 && (
                   <p>-- No locations listed yet --</p>
                 )}
               </div>
@@ -257,40 +266,41 @@ export const Design = () => {
             <div className="docPairs">
               <h2>ITEMS</h2>
               <div className="cardItems docCard">
-                {myProject && (
-                  <EditableCard
+                {data.myProject && (
+                  <AddNewCard
                     designid={designid}
-                    cardData={{
-                      name: "Name",
-                      description: "Description",
-                      image: "../../gmPic.png",
-                    }}
-                    currentDataArray={data.items}
-                    editingTarget={{ index: data.items.length }}
+                    key={"item-card-add"}
+                    // cardData={{
+                    //   name: "Name",
+                    //   description: "Description",
+                    //   image: "../../gmPic.png",
+                    // }}
+                    currentDataArray={data.designDoc.items}
+                    editingTarget={{ index: data.designDoc.items.length }}
                     updateField={"items"}
                     buttonName="Add"
                     addNew={true}
-                    myProject={myProject}
+                    myProject={data.myProject}
                     setData={setData}
                     setModalFixedSize={setModalFixedSize}
                   />
                 )}
 
-                {data.items.map((item, index) => (
+                {data.designDoc.items.map((item, index) => (
                   <EditableCard
                     key={"item-card-" + index}
                     designid={designid}
                     cardData={item}
-                    currentDataArray={data.items}
+                    currentDataArray={data.designDoc.items}
                     editingTarget={{ index }}
                     updateField={"items"}
                     buttonName="Edit"
-                    myProject={myProject}
+                    myProject={data.myProject}
                     setData={setData}
                     setModalFixedSize={setModalFixedSize}
                   />
                 ))}
-                {!myProject && data.items.length === 0 && (
+                {!data.myProject && data.designDoc.items.length === 0 && (
                   <p>-- No items listed yet --</p>
                 )}
               </div>
@@ -298,40 +308,41 @@ export const Design = () => {
             <div className="docPairs">
               <h2>GAMEPLAY MECHANICS</h2>
               <div className="cardGpMech docCard">
-                {myProject && (
-                  <EditableCard
+                {data.myProject && (
+                  <AddNewCard
                     designid={designid}
-                    cardData={{
-                      name: "Gameplay Mechanic",
-                      description: "Description",
-                      image: "../../gmPic.png",
-                    }}
-                    currentDataArray={data.gameplay}
-                    editingTarget={{ index: data.gameplay.length }}
+                    key={"gameplay-card-add"}
+                    // cardData={{
+                    //   name: "Gameplay Mechanic",
+                    //   description: "Description",
+                    //   image: "../../gmPic.png",
+                    // }}
+                    currentDataArray={data.designDoc.gameplay}
+                    editingTarget={{ index: data.designDoc.gameplay.length }}
                     updateField={"gameplay"}
                     buttonName="Add"
                     addNew={true}
-                    myProject={myProject}
+                    myProject={data.myProject}
                     setData={setData}
                     setModalFixedSize={setModalFixedSize}
                   />
                 )}
 
-                {data.gameplay.map((gm, index) => (
+                {data.designDoc.gameplay.map((gm, index) => (
                   <EditableCard
                     key={"gameplay-card-" + index}
                     designid={designid}
                     cardData={gm}
-                    currentDataArray={data.gameplay}
+                    currentDataArray={data.designDoc.gameplay}
                     editingTarget={{ index }}
                     updateField={"gameplay"}
                     buttonName="Edit"
-                    myProject={myProject}
+                    myProject={data.myProject}
                     setData={setData}
                     setModalFixedSize={setModalFixedSize}
                   />
                 ))}
-                {!myProject && data.gameplay.length === 0 && (
+                {!data.myProject && data.designDoc.gameplay.length === 0 && (
                   <p>-- No gameplay mechanics listed yet --</p>
                 )}
               </div>
@@ -339,24 +350,27 @@ export const Design = () => {
             <div className="docPairs">
               <h2>COLLABORATORS</h2>
               <div className="cardGpMech docCard">
-                {collaborators.map((collabs, index) => (
-                <div key={"coll-card-" + index} className="collabCard3" onClick={() => navigate("/user/" + collabs.username)}  >
-                  <img className="collabPic" src={collabs.image} />
-                  <h3 className="collabName3">{collabs.username}</h3>
-                </div>
-
-              ))}
+                {data.collaborators.map((collabs, index) => (
+                  <div
+                    key={"coll-card-" + index}
+                    className="collabCard3"
+                    onClick={() => navigate("/user/" + collabs.username)}
+                  >
+                    <img className="collabPic" src={collabs.image} />
+                    <h3 className="collabName3">{collabs.username}</h3>
+                  </div>
+                ))}
               </div>
             </div>
 
-            {!myProject && !pendingCollabRequest && (
+            {!data.myProject && !data.pendingCollabRequest && (
               <div id="requestBox">
                 <button className="buttForm1" onClick={handleJoinRequest}>
                   Request to Join Design Team
                 </button>
               </div>
             )}
-            {!myProject && pendingCollabRequest && (
+            {!data.myProject && data.pendingCollabRequest && (
               <div id="requestBox">
                 <p className="glow">
                   -- A request to join this design team has been sent! --
@@ -364,19 +378,24 @@ export const Design = () => {
               </div>
             )}
 
-            {isDesignCreator && data.collabRequestUsers.length !== 0 && (
+            {data.isDesignCreator && data.collabRequestUserData.length !== 0 && (
               <div className="collabBox">
                 <h2 className="glow">Collaboration Requests</h2>
-                {collabRequestUsers.map((u, index) => (
-                  <div className="collabBoxName" key={"collab-request-" + index}>
-
-                  <div className="smallImgBox2" onClick={() => navigate("/user/" + u.username)}>
-                    <img className="smallImg2" src={u.image}/>
-                    <p>
-                      <span id="reqName">{u.username}</span> wants to join this
-                      project
-                    </p>
-                  </div>
+                {data.collabRequestUserData.map((u, index) => (
+                  <div
+                    className="collabBoxName"
+                    key={"collab-request-" + index}
+                  >
+                    <div
+                      className="smallImgBox2"
+                      onClick={() => navigate("/user/" + u.username)}
+                    >
+                      <img className="smallImg2" src={u.image} />
+                      <p>
+                        <span id="reqName">{u.username}</span> wants to join
+                        this project
+                      </p>
+                    </div>
 
                     <div id="requestButtBox">
                       <button
@@ -398,7 +417,7 @@ export const Design = () => {
                 ))}
               </div>
             )}
-            {isDesignCreator && (
+            {data.isDesignCreator && (
               <div className="docButt">
                 <button id="trash" className="buttForm1" onClick={handleTrash}>
                   Send to Trash
